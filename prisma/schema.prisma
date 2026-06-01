@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["auth", "public"]
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+enum EVENT_STATUS {
+  finished
+  ongoing
+
+  @@schema("public")
+}
+
+enum PROFILE_ROLE {
+  admin
+  student
+  judge
+
+  @@schema("public")
+}
+
+enum UNIVERSITY {
+  OAMK     @map("Oulu University of Applied Science")
+  OULU_UNI @map("University of Oulu")
+
+  @@schema("public")
+}
+
+enum PROGRAMME {
+  COMPUTER_SCIENCE          @map("Computer Science and Engineering")
+  INFORMATION_SCIENCE       @map("Information Processing Science")
+  ELECTRONICS_COMMUNICATION @map("Electronics and Communications Engineering")
+  BIOMEDICAL                @map("Biomedical Engineering")
+
+  @@schema("public")
+}
+
+enum DEGREE {
+  Bachelor
+  Master
+  PHD      @map("Ph.D")
+
+  @@schema("public")
+}
+
+enum YEAR {
+  FIRST_YEAR  @map("First Year")
+  SECOND_YEAR @map("Second Year")
+  THIRD_YEAR  @map("Third Year")
+  OTHER       @map("Other")
+
+  @@schema("public")
+}
+
+model User {
+  id             String         @id @default(uuid())
+  displayName    String         @map("display_name")
+  email          String         @unique
+  passwordHash   String         @map("password_hash")
+  confirmationAt DateTime?      @map("confirmation_at")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  profile        Profile?
+  refreshTokens  RefreshToken[]
+
+  @@map("users")
+  @@schema("auth")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String   @map("token_hash")
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("refresh_tokens")
+  @@schema("auth")
+}
+
+model Profile {
+  id          String       @id @map("user_id")
+  fullName    String?
+  email       String       @unique
+  avatarUrl   String?      @map("avatar_url")
+  role        PROFILE_ROLE
+  companyName String?      @map("company_name")
+  programme   PROGRAMME?
+  university  UNIVERSITY?
+  degree      DEGREE?
+  year        YEAR?
+  companyUnit String?      @map("company_unit")
+  jobTitle    String?      @map("job_title")
+  github      String?
+  linkedIn    String?
+  description String?
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  user User @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+  @@schema("public")
+}
+
+model Event {
+  id               String       @id @default(uuid())
+  posterPath       String?      @map("poster_path")
+  title            String
+  shortDescription String       @map("short_description")
+  status           EVENT_STATUS @default(ongoing)
+  content          String?
+  location         String?
+  maxGroupMembers  Int          @map("max_group_members")
+  startDate        DateTime     @default(now()) @map("start_date")
+  endDate          DateTime     @default(now()) @map("end_date")
+  organizedDate    DateTime     @default(now()) @map("organized_date")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  groups           Group[]
+
+  @@map("events")
+  @@schema("public")
+}
+
+model Group {
+  id               String   @id @default(uuid())
+  groupName        String   @map("group_name")
+  event_id         String
+  event            Event    @relation(fields: [event_id], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now()) @map("created_at")
+  shortDescription String   @map("short_description")
+  posterPath       String?  @map("poster_path")
+
+  @@schema("public")
+}
