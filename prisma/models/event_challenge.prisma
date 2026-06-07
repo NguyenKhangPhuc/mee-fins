@@ -1,0 +1,12 @@
+model EventChallenge {
+    id              String           @id @default(uuid())
+    companyName     String           @map("company_name")
+    title           String
+    eventId         String           @map("event_id")
+    event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    createdAt       DateTime         @default(now()) @map("created_at")
+    groupChallenges GroupChallenge[]
+
+    @@map("event_challenges")
+    @@schema("public")
+}

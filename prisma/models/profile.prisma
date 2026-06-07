@@ -1,0 +1,31 @@
+model Profile {
+    id          String       @id
+    fullName    String?
+    email       String       @unique
+    avatarUrl   String?      @map("avatar_url")
+    role        PROFILE_ROLE
+    companyName String?      @map("company_name")
+    programme   PROGRAMME?
+    university  UNIVERSITY?
+    degree      DEGREE?
+    year        YEAR?
+    companyUnit String?      @map("company_unit")
+    jobTitle    String?      @map("job_title")
+    github      String?
+    linkedIn    String?
+    description String?
+    createdAt   DateTime     @default(now()) @map("created_at")
+    updatedAt   DateTime     @updatedAt @map("updated_at")
+
+    user                User                 @relation(fields: [id], references: [id], onDelete: Cascade)
+    groupMembers        GroupMember[]
+    invitations         Invitation[]
+    submissionGradings  SubmissionGrading[]
+    submissionReactions SubmissionReaction[]
+    submissionRatings   SubmissionRating[]
+    submissionFeedbacks SubmissionFeedback[]
+    submissionComments  SubmissionComment[]
+
+    @@map("profiles")
+    @@schema("public")
+}

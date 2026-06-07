@@ -1,0 +1,14 @@
+model SubmissionGrading {
+    id              String               @id @default(uuid())
+    userId          String               @map("user_id")
+    profile         Profile              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    submissionId    String               @map("submission_id")
+    submission      Submission           @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+    eventCriteriaId String               @map("event_criteria_id")
+    eventCriteria   EventGradingCriteria @relation(fields: [eventCriteriaId], references: [id], onDelete: Cascade)
+    grade           Float
+    createdAt       DateTime             @map("created_at")
+
+    @@map("submission_gradings")
+    @@schema("public")
+}

@@ -75,6 +75,21 @@ enum INVITATION_STATUS {
   @@schema("public")
 }
 
+enum CRITERIA_TYPE {
+  normal
+  specific
+
+  @@schema("public")
+}
+
+enum AWARD_TYPE {
+  general
+  specific
+  participant
+
+  @@schema("public")
+}
+
 model User {
   id             String         @id @default(uuid())
   displayName    String         @map("display_name")
@@ -100,87 +115,4 @@ model RefreshToken {
 
   @@map("refresh_tokens")
   @@schema("auth")
-}
-
-model Profile {
-  id          String       @id
-  fullName    String?
-  email       String       @unique
-  avatarUrl   String?      @map("avatar_url")
-  role        PROFILE_ROLE
-  companyName String?      @map("company_name")
-  programme   PROGRAMME?
-  university  UNIVERSITY?
-  degree      DEGREE?
-  year        YEAR?
-  companyUnit String?      @map("company_unit")
-  jobTitle    String?      @map("job_title")
-  github      String?
-  linkedIn    String?
-  description String?
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @updatedAt @map("updated_at")
-
-  user         User          @relation(fields: [id], references: [id], onDelete: Cascade)
-  groupMembers GroupMember[]
-  invitations  Invitation[]
-
-  @@map("profiles")
-  @@schema("public")
-}
-
-model Event {
-  id               String       @id @default(uuid())
-  posterPath       String?      @map("poster_path")
-  title            String
-  shortDescription String       @map("short_description")
-  status           EVENT_STATUS @default(ongoing)
-  content          String?
-  location         String?
-  maxGroupMembers  Int          @map("max_group_members")
-  startDate        DateTime     @default(now()) @map("start_date")
-  endDate          DateTime     @default(now()) @map("end_date")
-  organizedDate    DateTime     @default(now()) @map("organized_date")
-  createdAt        DateTime     @default(now()) @map("created_at")
-  groups           Group[]
-
-  @@map("events")
-  @@schema("public")
-}
-
-model Group {
-  id               String        @id @default(uuid())
-  groupName        String        @map("group_name")
-  eventId          String        @map("event_id")
-  event            Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  createdAt        DateTime      @default(now()) @map("created_at")
-  shortDescription String        @map("short_description")
-  posterPath       String?       @map("poster_path")
-  groupMembers     GroupMember[]
-  invitations      Invitation[]
-
-  @@schema("public")
-}
-
-model GroupMember {
-  id        String   @id @default(uuid())
-  groupId   String   @map("group_id")
-  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  memberId  String   @map("member_id")
-  profile   Profile  @relation(fields: [memberId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now()) @map("created_at")
-
-  @@schema("public")
-}
-
-model Invitation {
-  id               String            @id @default(uuid())
-  groupId          String            @map("group_id")
-  group            Group             @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  memberEmail      String            @map("member_email")
-  profile          Profile           @relation(fields: [memberEmail], references: [email], onDelete: Cascade)
-  invitationStatus INVITATION_STATUS @default(pending) @map("invitation_status")
-  createdAt        DateTime          @default(now()) @map("created_at")
-
-  @@schema("public")
 }
