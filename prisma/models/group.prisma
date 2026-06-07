@@ -11,6 +11,8 @@ model Group {
     groupChallenges  GroupChallenge[]
     submissions      Submission[]
     submissionFiles  SubmissionFile[]
+    projects         Project[]
+    projectFiles     ProjectFile[]
 
     @@map("groups")
     @@schema("public")

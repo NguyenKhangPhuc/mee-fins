@@ -90,6 +90,14 @@ enum AWARD_TYPE {
   @@schema("public")
 }
 
+enum PROJECT_STATUS {
+  pending
+  rejected
+  accepted
+
+  @@schema("public")
+}
+
 model User {
   id             String         @id @default(uuid())
   displayName    String         @map("display_name")

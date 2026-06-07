@@ -1,0 +1,18 @@
+model Project {
+    id               String         @id @default(uuid())
+    groupId          String         @map("group_id")
+    group            Group          @relation(fields: [groupId], references: [id], onDelete: Cascade)
+    projectTitle     String         @map("project_title")
+    githubLink       String         @map("github_link")
+    projectStatus    PROJECT_STATUS @map("project_status")
+    shortDescription String         @map("short_description")
+    youtubeLink      String?        @map("youtube_link")
+    groupChallengeId String         @map("group_challenge_id")
+    groupChallenge   GroupChallenge @relation(fields: [groupChallengeId], references: [id], onDelete: Cascade)
+    createdAt        DateTime       @default(now()) @map("created_at")
+    projectFiles     ProjectFile[]
+    projectAwards    ProjectAward[]
+
+    @@map("projects")
+    @@schema("public")
+}

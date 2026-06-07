@@ -6,6 +6,7 @@ model GroupChallenge {
     challenge   EventChallenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
     createdAt   DateTime       @default(now()) @map("created_at")
     submissions Submission[]
+    projects    Project[]
 
     @@map("group_challenges")
     @@schema("public")
