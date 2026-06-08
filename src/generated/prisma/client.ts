@@ -43,6 +43,7 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+export type SafeUser = Omit<User, 'passwordHash'>;
 /**
  * Model RefreshToken
  * 
