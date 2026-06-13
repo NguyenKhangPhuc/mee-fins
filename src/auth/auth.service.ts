@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
-import { SafeUser } from 'src/generated/prisma/client';
-
+import { JwtService, TokenExpiredError } from '@nestjs/jwt';
+import { SafeUser } from 'src/types/safe-user';
+import { v4 as uuidv4 } from 'uuid';
+import { SignedAccessToken, SignedRefreshToken } from 'src/types/tokens';
+import { Prisma } from 'src/generated/prisma/client';
+import { saltOrRounds } from 'src/constants';
+import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private readonly prismaService: PrismaService,
   ) {}
 
   async validateUser(
@@ -25,8 +30,8 @@ export class AuthService {
     }
   }
 
-  async login(user: SafeUser) {
-    const payload = {
+  async accessToken(user: SafeUser) {
+    const payload: SignedAccessToken = {
       username: user.email,
       id: user.id,
       displayName: user.displayName,
@@ -35,5 +40,93 @@ export class AuthService {
     return {
       access_token: token,
     };
+  }
+
+  async refreshToken({
+    sessionId,
+    userId,
+  }: {
+    sessionId: string;
+    userId: string;
+  }) {
+    const jti = uuidv4();
+    const payload: SignedRefreshToken = {
+      sessionId,
+      userId,
+      jti,
+    };
+    const token = await this.jwtService.signAsync(payload);
+    return { refresh_token: token, jti };
+  }
+
+  async verifyRefreshToken(rawRefreshToken: string) {
+    try {
+      const result =
+        await this.jwtService.verifyAsync<SignedRefreshToken>(rawRefreshToken);
+      return result;
+    } catch (error) {
+      if (error instanceof TokenExpiredError) {
+        throw new UnauthorizedException(
+          'Your session has expired, please login again',
+        );
+      }
+      throw new UnauthorizedException('Invalid refresh token');
+    }
+  }
+
+  async signUp({
+    displayName,
+    email,
+    password,
+  }: {
+    displayName: string;
+    email: string;
+    password: string;
+  }) {
+    const hashPassword = await bcrypt.hash(password, saltOrRounds);
+    const newuser: Prisma.UserUncheckedCreateInput = {
+      displayName,
+      email,
+      passwordHash: hashPassword,
+    };
+    await this.usersService.createUser({ user: newuser });
+  }
+
+  async login({
+    user,
+    ip,
+    userAgent,
+  }: {
+    user: SafeUser;
+    ip: string;
+    userAgent: string | undefined;
+  }) {
+    return await this.prismaService.$transaction(async (tx) => {
+      const sessionInput: Prisma.SessionUncheckedCreateInput = {
+        userId: user.id,
+        userAgent: userAgent,
+        ipAddress: ip,
+      };
+
+      const sessionResponse = await tx.session.create({
+        data: sessionInput,
+      });
+
+      const refreshTokenResult = await this.refreshToken({
+        sessionId: sessionResponse.id,
+        userId: user.id,
+      });
+
+      const refreshTokenInput: Prisma.RefreshTokenUncheckedCreateInput = {
+        jti: refreshTokenResult.jti,
+        userId: user.id,
+        isRevoked: false,
+        sessionId: sessionResponse.id,
+      };
+
+      await tx.refreshToken.create({ data: refreshTokenInput });
+
+      return { refreshTokenResult };
+    });
   }
 }

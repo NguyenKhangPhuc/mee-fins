@@ -1,26 +1,83 @@
-import { Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { LocalAuthGuard } from './local-auth.guard';
+import {
+  Body,
+  Controller,
+  Ip,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
-import type { SafeUser } from 'src/generated/prisma/client';
+import type { SafeUser } from 'src/types/safe-user';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { SignUpDto } from './dtos/signup.dto';
+import { RefreshTokenService } from './refresh-tokens/auth.refresh-tokens.service';
+import { SessionService } from './sessions/auth.session.service';
+import { LocalAuthGuard } from './strategy/local-auth.guard';
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private sessionService: SessionService,
+    private refreshTokenService: RefreshTokenService,
+  ) {}
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(
     @CurrentUser() user: SafeUser,
+    @Req() req: Request,
+    @Ip() ip: string,
     @Res({ passthrough: true }) response: Response,
   ) {
-    const result = await this.authService.login(user);
-    response.cookie('access-token', result.access_token, { httpOnly: true });
+    const result = await this.authService.accessToken(user);
+
+    const { refreshTokenResult } = await this.authService.login({
+      user: user,
+      ip: ip,
+      userAgent: req.headers['user-agent'],
+    });
+
+    response.cookie('access_token', result.access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
+    response.cookie('refresh_token', refreshTokenResult.refresh_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+    });
+
     return { success: true };
   }
 
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('logout')
-  logout(@Req() req: Request) {
-    return req.logout();
+  async logout(
+    @CurrentUser() user: SafeUser,
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const rawRefreshToken = req.cookies?.refresh_token as string | undefined;
+    if (rawRefreshToken) {
+      const payload =
+        await this.authService.verifyRefreshToken(rawRefreshToken);
+      await this.refreshTokenService.revokeRefreshToken({ payload });
+      await this.sessionService.removeSession({ id: payload.sessionId });
+    }
+
+    res.clearCookie('access_token', { path: '/' });
+    res.clearCookie('refresh_token', { path: '/' });
+    return { success: true };
+  }
+
+  @Post('signup')
+  async signup(@Body() body: SignUpDto) {
+    await this.authService.signUp(body);
+    return { success: true };
   }
 }

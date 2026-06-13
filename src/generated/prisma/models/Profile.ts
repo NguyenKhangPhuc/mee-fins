@@ -279,6 +279,13 @@ export type ProfileWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  groupMembers?: Prisma.GroupMemberListRelationFilter
+  invitations?: Prisma.InvitationListRelationFilter
+  submissionGradings?: Prisma.SubmissionGradingListRelationFilter
+  submissionReactions?: Prisma.SubmissionReactionListRelationFilter
+  submissionRatings?: Prisma.SubmissionRatingListRelationFilter
+  submissionFeedbacks?: Prisma.SubmissionFeedbackListRelationFilter
+  submissionComments?: Prisma.SubmissionCommentListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
@@ -300,6 +307,13 @@ export type ProfileOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  groupMembers?: Prisma.GroupMemberOrderByRelationAggregateInput
+  invitations?: Prisma.InvitationOrderByRelationAggregateInput
+  submissionGradings?: Prisma.SubmissionGradingOrderByRelationAggregateInput
+  submissionReactions?: Prisma.SubmissionReactionOrderByRelationAggregateInput
+  submissionRatings?: Prisma.SubmissionRatingOrderByRelationAggregateInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackOrderByRelationAggregateInput
+  submissionComments?: Prisma.SubmissionCommentOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -324,6 +338,13 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  groupMembers?: Prisma.GroupMemberListRelationFilter
+  invitations?: Prisma.InvitationListRelationFilter
+  submissionGradings?: Prisma.SubmissionGradingListRelationFilter
+  submissionReactions?: Prisma.SubmissionReactionListRelationFilter
+  submissionRatings?: Prisma.SubmissionRatingListRelationFilter
+  submissionFeedbacks?: Prisma.SubmissionFeedbackListRelationFilter
+  submissionComments?: Prisma.SubmissionCommentListRelationFilter
 }, "id" | "email">
 
 export type ProfileOrderByWithAggregationInput = {
@@ -390,6 +411,13 @@ export type ProfileCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateInput = {
@@ -410,6 +438,13 @@ export type ProfileUncheckedCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUpdateInput = {
@@ -430,6 +465,13 @@ export type ProfileUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
@@ -450,6 +492,13 @@ export type ProfileUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateManyInput = {
@@ -511,9 +560,9 @@ export type ProfileUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ProfileNullableScalarRelationFilter = {
-  is?: Prisma.ProfileWhereInput | null
-  isNot?: Prisma.ProfileWhereInput | null
+export type ProfileScalarRelationFilter = {
+  is?: Prisma.ProfileWhereInput
+  isNot?: Prisma.ProfileWhereInput
 }
 
 export type ProfileCountOrderByAggregateInput = {
@@ -576,6 +625,129 @@ export type ProfileMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type ProfileNullableScalarRelationFilter = {
+  is?: Prisma.ProfileWhereInput | null
+  isNot?: Prisma.ProfileWhereInput | null
+}
+
+export type ProfileCreateNestedOneWithoutGroupMembersInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutGroupMembersInput, Prisma.ProfileUncheckedCreateWithoutGroupMembersInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutGroupMembersInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutGroupMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutGroupMembersInput, Prisma.ProfileUncheckedCreateWithoutGroupMembersInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutGroupMembersInput
+  upsert?: Prisma.ProfileUpsertWithoutGroupMembersInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutGroupMembersInput, Prisma.ProfileUpdateWithoutGroupMembersInput>, Prisma.ProfileUncheckedUpdateWithoutGroupMembersInput>
+}
+
+export type ProfileCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutInvitationsInput, Prisma.ProfileUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutInvitationsInput, Prisma.ProfileUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.ProfileUpsertWithoutInvitationsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutInvitationsInput, Prisma.ProfileUpdateWithoutInvitationsInput>, Prisma.ProfileUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type EnumPROFILE_ROLEFieldUpdateOperationsInput = {
+  set?: $Enums.PROFILE_ROLE
+}
+
+export type NullableEnumPROGRAMMEFieldUpdateOperationsInput = {
+  set?: $Enums.PROGRAMME | null
+}
+
+export type NullableEnumUNIVERSITYFieldUpdateOperationsInput = {
+  set?: $Enums.UNIVERSITY | null
+}
+
+export type NullableEnumDEGREEFieldUpdateOperationsInput = {
+  set?: $Enums.DEGREE | null
+}
+
+export type NullableEnumYEARFieldUpdateOperationsInput = {
+  set?: $Enums.YEAR | null
+}
+
+export type ProfileCreateNestedOneWithoutSubmissionCommentsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionCommentsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionCommentsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutSubmissionCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionCommentsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionCommentsInput
+  upsert?: Prisma.ProfileUpsertWithoutSubmissionCommentsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutSubmissionCommentsInput, Prisma.ProfileUpdateWithoutSubmissionCommentsInput>, Prisma.ProfileUncheckedUpdateWithoutSubmissionCommentsInput>
+}
+
+export type ProfileCreateNestedOneWithoutSubmissionFeedbacksInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedCreateWithoutSubmissionFeedbacksInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionFeedbacksInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutSubmissionFeedbacksNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedCreateWithoutSubmissionFeedbacksInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionFeedbacksInput
+  upsert?: Prisma.ProfileUpsertWithoutSubmissionFeedbacksInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutSubmissionFeedbacksInput, Prisma.ProfileUpdateWithoutSubmissionFeedbacksInput>, Prisma.ProfileUncheckedUpdateWithoutSubmissionFeedbacksInput>
+}
+
+export type ProfileCreateNestedOneWithoutSubmissionGradingsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionGradingsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionGradingsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutSubmissionGradingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionGradingsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionGradingsInput
+  upsert?: Prisma.ProfileUpsertWithoutSubmissionGradingsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutSubmissionGradingsInput, Prisma.ProfileUpdateWithoutSubmissionGradingsInput>, Prisma.ProfileUncheckedUpdateWithoutSubmissionGradingsInput>
+}
+
+export type ProfileCreateNestedOneWithoutSubmissionRatingsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionRatingsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionRatingsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutSubmissionRatingsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionRatingsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionRatingsInput
+  upsert?: Prisma.ProfileUpsertWithoutSubmissionRatingsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutSubmissionRatingsInput, Prisma.ProfileUpdateWithoutSubmissionRatingsInput>, Prisma.ProfileUncheckedUpdateWithoutSubmissionRatingsInput>
+}
+
+export type ProfileCreateNestedOneWithoutSubmissionReactionsInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionReactionsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionReactionsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutSubmissionReactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionReactionsInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutSubmissionReactionsInput
+  upsert?: Prisma.ProfileUpsertWithoutSubmissionReactionsInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutSubmissionReactionsInput, Prisma.ProfileUpdateWithoutSubmissionReactionsInput>, Prisma.ProfileUncheckedUpdateWithoutSubmissionReactionsInput>
+}
+
 export type ProfileCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutUserInput, Prisma.ProfileUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserInput
@@ -608,28 +780,844 @@ export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutUserInput, Prisma.ProfileUpdateWithoutUserInput>, Prisma.ProfileUncheckedUpdateWithoutUserInput>
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
+export type ProfileCreateWithoutGroupMembersInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
 }
 
-export type EnumPROFILE_ROLEFieldUpdateOperationsInput = {
-  set?: $Enums.PROFILE_ROLE
+export type ProfileUncheckedCreateWithoutGroupMembersInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
 }
 
-export type NullableEnumPROGRAMMEFieldUpdateOperationsInput = {
-  set?: $Enums.PROGRAMME | null
+export type ProfileCreateOrConnectWithoutGroupMembersInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutGroupMembersInput, Prisma.ProfileUncheckedCreateWithoutGroupMembersInput>
 }
 
-export type NullableEnumUNIVERSITYFieldUpdateOperationsInput = {
-  set?: $Enums.UNIVERSITY | null
+export type ProfileUpsertWithoutGroupMembersInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutGroupMembersInput, Prisma.ProfileUncheckedUpdateWithoutGroupMembersInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutGroupMembersInput, Prisma.ProfileUncheckedCreateWithoutGroupMembersInput>
+  where?: Prisma.ProfileWhereInput
 }
 
-export type NullableEnumDEGREEFieldUpdateOperationsInput = {
-  set?: $Enums.DEGREE | null
+export type ProfileUpdateToOneWithWhereWithoutGroupMembersInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutGroupMembersInput, Prisma.ProfileUncheckedUpdateWithoutGroupMembersInput>
 }
 
-export type NullableEnumYEARFieldUpdateOperationsInput = {
-  set?: $Enums.YEAR | null
+export type ProfileUpdateWithoutGroupMembersInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutGroupMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutInvitationsInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutInvitationsInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutInvitationsInput, Prisma.ProfileUncheckedCreateWithoutInvitationsInput>
+}
+
+export type ProfileUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutInvitationsInput, Prisma.ProfileUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutInvitationsInput, Prisma.ProfileUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutInvitationsInput, Prisma.ProfileUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type ProfileUpdateWithoutInvitationsInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutSubmissionCommentsInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutSubmissionCommentsInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutSubmissionCommentsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionCommentsInput>
+}
+
+export type ProfileUpsertWithoutSubmissionCommentsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionCommentsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionCommentsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutSubmissionCommentsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionCommentsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionCommentsInput>
+}
+
+export type ProfileUpdateWithoutSubmissionCommentsInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutSubmissionCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutSubmissionFeedbacksInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutSubmissionFeedbacksInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutSubmissionFeedbacksInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedCreateWithoutSubmissionFeedbacksInput>
+}
+
+export type ProfileUpsertWithoutSubmissionFeedbacksInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionFeedbacksInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedCreateWithoutSubmissionFeedbacksInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutSubmissionFeedbacksInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionFeedbacksInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionFeedbacksInput>
+}
+
+export type ProfileUpdateWithoutSubmissionFeedbacksInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutSubmissionFeedbacksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutSubmissionGradingsInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutSubmissionGradingsInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutSubmissionGradingsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionGradingsInput>
+}
+
+export type ProfileUpsertWithoutSubmissionGradingsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionGradingsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionGradingsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutSubmissionGradingsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionGradingsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionGradingsInput>
+}
+
+export type ProfileUpdateWithoutSubmissionGradingsInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutSubmissionGradingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutSubmissionRatingsInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutSubmissionRatingsInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutSubmissionRatingsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionRatingsInput>
+}
+
+export type ProfileUpsertWithoutSubmissionRatingsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionRatingsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionRatingsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutSubmissionRatingsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionRatingsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionRatingsInput>
+}
+
+export type ProfileUpdateWithoutSubmissionRatingsInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutSubmissionRatingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileCreateWithoutSubmissionReactionsInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileUncheckedCreateWithoutSubmissionReactionsInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  role: $Enums.PROFILE_ROLE
+  companyName?: string | null
+  programme?: $Enums.PROGRAMME | null
+  university?: $Enums.UNIVERSITY | null
+  degree?: $Enums.DEGREE | null
+  year?: $Enums.YEAR | null
+  companyUnit?: string | null
+  jobTitle?: string | null
+  github?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
+}
+
+export type ProfileCreateOrConnectWithoutSubmissionReactionsInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionReactionsInput>
+}
+
+export type ProfileUpsertWithoutSubmissionReactionsInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionReactionsInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedCreateWithoutSubmissionReactionsInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutSubmissionReactionsInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutSubmissionReactionsInput, Prisma.ProfileUncheckedUpdateWithoutSubmissionReactionsInput>
+}
+
+export type ProfileUpdateWithoutSubmissionReactionsInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutSubmissionReactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
+  university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
+  degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
+  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
+  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileCreateWithoutUserInput = {
@@ -649,6 +1637,13 @@ export type ProfileCreateWithoutUserInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileUncheckedCreateWithoutUserInput = {
@@ -668,6 +1663,13 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutProfileInput
+  invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutProfileInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedCreateNestedManyWithoutProfileInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedCreateNestedManyWithoutProfileInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedCreateNestedManyWithoutProfileInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedCreateNestedManyWithoutProfileInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedCreateNestedManyWithoutProfileInput
 }
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -703,6 +1705,13 @@ export type ProfileUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUpdateManyWithoutProfileNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutUserInput = {
@@ -722,8 +1731,98 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutProfileNestedInput
+  invitations?: Prisma.InvitationUncheckedUpdateManyWithoutProfileNestedInput
+  submissionGradings?: Prisma.SubmissionGradingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionReactions?: Prisma.SubmissionReactionUncheckedUpdateManyWithoutProfileNestedInput
+  submissionRatings?: Prisma.SubmissionRatingUncheckedUpdateManyWithoutProfileNestedInput
+  submissionFeedbacks?: Prisma.SubmissionFeedbackUncheckedUpdateManyWithoutProfileNestedInput
+  submissionComments?: Prisma.SubmissionCommentUncheckedUpdateManyWithoutProfileNestedInput
 }
 
+
+/**
+ * Count Type ProfileCountOutputType
+ */
+
+export type ProfileCountOutputType = {
+  groupMembers: number
+  invitations: number
+  submissionGradings: number
+  submissionReactions: number
+  submissionRatings: number
+  submissionFeedbacks: number
+  submissionComments: number
+}
+
+export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  groupMembers?: boolean | ProfileCountOutputTypeCountGroupMembersArgs
+  invitations?: boolean | ProfileCountOutputTypeCountInvitationsArgs
+  submissionGradings?: boolean | ProfileCountOutputTypeCountSubmissionGradingsArgs
+  submissionReactions?: boolean | ProfileCountOutputTypeCountSubmissionReactionsArgs
+  submissionRatings?: boolean | ProfileCountOutputTypeCountSubmissionRatingsArgs
+  submissionFeedbacks?: boolean | ProfileCountOutputTypeCountSubmissionFeedbacksArgs
+  submissionComments?: boolean | ProfileCountOutputTypeCountSubmissionCommentsArgs
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfileCountOutputType
+   */
+  select?: Prisma.ProfileCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountGroupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GroupMemberWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvitationWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountSubmissionGradingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionGradingWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountSubmissionReactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionReactionWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountSubmissionRatingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionRatingWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountSubmissionFeedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionFeedbackWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountSubmissionCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionCommentWhereInput
+}
 
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -745,6 +1844,14 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  groupMembers?: boolean | Prisma.Profile$groupMembersArgs<ExtArgs>
+  invitations?: boolean | Prisma.Profile$invitationsArgs<ExtArgs>
+  submissionGradings?: boolean | Prisma.Profile$submissionGradingsArgs<ExtArgs>
+  submissionReactions?: boolean | Prisma.Profile$submissionReactionsArgs<ExtArgs>
+  submissionRatings?: boolean | Prisma.Profile$submissionRatingsArgs<ExtArgs>
+  submissionFeedbacks?: boolean | Prisma.Profile$submissionFeedbacksArgs<ExtArgs>
+  submissionComments?: boolean | Prisma.Profile$submissionCommentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
 export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -812,6 +1919,14 @@ export type ProfileSelectScalar = {
 export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fullName" | "email" | "avatarUrl" | "role" | "companyName" | "programme" | "university" | "degree" | "year" | "companyUnit" | "jobTitle" | "github" | "linkedIn" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  groupMembers?: boolean | Prisma.Profile$groupMembersArgs<ExtArgs>
+  invitations?: boolean | Prisma.Profile$invitationsArgs<ExtArgs>
+  submissionGradings?: boolean | Prisma.Profile$submissionGradingsArgs<ExtArgs>
+  submissionReactions?: boolean | Prisma.Profile$submissionReactionsArgs<ExtArgs>
+  submissionRatings?: boolean | Prisma.Profile$submissionRatingsArgs<ExtArgs>
+  submissionFeedbacks?: boolean | Prisma.Profile$submissionFeedbacksArgs<ExtArgs>
+  submissionComments?: boolean | Prisma.Profile$submissionCommentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -824,6 +1939,13 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Profile"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    groupMembers: Prisma.$GroupMemberPayload<ExtArgs>[]
+    invitations: Prisma.$InvitationPayload<ExtArgs>[]
+    submissionGradings: Prisma.$SubmissionGradingPayload<ExtArgs>[]
+    submissionReactions: Prisma.$SubmissionReactionPayload<ExtArgs>[]
+    submissionRatings: Prisma.$SubmissionRatingPayload<ExtArgs>[]
+    submissionFeedbacks: Prisma.$SubmissionFeedbackPayload<ExtArgs>[]
+    submissionComments: Prisma.$SubmissionCommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1238,6 +2360,13 @@ readonly fields: ProfileFieldRefs;
 export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  groupMembers<T extends Prisma.Profile$groupMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$groupMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.Profile$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionGradings<T extends Prisma.Profile$submissionGradingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$submissionGradingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionGradingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionReactions<T extends Prisma.Profile$submissionReactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$submissionReactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionReactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionRatings<T extends Prisma.Profile$submissionRatingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$submissionRatingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionFeedbacks<T extends Prisma.Profile$submissionFeedbacksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$submissionFeedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionComments<T extends Prisma.Profile$submissionCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$submissionCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1682,6 +2811,174 @@ export type ProfileDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Profiles to delete.
    */
   limit?: number
+}
+
+/**
+ * Profile.groupMembers
+ */
+export type Profile$groupMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GroupMember
+   */
+  select?: Prisma.GroupMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GroupMember
+   */
+  omit?: Prisma.GroupMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GroupMemberInclude<ExtArgs> | null
+  where?: Prisma.GroupMemberWhereInput
+  orderBy?: Prisma.GroupMemberOrderByWithRelationInput | Prisma.GroupMemberOrderByWithRelationInput[]
+  cursor?: Prisma.GroupMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GroupMemberScalarFieldEnum | Prisma.GroupMemberScalarFieldEnum[]
+}
+
+/**
+ * Profile.invitations
+ */
+export type Profile$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invitation
+   */
+  select?: Prisma.InvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invitation
+   */
+  omit?: Prisma.InvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvitationInclude<ExtArgs> | null
+  where?: Prisma.InvitationWhereInput
+  orderBy?: Prisma.InvitationOrderByWithRelationInput | Prisma.InvitationOrderByWithRelationInput[]
+  cursor?: Prisma.InvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvitationScalarFieldEnum | Prisma.InvitationScalarFieldEnum[]
+}
+
+/**
+ * Profile.submissionGradings
+ */
+export type Profile$submissionGradingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionGrading
+   */
+  select?: Prisma.SubmissionGradingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionGrading
+   */
+  omit?: Prisma.SubmissionGradingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionGradingInclude<ExtArgs> | null
+  where?: Prisma.SubmissionGradingWhereInput
+  orderBy?: Prisma.SubmissionGradingOrderByWithRelationInput | Prisma.SubmissionGradingOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionGradingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionGradingScalarFieldEnum | Prisma.SubmissionGradingScalarFieldEnum[]
+}
+
+/**
+ * Profile.submissionReactions
+ */
+export type Profile$submissionReactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionReaction
+   */
+  select?: Prisma.SubmissionReactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionReaction
+   */
+  omit?: Prisma.SubmissionReactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionReactionInclude<ExtArgs> | null
+  where?: Prisma.SubmissionReactionWhereInput
+  orderBy?: Prisma.SubmissionReactionOrderByWithRelationInput | Prisma.SubmissionReactionOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionReactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionReactionScalarFieldEnum | Prisma.SubmissionReactionScalarFieldEnum[]
+}
+
+/**
+ * Profile.submissionRatings
+ */
+export type Profile$submissionRatingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionRating
+   */
+  select?: Prisma.SubmissionRatingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionRating
+   */
+  omit?: Prisma.SubmissionRatingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionRatingInclude<ExtArgs> | null
+  where?: Prisma.SubmissionRatingWhereInput
+  orderBy?: Prisma.SubmissionRatingOrderByWithRelationInput | Prisma.SubmissionRatingOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionRatingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionRatingScalarFieldEnum | Prisma.SubmissionRatingScalarFieldEnum[]
+}
+
+/**
+ * Profile.submissionFeedbacks
+ */
+export type Profile$submissionFeedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionFeedback
+   */
+  select?: Prisma.SubmissionFeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionFeedback
+   */
+  omit?: Prisma.SubmissionFeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionFeedbackInclude<ExtArgs> | null
+  where?: Prisma.SubmissionFeedbackWhereInput
+  orderBy?: Prisma.SubmissionFeedbackOrderByWithRelationInput | Prisma.SubmissionFeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionFeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionFeedbackScalarFieldEnum | Prisma.SubmissionFeedbackScalarFieldEnum[]
+}
+
+/**
+ * Profile.submissionComments
+ */
+export type Profile$submissionCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionComment
+   */
+  select?: Prisma.SubmissionCommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionComment
+   */
+  omit?: Prisma.SubmissionCommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionCommentInclude<ExtArgs> | null
+  where?: Prisma.SubmissionCommentWhereInput
+  orderBy?: Prisma.SubmissionCommentOrderByWithRelationInput | Prisma.SubmissionCommentOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionCommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionCommentScalarFieldEnum | Prisma.SubmissionCommentScalarFieldEnum[]
 }
 
 /**

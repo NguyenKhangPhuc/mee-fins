@@ -51,9 +51,29 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Event: 'Event',
+  EventAward: 'EventAward',
+  EventChallenge: 'EventChallenge',
+  EventGradingCriteria: 'EventGradingCriteria',
+  FunFact: 'FunFact',
+  Group: 'Group',
+  GroupChallenge: 'GroupChallenge',
+  GroupMember: 'GroupMember',
+  Invitation: 'Invitation',
+  Profile: 'Profile',
+  Project: 'Project',
+  ProjectAward: 'ProjectAward',
+  ProjectFile: 'ProjectFile',
+  Submission: 'Submission',
+  SubmissionComment: 'SubmissionComment',
+  SubmissionFeedback: 'SubmissionFeedback',
+  SubmissionFile: 'SubmissionFile',
+  SubmissionGrading: 'SubmissionGrading',
+  SubmissionRating: 'SubmissionRating',
+  SubmissionReaction: 'SubmissionReaction',
   User: 'User',
   RefreshToken: 'RefreshToken',
-  Profile: 'Profile'
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -72,28 +92,110 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const EventScalarFieldEnum = {
   id: 'id',
-  displayName: 'displayName',
-  email: 'email',
-  passwordHash: 'passwordHash',
-  confirmationAt: 'confirmationAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const RefreshTokenScalarFieldEnum = {
-  id: 'id',
-  tokenHash: 'tokenHash',
-  userId: 'userId',
-  expiresAt: 'expiresAt',
+  posterPath: 'posterPath',
+  title: 'title',
+  shortDescription: 'shortDescription',
+  status: 'status',
+  content: 'content',
+  location: 'location',
+  maxGroupMembers: 'maxGroupMembers',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  organizedDate: 'organizedDate',
   createdAt: 'createdAt'
 } as const
 
-export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
+
+
+export const EventAwardScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  awardType: 'awardType',
+  awardTitle: 'awardTitle',
+  awardPriority: 'awardPriority',
+  createdAt: 'createdAt'
+} as const
+
+export type EventAwardScalarFieldEnum = (typeof EventAwardScalarFieldEnum)[keyof typeof EventAwardScalarFieldEnum]
+
+
+export const EventChallengeScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  title: 'title',
+  eventId: 'eventId',
+  createdAt: 'createdAt'
+} as const
+
+export type EventChallengeScalarFieldEnum = (typeof EventChallengeScalarFieldEnum)[keyof typeof EventChallengeScalarFieldEnum]
+
+
+export const EventGradingCriteriaScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  type: 'type',
+  criteriaName: 'criteriaName',
+  criteriaDescription: 'criteriaDescription',
+  percentage: 'percentage',
+  createdAt: 'createdAt'
+} as const
+
+export type EventGradingCriteriaScalarFieldEnum = (typeof EventGradingCriteriaScalarFieldEnum)[keyof typeof EventGradingCriteriaScalarFieldEnum]
+
+
+export const FunFactScalarFieldEnum = {
+  id: 'id',
+  fact: 'fact',
+  submissionId: 'submissionId'
+} as const
+
+export type FunFactScalarFieldEnum = (typeof FunFactScalarFieldEnum)[keyof typeof FunFactScalarFieldEnum]
+
+
+export const GroupScalarFieldEnum = {
+  id: 'id',
+  groupName: 'groupName',
+  eventId: 'eventId',
+  createdAt: 'createdAt',
+  shortDescription: 'shortDescription',
+  posterPath: 'posterPath'
+} as const
+
+export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
+
+
+export const GroupChallengeScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  challengeId: 'challengeId',
+  createdAt: 'createdAt'
+} as const
+
+export type GroupChallengeScalarFieldEnum = (typeof GroupChallengeScalarFieldEnum)[keyof typeof GroupChallengeScalarFieldEnum]
+
+
+export const GroupMemberScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  memberId: 'memberId',
+  createdAt: 'createdAt'
+} as const
+
+export type GroupMemberScalarFieldEnum = (typeof GroupMemberScalarFieldEnum)[keyof typeof GroupMemberScalarFieldEnum]
+
+
+export const InvitationScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  memberEmail: 'memberEmail',
+  invitationStatus: 'invitationStatus',
+  createdAt: 'createdAt'
+} as const
+
+export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
 
 
 export const ProfileScalarFieldEnum = {
@@ -117,6 +219,168 @@ export const ProfileScalarFieldEnum = {
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+export const ProjectScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  projectTitle: 'projectTitle',
+  githubLink: 'githubLink',
+  projectStatus: 'projectStatus',
+  shortDescription: 'shortDescription',
+  youtubeLink: 'youtubeLink',
+  groupChallengeId: 'groupChallengeId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
+
+
+export const ProjectAwardScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  awardId: 'awardId'
+} as const
+
+export type ProjectAwardScalarFieldEnum = (typeof ProjectAwardScalarFieldEnum)[keyof typeof ProjectAwardScalarFieldEnum]
+
+
+export const ProjectFileScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  storagePath: 'storagePath',
+  originalFileName: 'originalFileName',
+  mimeType: 'mimeType',
+  size: 'size',
+  groupId: 'groupId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectFileScalarFieldEnum = (typeof ProjectFileScalarFieldEnum)[keyof typeof ProjectFileScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  groupChallengeId: 'groupChallengeId',
+  groupId: 'groupId',
+  description: 'description',
+  githubLink: 'githubLink',
+  youtubeLink: 'youtubeLink',
+  shortDescription: 'shortDescription',
+  title: 'title',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionCommentScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  displayName: 'displayName',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionCommentScalarFieldEnum = (typeof SubmissionCommentScalarFieldEnum)[keyof typeof SubmissionCommentScalarFieldEnum]
+
+
+export const SubmissionFeedbackScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  displayName: 'displayName',
+  content: 'content',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionFeedbackScalarFieldEnum = (typeof SubmissionFeedbackScalarFieldEnum)[keyof typeof SubmissionFeedbackScalarFieldEnum]
+
+
+export const SubmissionFileScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  submissionId: 'submissionId',
+  storagePath: 'storagePath',
+  originalFileName: 'originalFileName',
+  mimeType: 'mimeType',
+  size: 'size',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionFileScalarFieldEnum = (typeof SubmissionFileScalarFieldEnum)[keyof typeof SubmissionFileScalarFieldEnum]
+
+
+export const SubmissionGradingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  submissionId: 'submissionId',
+  eventCriteriaId: 'eventCriteriaId',
+  grade: 'grade',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionGradingScalarFieldEnum = (typeof SubmissionGradingScalarFieldEnum)[keyof typeof SubmissionGradingScalarFieldEnum]
+
+
+export const SubmissionRatingScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  rating: 'rating',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionRatingScalarFieldEnum = (typeof SubmissionRatingScalarFieldEnum)[keyof typeof SubmissionRatingScalarFieldEnum]
+
+
+export const SubmissionReactionScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionReactionScalarFieldEnum = (typeof SubmissionReactionScalarFieldEnum)[keyof typeof SubmissionReactionScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  displayName: 'displayName',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  confirmationAt: 'confirmationAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  jti: 'jti',
+  userId: 'userId',
+  isRevoked: 'isRevoked',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt',
+  sessionId: 'sessionId'
+} as const
+
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  userAgent: 'userAgent',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt',
+  refreshedAt: 'refreshedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SortOrder = {
