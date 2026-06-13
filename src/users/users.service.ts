@@ -13,20 +13,13 @@ export class UsersService {
   async findOne(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<User | null> {
-    try {
-      const result = await this.prisma.user.findUnique({
-        where: userWhereUniqueInput,
-      });
-      return result;
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code == 'P2025'
-      ) {
-        throw new NotFoundException('User not found');
-      }
-      throw new InternalServerErrorException('Fail to find the user');
+    const result = await this.prisma.user.findUnique({
+      where: userWhereUniqueInput,
+    });
+    if (result == null) {
+      throw new NotFoundException('User not found');
     }
+    return result;
   }
 
   async createUser({ user }: { user: Prisma.UserUncheckedCreateInput }) {

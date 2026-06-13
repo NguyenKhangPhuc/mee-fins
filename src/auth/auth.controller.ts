@@ -11,11 +11,11 @@ import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import type { SafeUser } from 'src/types/safe-user';
-import { JwtAuthGuard } from './jwt-auth.guard';
 import { SignUpDto } from './dtos/signup.dto';
 import { RefreshTokenService } from './refresh-tokens/auth.refresh-tokens.service';
 import { SessionService } from './sessions/auth.session.service';
-import { LocalAuthGuard } from './strategy/local-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(

@@ -17,6 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
           return cookies?.access_token ?? null;
         },
       ]),
+
       ignoreExpiration: false,
       secretOrKey: jwtSecret as string,
     });
