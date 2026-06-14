@@ -80,4 +80,14 @@ export class AuthController {
     await this.authService.signUp(body);
     return { success: true };
   }
+
+  @Post('refresh')
+  async refreshToken(
+    @CurrentUser() user: SafeUser,
+    @Req() req: Request,
+    @Ip() ip: string,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    await this.login(user, req, ip, res);
+  }
 }

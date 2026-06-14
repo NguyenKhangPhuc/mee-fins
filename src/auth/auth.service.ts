@@ -8,6 +8,11 @@ import { SignedAccessToken, SignedRefreshToken } from 'src/types/tokens';
 import { Prisma } from 'src/generated/prisma/client';
 import { saltOrRounds } from 'src/constants';
 import { PrismaService } from 'src/prisma/prisma.service';
+import {
+  EXPIRED_REFRESH_TOKEN,
+  INVALID_REFRESH_TOKEN,
+} from 'src/constants/error-code';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -66,11 +71,15 @@ export class AuthService {
       return result;
     } catch (error) {
       if (error instanceof TokenExpiredError) {
-        throw new UnauthorizedException(
-          'Your session has expired, please login again',
-        );
+        throw new UnauthorizedException({
+          message: 'Your session has expired, please login again',
+          code: EXPIRED_REFRESH_TOKEN,
+        });
       }
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new UnauthorizedException({
+        message: 'Invalid refresh token',
+        code: INVALID_REFRESH_TOKEN,
+      });
     }
   }
 

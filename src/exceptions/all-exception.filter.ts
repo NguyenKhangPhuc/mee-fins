@@ -29,6 +29,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       message: 'Server crashes, please try again later',
+      code: 'INTERNAL_SERVER_ERROR',
     });
   }
 }

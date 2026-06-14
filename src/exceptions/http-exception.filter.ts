@@ -25,6 +25,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
       'message' in errorResponse
         ? (errorResponse.message as string)
         : exception.message;
+    const code =
+      typeof errorResponse === 'object' &&
+      errorResponse !== null &&
+      'code' in errorResponse
+        ? (errorResponse.code as string)
+        : undefined;
 
     this.logger.error(
       `[${request.method}] ${request.url} - Status: ${status} - Error: ${exception.stack}`,
@@ -36,6 +42,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       message,
+      code,
     });
   }
 }

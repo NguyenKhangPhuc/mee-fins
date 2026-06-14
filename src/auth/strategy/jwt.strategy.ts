@@ -6,6 +6,7 @@ import { Request } from 'express';
 import { UsersService } from 'src/users/users.service';
 import { jwtSecret } from 'src/utils/config';
 import { SignedAccessToken } from 'src/types/tokens';
+import { NOT_EXISTED_USER_ERROR } from 'src/constants/error-code';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -27,7 +28,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     const user = await this.usersService.findOne({ id: payload.id });
 
     if (!user) {
-      throw new UnauthorizedException('User not found');
+      throw new UnauthorizedException({
+        message: 'User not found',
+        code: NOT_EXISTED_USER_ERROR,
+      });
     }
 
     return user;

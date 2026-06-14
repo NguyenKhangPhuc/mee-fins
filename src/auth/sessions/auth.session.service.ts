@@ -2,10 +2,15 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
 } from '@nestjs/common';
+import {
+  EXISTED_SESSION_ERROR,
+  INTERNAL_SERVER_ERROR,
+  NOT_EXISTED_SESSION_ERROR,
+} from 'src/constants/error-code';
 import { Prisma } from 'src/generated/prisma/client';
 import { SessionWhereUniqueInput } from 'src/generated/prisma/models';
-import { NotFoundError } from 'rxjs';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -23,9 +28,15 @@ export class SessionService {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code == 'P2002'
       ) {
-        throw new ConflictException('Session already exist');
+        throw new ConflictException({
+          message: 'Session already exist',
+          code: EXISTED_SESSION_ERROR,
+        });
       }
-      throw new InternalServerErrorException('Fail to create a session');
+      throw new InternalServerErrorException({
+        message: 'Fail to create a session',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 
@@ -40,9 +51,15 @@ export class SessionService {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code == 'P2025'
       ) {
-        throw new NotFoundError('Session not found');
+        throw new NotFoundException({
+          message: 'Session not found',
+          code: NOT_EXISTED_SESSION_ERROR,
+        });
       }
-      throw new InternalServerErrorException('Fail to find session');
+      throw new InternalServerErrorException({
+        message: 'Fail to find session',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }

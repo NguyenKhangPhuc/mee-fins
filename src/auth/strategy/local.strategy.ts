@@ -3,6 +3,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Strategy } from 'passport-local';
 import { SafeUser } from 'src/types/safe-user';
 import { AuthService } from '../auth.service';
+import { INVALID_CREDENTIALS_ERROR } from 'src/constants/error-code';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -13,7 +14,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   async validate(username: string, password: string): Promise<SafeUser> {
     const user = await this.authService.validateUser(username, password);
     if (!user) {
-      throw new UnauthorizedException('Invalid Credentials');
+      throw new UnauthorizedException({
+        message: 'Invalid Credentials',
+        code: INVALID_CREDENTIALS_ERROR,
+      });
     }
     return user;
   }

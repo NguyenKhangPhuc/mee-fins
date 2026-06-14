@@ -5,8 +5,14 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import {
+  EXISTED_REFRESH_TOKEN,
+  INTERNAL_SERVER_ERROR,
+  NOT_EXISTED_REFRESH_TOKEN,
+} from 'src/constants/error-code';
 import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+
 import { SignedRefreshToken } from 'src/types/tokens';
 
 @Injectable()
@@ -26,10 +32,16 @@ export class RefreshTokenService {
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
-          throw new ConflictException('Refresh token already exists');
+          throw new ConflictException({
+            message: 'Refresh token already exists',
+            code: EXISTED_REFRESH_TOKEN,
+          });
         }
       }
-      throw new InternalServerErrorException('Failed to create refresh token');
+      throw new InternalServerErrorException({
+        message: 'Failed to create refresh token',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 
@@ -38,19 +50,14 @@ export class RefreshTokenService {
   }: {
     refreshTokenWhere: Prisma.RefreshTokenWhereUniqueInput;
   }) {
-    try {
-      const result = await this.prismaService.refreshToken.findUnique({
-        where: refreshTokenWhere,
+    const result = await this.prismaService.refreshToken.findUnique({
+      where: refreshTokenWhere,
+    });
+    if (!result) {
+      throw new NotFoundException({
+        message: 'Refresh token not found',
+        code: NOT_EXISTED_REFRESH_TOKEN,
       });
-      return result;
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2025'
-      ) {
-        throw new NotFoundException('Refresh token not found');
-      }
-      throw new InternalServerErrorException('Fail to find the refresh token');
     }
   }
 
@@ -65,11 +72,15 @@ export class RefreshTokenService {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
-        throw new NotFoundException('Refresh token not found');
+        throw new NotFoundException({
+          message: 'Refresh token not found',
+          code: NOT_EXISTED_REFRESH_TOKEN,
+        });
       }
-      throw new InternalServerErrorException(
-        'Fail to revoke the refresh token',
-      );
+      throw new InternalServerErrorException({
+        message: 'Fail to revoke the refresh token',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }

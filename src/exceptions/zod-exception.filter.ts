@@ -35,6 +35,7 @@ export class ZodExceptionFilter implements ExceptionFilter {
         field: e.path.join('.'),
         message: e.message,
       })),
+      code: 'ZOD_VALIDATION_ERROR',
     });
   }
 }
