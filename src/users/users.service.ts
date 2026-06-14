@@ -48,4 +48,47 @@ export class UsersService {
       });
     }
   }
+
+  async handleOauthLogin({
+    email,
+    displayName,
+  }: {
+    email: string;
+    displayName: string | undefined;
+  }) {
+    const foundUser = await this.prisma.user.findUnique({
+      where: { email: email },
+    });
+
+    if (foundUser) {
+      const { passwordHash: _passwordHash, ...result } = foundUser;
+      return result;
+    }
+    try {
+      const user = await this.prisma.user.create({
+        data: {
+          email,
+          displayName,
+          confirmationAt: new Date(),
+        },
+      });
+      const { passwordHash: _passwordHash, ...result } = user;
+      return result;
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        const user = await this.prisma.user.findUniqueOrThrow({
+          where: { email },
+        });
+        const { passwordHash: _passwordHash, ...result } = user;
+        return result;
+      }
+      throw new InternalServerErrorException({
+        message: 'Failed to create user',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
 }

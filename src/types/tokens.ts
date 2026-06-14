@@ -1,7 +1,7 @@
 export interface SignedAccessToken {
   username: string;
   id: string;
-  displayName: string;
+  displayName: string | null;
 }
 
 export interface SignedRefreshToken {

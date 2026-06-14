@@ -45,11 +45,9 @@ export class RefreshTokenService {
     }
   }
 
-  async findRefreshToken({
-    refreshTokenWhere,
-  }: {
-    refreshTokenWhere: Prisma.RefreshTokenWhereUniqueInput;
-  }) {
+  async findRefreshToken(
+    refreshTokenWhere: Prisma.RefreshTokenWhereUniqueInput,
+  ) {
     const result = await this.prismaService.refreshToken.findUnique({
       where: refreshTokenWhere,
     });
@@ -59,6 +57,7 @@ export class RefreshTokenService {
         code: NOT_EXISTED_REFRESH_TOKEN,
       });
     }
+    return result;
   }
 
   async revokeRefreshToken({ payload }: { payload: SignedRefreshToken }) {

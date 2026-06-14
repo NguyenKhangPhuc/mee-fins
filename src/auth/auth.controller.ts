@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Ip,
   Post,
   Req,
@@ -16,6 +17,9 @@ import { RefreshTokenService } from './refresh-tokens/auth.refresh-tokens.servic
 import { SessionService } from './sessions/auth.session.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { JwtRefreshAuthGuard } from './guards/jwt-refresh-tokens-auth.guard';
+import { GithubAuthGuard } from './guards/github-auth.guard';
+import { frontendUrl } from 'src/utils/config';
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -81,6 +85,7 @@ export class AuthController {
     return { success: true };
   }
 
+  @UseGuards(JwtRefreshAuthGuard)
   @Post('refresh')
   async refreshToken(
     @CurrentUser() user: SafeUser,
@@ -88,6 +93,22 @@ export class AuthController {
     @Ip() ip: string,
     @Res({ passthrough: true }) res: Response,
   ) {
+    return await this.login(user, req, ip, res);
+  }
+
+  @Get('github')
+  @UseGuards(GithubAuthGuard)
+  githubLogin() {}
+
+  @Get('github/callback')
+  @UseGuards(GithubAuthGuard)
+  async githubCallback(
+    @CurrentUser() user: SafeUser,
+    @Ip() ip: string,
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     await this.login(user, req, ip, res);
+    res.redirect(frontendUrl as string);
   }
 }

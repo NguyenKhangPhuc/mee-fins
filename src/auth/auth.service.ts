@@ -12,6 +12,7 @@ import {
   EXPIRED_REFRESH_TOKEN,
   INVALID_REFRESH_TOKEN,
 } from 'src/constants/error-code';
+import { jwtRefreshSecret, jwtSecret } from 'src/utils/config';
 
 @Injectable()
 export class AuthService {
@@ -26,6 +27,9 @@ export class AuthService {
     pass: string,
   ): Promise<SafeUser | undefined> {
     const user = await this.usersService.findOne({ email: username });
+    if (!user?.passwordHash) {
+      return undefined;
+    }
     if (user) {
       const isMatch = await bcrypt.compare(pass, user.passwordHash);
       if (isMatch) {
@@ -41,7 +45,10 @@ export class AuthService {
       id: user.id,
       displayName: user.displayName,
     };
-    const token = await this.jwtService.signAsync(payload);
+    const token = await this.jwtService.signAsync(payload, {
+      secret: jwtSecret,
+      expiresIn: '7d',
+    });
     return {
       access_token: token,
     };
@@ -60,14 +67,18 @@ export class AuthService {
       userId,
       jti,
     };
-    const token = await this.jwtService.signAsync(payload);
+    const token = await this.jwtService.signAsync(payload, {
+      secret: jwtRefreshSecret,
+    });
     return { refresh_token: token, jti };
   }
 
   async verifyRefreshToken(rawRefreshToken: string) {
     try {
-      const result =
-        await this.jwtService.verifyAsync<SignedRefreshToken>(rawRefreshToken);
+      const result = await this.jwtService.verifyAsync<SignedRefreshToken>(
+        rawRefreshToken,
+        { secret: jwtRefreshSecret },
+      );
       return result;
     } catch (error) {
       if (error instanceof TokenExpiredError) {
