@@ -9,9 +9,11 @@ import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ZodExceptionFilter } from './exceptions/zod-exception.filter';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
+import { EventsService } from './events/events.service';
+import { EventsModule } from './events/events.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -19,6 +21,7 @@ import { PrismaModule } from './prisma/prisma.module';
     { provide: APP_FILTER, useClass: AllExceptionsFilter },
     { provide: APP_FILTER, useClass: HttpExceptionFilter },
     { provide: APP_FILTER, useClass: ZodExceptionFilter },
+    EventsService,
   ],
 })
 export class AppModule {}
