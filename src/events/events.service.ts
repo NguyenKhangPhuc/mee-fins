@@ -12,17 +12,20 @@ import {
 import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { EventQueryDto } from './dto/events-query.dto';
-import { IncludeNode } from 'src/types/include-query';
+import { QueryService } from 'src/query/query.service';
 
 @Injectable()
 export class EventsService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private queryService: QueryService,
+  ) {}
 
-  async getAllEvent(where: EventQueryDto) {
+  async getAllEvent(query: EventQueryDto) {
     try {
       const result = await this.prismaService.event.findMany({
-        where: { ...(where.id && { id: where.id }) },
-        include: this.buildInclude(where.includes),
+        where: { ...(query.id && { id: query.id }) },
+        include: this.queryService.buildInclude(query.includes),
       });
       return result;
     } catch {
@@ -32,11 +35,11 @@ export class EventsService {
       });
     }
   }
-  async getSingleEvent(where: EventQueryDto) {
+  async getSingleEvent(query: EventQueryDto) {
     try {
       const result = await this.prismaService.event.findFirst({
-        where: { ...(where.id && { id: where.id }) },
-        include: this.buildInclude(where.includes),
+        where: { ...(query.id && { id: query.id }) },
+        include: this.queryService.buildInclude(query.includes),
       });
       if (!result) {
         throw new NotFoundException({
@@ -60,21 +63,6 @@ export class EventsService {
         message: 'Failed to get event',
         code: INTERNAL_SERVER_ERROR,
       });
-    }
-  }
-  buildInclude(include: string | undefined) {
-    if (!include) return {};
-    const splitted = include.split(',');
-    const result: Record<string, IncludeNode> = {};
-    for (let i = 0; i < splitted.length; i++) {
-      let current = result;
-      const nestedJoin = splitted[i].split('.');
-
-      for (let e = 0; e < nestedJoin.length; e++) {
-        const part = nestedJoin[e];
-        current[part] = current[part] ?? { include: {} };
-        current = current[part].include;
-      }
     }
   }
 }

@@ -11,9 +11,12 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { EventsService } from './events/events.service';
 import { EventsModule } from './events/events.module';
+import { GroupsModule } from './groups/groups.module';
+import { QueryService } from './query/query.service';
+import { QueryModule } from './query/query.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -22,6 +25,7 @@ import { EventsModule } from './events/events.module';
     { provide: APP_FILTER, useClass: HttpExceptionFilter },
     { provide: APP_FILTER, useClass: ZodExceptionFilter },
     EventsService,
+    QueryService,
   ],
 })
 export class AppModule {}
