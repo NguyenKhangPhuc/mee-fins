@@ -2,7 +2,7 @@ import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
 
 export const GroupQuerySchema = z.object({
-  id: z.string().optional(),
+  id: z.uuid().optional(),
   eventId: z.string().optional(),
   includes: z
     .string()

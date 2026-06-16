@@ -14,10 +14,14 @@ import { EventsModule } from './events/events.module';
 import { GroupsModule } from './groups/groups.module';
 import { QueryService } from './query/query.service';
 import { QueryModule } from './query/query.module';
+import { GroupMembersController } from './group_members/group_members.controller';
+import { GroupMembersModule } from './group_members/group_members.module';
+import { GroupChallengesModule } from './group_challenges/group_challenges.module';
+import { InvitationsModule } from './invitations/invitations.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule],
-  controllers: [AppController],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule],
+  controllers: [AppController, GroupMembersController],
   providers: [
     AppService,
     PrismaService,

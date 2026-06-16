@@ -11,16 +11,25 @@ import { QueryService } from 'src/query/query.service';
 import { Prisma } from 'src/generated/prisma/client';
 import {
   DUPLICATE_GROUP_ERROR,
+  EXISTED_GROUP_ERROR,
   INTERNAL_SERVER_ERROR,
   INVALID_INCLUDE_ERROR,
   NOT_EXISTED_GROUP_ERROR,
+  NOT_EXISTED_USER_ERROR,
 } from 'src/constants/error-code';
+import { GroupCreationDto } from './dto/group.dto';
+import { GroupChallengesService } from 'src/group_challenges/group_challenges.service';
+import { GroupMembersService } from 'src/group_members/group_members.service';
+import { InvitationsService } from 'src/invitations/invitations.service';
 
 @Injectable()
 export class GroupsService {
   constructor(
     private prismaService: PrismaService,
     private queryService: QueryService,
+    private groupChallengesService: GroupChallengesService,
+    private groupMembersService: GroupMembersService,
+    private invitationsService: InvitationsService,
   ) {}
 
   async getSingleGroup(query: GroupQueryDto) {
@@ -118,6 +127,72 @@ export class GroupsService {
         throw new BadRequestException('Invalid include relation');
       }
       throw new InternalServerErrorException('Failed to update group');
+    }
+  }
+
+  async createGroup({
+    tx,
+    groupInfo,
+  }: {
+    tx: Prisma.TransactionClient;
+    groupInfo: Prisma.GroupUncheckedCreateInput;
+  }) {
+    const result = await tx.group.create({ data: groupInfo });
+    return result;
+  }
+
+  async createGroupMemberAndChallengeTransaction(body: GroupCreationDto) {
+    try {
+      await this.prismaService.$transaction(async (tx) => {
+        const createdGroup = await this.createGroup({ tx, groupInfo: body });
+        const groupChallenges: Prisma.GroupChallengeCreateManyInput[] =
+          body.challengesId.map((challengeId) => {
+            return { groupId: createdGroup.id, challengeId };
+          });
+
+        await this.groupChallengesService.createManyGroupChallenges({
+          tx,
+          groupChallenges,
+        });
+        const groupMember: Prisma.GroupMemberUncheckedCreateInput = {
+          memberId: body.userId,
+          groupId: createdGroup.id,
+        };
+        await this.groupMembersService.createGroupMember({
+          tx,
+          groupMember,
+        });
+        const invitations: Prisma.InvitationCreateManyInput[] =
+          body.memberEmails.map((memberEmail) => {
+            return {
+              memberEmail,
+              groupId: createdGroup.id,
+            };
+          });
+        await this.invitationsService.createManyInvitations({
+          tx,
+          invitations,
+        });
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2002') {
+          throw new ConflictException({
+            message: 'Group name already exists in this event',
+            code: EXISTED_GROUP_ERROR,
+          });
+        }
+        if (error.code === 'P2003') {
+          throw new BadRequestException({
+            message: 'One or more member emails not found',
+            code: NOT_EXISTED_USER_ERROR,
+          });
+        }
+      }
+      throw new InternalServerErrorException({
+        message: 'Failed to create group',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }
