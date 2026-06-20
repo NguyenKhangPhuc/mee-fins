@@ -32,7 +32,17 @@ export class UsersService {
 
   async createUser({ user }: { user: Prisma.UserUncheckedCreateInput }) {
     try {
-      await this.prisma.user.create({ data: user });
+      await this.prisma.$transaction(async (tx) => {
+        const createdUser = await tx.user.create({ data: user });
+        const profile: Prisma.ProfileUncheckedCreateInput = {
+          id: createdUser.id,
+          fullName: user.displayName,
+          email: user.email,
+        };
+        await tx.profile.create({
+          data: profile,
+        });
+      });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {

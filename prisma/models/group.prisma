@@ -6,6 +6,7 @@ model Group {
     createdAt        DateTime         @default(now()) @map("created_at")
     shortDescription String           @map("short_description")
     posterPath       String?          @map("poster_path")
+    posterKey        String?          @map("poster_key")
     groupMembers     GroupMember[]
     invitations      Invitation[]
     groupChallenges  GroupChallenge[]

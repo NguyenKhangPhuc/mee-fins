@@ -64,16 +64,16 @@ export const ModelName = {
   Project: 'Project',
   ProjectAward: 'ProjectAward',
   ProjectFile: 'ProjectFile',
+  User: 'User',
+  RefreshToken: 'RefreshToken',
+  Session: 'Session',
   Submission: 'Submission',
   SubmissionComment: 'SubmissionComment',
   SubmissionFeedback: 'SubmissionFeedback',
   SubmissionFile: 'SubmissionFile',
   SubmissionGrading: 'SubmissionGrading',
   SubmissionRating: 'SubmissionRating',
-  SubmissionReaction: 'SubmissionReaction',
-  User: 'User',
-  RefreshToken: 'RefreshToken',
-  Session: 'Session'
+  SubmissionReaction: 'SubmissionReaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -94,6 +94,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const EventScalarFieldEnum = {
   id: 'id',
+  posterKey: 'posterKey',
   posterPath: 'posterPath',
   title: 'title',
   shortDescription: 'shortDescription',
@@ -161,7 +162,8 @@ export const GroupScalarFieldEnum = {
   eventId: 'eventId',
   createdAt: 'createdAt',
   shortDescription: 'shortDescription',
-  posterPath: 'posterPath'
+  posterPath: 'posterPath',
+  posterKey: 'posterKey'
 } as const
 
 export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
@@ -203,6 +205,7 @@ export const ProfileScalarFieldEnum = {
   fullName: 'fullName',
   email: 'email',
   avatarUrl: 'avatarUrl',
+  avatarKey: 'avatarKey',
   role: 'role',
   companyName: 'companyName',
   programme: 'programme',
@@ -257,6 +260,44 @@ export const ProjectFileScalarFieldEnum = {
 } as const
 
 export type ProjectFileScalarFieldEnum = (typeof ProjectFileScalarFieldEnum)[keyof typeof ProjectFileScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  displayName: 'displayName',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  confirmationAt: 'confirmationAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  jti: 'jti',
+  userId: 'userId',
+  isRevoked: 'isRevoked',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt',
+  sessionId: 'sessionId'
+} as const
+
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  userAgent: 'userAgent',
+  ipAddress: 'ipAddress',
+  createdAt: 'createdAt',
+  refreshedAt: 'refreshedAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SubmissionScalarFieldEnum = {
@@ -343,44 +384,6 @@ export const SubmissionReactionScalarFieldEnum = {
 } as const
 
 export type SubmissionReactionScalarFieldEnum = (typeof SubmissionReactionScalarFieldEnum)[keyof typeof SubmissionReactionScalarFieldEnum]
-
-
-export const UserScalarFieldEnum = {
-  id: 'id',
-  displayName: 'displayName',
-  email: 'email',
-  passwordHash: 'passwordHash',
-  confirmationAt: 'confirmationAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const RefreshTokenScalarFieldEnum = {
-  id: 'id',
-  jti: 'jti',
-  userId: 'userId',
-  isRevoked: 'isRevoked',
-  updatedAt: 'updatedAt',
-  createdAt: 'createdAt',
-  sessionId: 'sessionId'
-} as const
-
-export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
-
-
-export const SessionScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  userAgent: 'userAgent',
-  ipAddress: 'ipAddress',
-  createdAt: 'createdAt',
-  refreshedAt: 'refreshedAt'
-} as const
-
-export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SortOrder = {

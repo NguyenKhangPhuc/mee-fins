@@ -36,6 +36,7 @@ export type EventSumAggregateOutputType = {
 
 export type EventMinAggregateOutputType = {
   id: string | null
+  posterKey: string | null
   posterPath: string | null
   title: string | null
   shortDescription: string | null
@@ -51,6 +52,7 @@ export type EventMinAggregateOutputType = {
 
 export type EventMaxAggregateOutputType = {
   id: string | null
+  posterKey: string | null
   posterPath: string | null
   title: string | null
   shortDescription: string | null
@@ -66,6 +68,7 @@ export type EventMaxAggregateOutputType = {
 
 export type EventCountAggregateOutputType = {
   id: number
+  posterKey: number
   posterPath: number
   title: number
   shortDescription: number
@@ -91,6 +94,7 @@ export type EventSumAggregateInputType = {
 
 export type EventMinAggregateInputType = {
   id?: true
+  posterKey?: true
   posterPath?: true
   title?: true
   shortDescription?: true
@@ -106,6 +110,7 @@ export type EventMinAggregateInputType = {
 
 export type EventMaxAggregateInputType = {
   id?: true
+  posterKey?: true
   posterPath?: true
   title?: true
   shortDescription?: true
@@ -121,6 +126,7 @@ export type EventMaxAggregateInputType = {
 
 export type EventCountAggregateInputType = {
   id?: true
+  posterKey?: true
   posterPath?: true
   title?: true
   shortDescription?: true
@@ -223,6 +229,7 @@ export type EventGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type EventGroupByOutputType = {
   id: string
+  posterKey: string | null
   posterPath: string | null
   title: string
   shortDescription: string
@@ -261,6 +268,7 @@ export type EventWhereInput = {
   OR?: Prisma.EventWhereInput[]
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   id?: Prisma.StringFilter<"Event"> | string
+  posterKey?: Prisma.StringNullableFilter<"Event"> | string | null
   posterPath?: Prisma.StringNullableFilter<"Event"> | string | null
   title?: Prisma.StringFilter<"Event"> | string
   shortDescription?: Prisma.StringFilter<"Event"> | string
@@ -280,6 +288,7 @@ export type EventWhereInput = {
 
 export type EventOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrderInput | Prisma.SortOrder
   posterPath?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
@@ -302,6 +311,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
   OR?: Prisma.EventWhereInput[]
   NOT?: Prisma.EventWhereInput | Prisma.EventWhereInput[]
+  posterKey?: Prisma.StringNullableFilter<"Event"> | string | null
   posterPath?: Prisma.StringNullableFilter<"Event"> | string | null
   title?: Prisma.StringFilter<"Event"> | string
   shortDescription?: Prisma.StringFilter<"Event"> | string
@@ -321,6 +331,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
 
 export type EventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrderInput | Prisma.SortOrder
   posterPath?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
@@ -344,6 +355,7 @@ export type EventScalarWhereWithAggregatesInput = {
   OR?: Prisma.EventScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EventScalarWhereWithAggregatesInput | Prisma.EventScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Event"> | string
+  posterKey?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   posterPath?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   title?: Prisma.StringWithAggregatesFilter<"Event"> | string
   shortDescription?: Prisma.StringWithAggregatesFilter<"Event"> | string
@@ -359,6 +371,7 @@ export type EventScalarWhereWithAggregatesInput = {
 
 export type EventCreateInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -378,6 +391,7 @@ export type EventCreateInput = {
 
 export type EventUncheckedCreateInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -397,6 +411,7 @@ export type EventUncheckedCreateInput = {
 
 export type EventUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -416,6 +431,7 @@ export type EventUpdateInput = {
 
 export type EventUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -435,6 +451,7 @@ export type EventUncheckedUpdateInput = {
 
 export type EventCreateManyInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -450,6 +467,7 @@ export type EventCreateManyInput = {
 
 export type EventUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -465,6 +483,7 @@ export type EventUpdateManyMutationInput = {
 
 export type EventUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -480,6 +499,7 @@ export type EventUncheckedUpdateManyInput = {
 
 export type EventCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
@@ -499,6 +519,7 @@ export type EventAvgOrderByAggregateInput = {
 
 export type EventMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
@@ -514,6 +535,7 @@ export type EventMaxOrderByAggregateInput = {
 
 export type EventMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
   title?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
@@ -618,6 +640,7 @@ export type EventUpdateOneRequiredWithoutGroupsNestedInput = {
 
 export type EventCreateWithoutEventAwardsInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -636,6 +659,7 @@ export type EventCreateWithoutEventAwardsInput = {
 
 export type EventUncheckedCreateWithoutEventAwardsInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -670,6 +694,7 @@ export type EventUpdateToOneWithWhereWithoutEventAwardsInput = {
 
 export type EventUpdateWithoutEventAwardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -688,6 +713,7 @@ export type EventUpdateWithoutEventAwardsInput = {
 
 export type EventUncheckedUpdateWithoutEventAwardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -706,6 +732,7 @@ export type EventUncheckedUpdateWithoutEventAwardsInput = {
 
 export type EventCreateWithoutEventChallengesInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -724,6 +751,7 @@ export type EventCreateWithoutEventChallengesInput = {
 
 export type EventUncheckedCreateWithoutEventChallengesInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -758,6 +786,7 @@ export type EventUpdateToOneWithWhereWithoutEventChallengesInput = {
 
 export type EventUpdateWithoutEventChallengesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -776,6 +805,7 @@ export type EventUpdateWithoutEventChallengesInput = {
 
 export type EventUncheckedUpdateWithoutEventChallengesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -794,6 +824,7 @@ export type EventUncheckedUpdateWithoutEventChallengesInput = {
 
 export type EventCreateWithoutEventGradingCriteriasInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -812,6 +843,7 @@ export type EventCreateWithoutEventGradingCriteriasInput = {
 
 export type EventUncheckedCreateWithoutEventGradingCriteriasInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -846,6 +878,7 @@ export type EventUpdateToOneWithWhereWithoutEventGradingCriteriasInput = {
 
 export type EventUpdateWithoutEventGradingCriteriasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -864,6 +897,7 @@ export type EventUpdateWithoutEventGradingCriteriasInput = {
 
 export type EventUncheckedUpdateWithoutEventGradingCriteriasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -882,6 +916,7 @@ export type EventUncheckedUpdateWithoutEventGradingCriteriasInput = {
 
 export type EventCreateWithoutGroupsInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -900,6 +935,7 @@ export type EventCreateWithoutGroupsInput = {
 
 export type EventUncheckedCreateWithoutGroupsInput = {
   id?: string
+  posterKey?: string | null
   posterPath?: string | null
   title: string
   shortDescription: string
@@ -934,6 +970,7 @@ export type EventUpdateToOneWithWhereWithoutGroupsInput = {
 
 export type EventUpdateWithoutGroupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -952,6 +989,7 @@ export type EventUpdateWithoutGroupsInput = {
 
 export type EventUncheckedUpdateWithoutGroupsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1028,6 +1066,7 @@ export type EventCountOutputTypeCountEventGradingCriteriasArgs<ExtArgs extends r
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  posterKey?: boolean
   posterPath?: boolean
   title?: boolean
   shortDescription?: boolean
@@ -1048,6 +1087,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  posterKey?: boolean
   posterPath?: boolean
   title?: boolean
   shortDescription?: boolean
@@ -1063,6 +1103,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  posterKey?: boolean
   posterPath?: boolean
   title?: boolean
   shortDescription?: boolean
@@ -1078,6 +1119,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type EventSelectScalar = {
   id?: boolean
+  posterKey?: boolean
   posterPath?: boolean
   title?: boolean
   shortDescription?: boolean
@@ -1091,7 +1133,7 @@ export type EventSelectScalar = {
   createdAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "posterPath" | "title" | "shortDescription" | "status" | "content" | "location" | "maxGroupMembers" | "startDate" | "endDate" | "organizedDate" | "createdAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "posterKey" | "posterPath" | "title" | "shortDescription" | "status" | "content" | "location" | "maxGroupMembers" | "startDate" | "endDate" | "organizedDate" | "createdAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   groups?: boolean | Prisma.Event$groupsArgs<ExtArgs>
   eventChallenges?: boolean | Prisma.Event$eventChallengesArgs<ExtArgs>
@@ -1112,6 +1154,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    posterKey: string | null
     posterPath: string | null
     title: string
     shortDescription: string
@@ -1551,6 +1594,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface EventFieldRefs {
   readonly id: Prisma.FieldRef<"Event", 'String'>
+  readonly posterKey: Prisma.FieldRef<"Event", 'String'>
   readonly posterPath: Prisma.FieldRef<"Event", 'String'>
   readonly title: Prisma.FieldRef<"Event", 'String'>
   readonly shortDescription: Prisma.FieldRef<"Event", 'String'>

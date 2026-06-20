@@ -1,5 +1,6 @@
 model Event {
     id                    String                 @id @default(uuid())
+    posterKey             String?                @map("poster_key")
     posterPath            String?                @map("poster_path")
     title                 String
     shortDescription      String                 @map("short_description")

@@ -31,6 +31,7 @@ export type GroupMinAggregateOutputType = {
   createdAt: Date | null
   shortDescription: string | null
   posterPath: string | null
+  posterKey: string | null
 }
 
 export type GroupMaxAggregateOutputType = {
@@ -40,6 +41,7 @@ export type GroupMaxAggregateOutputType = {
   createdAt: Date | null
   shortDescription: string | null
   posterPath: string | null
+  posterKey: string | null
 }
 
 export type GroupCountAggregateOutputType = {
@@ -49,6 +51,7 @@ export type GroupCountAggregateOutputType = {
   createdAt: number
   shortDescription: number
   posterPath: number
+  posterKey: number
   _all: number
 }
 
@@ -60,6 +63,7 @@ export type GroupMinAggregateInputType = {
   createdAt?: true
   shortDescription?: true
   posterPath?: true
+  posterKey?: true
 }
 
 export type GroupMaxAggregateInputType = {
@@ -69,6 +73,7 @@ export type GroupMaxAggregateInputType = {
   createdAt?: true
   shortDescription?: true
   posterPath?: true
+  posterKey?: true
 }
 
 export type GroupCountAggregateInputType = {
@@ -78,6 +83,7 @@ export type GroupCountAggregateInputType = {
   createdAt?: true
   shortDescription?: true
   posterPath?: true
+  posterKey?: true
   _all?: true
 }
 
@@ -160,6 +166,7 @@ export type GroupGroupByOutputType = {
   createdAt: Date
   shortDescription: string
   posterPath: string | null
+  posterKey: string | null
   _count: GroupCountAggregateOutputType | null
   _min: GroupMinAggregateOutputType | null
   _max: GroupMaxAggregateOutputType | null
@@ -190,6 +197,7 @@ export type GroupWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Group"> | Date | string
   shortDescription?: Prisma.StringFilter<"Group"> | string
   posterPath?: Prisma.StringNullableFilter<"Group"> | string | null
+  posterKey?: Prisma.StringNullableFilter<"Group"> | string | null
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   groupMembers?: Prisma.GroupMemberListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
@@ -207,6 +215,7 @@ export type GroupOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   posterPath?: Prisma.SortOrderInput | Prisma.SortOrder
+  posterKey?: Prisma.SortOrderInput | Prisma.SortOrder
   event?: Prisma.EventOrderByWithRelationInput
   groupMembers?: Prisma.GroupMemberOrderByRelationAggregateInput
   invitations?: Prisma.InvitationOrderByRelationAggregateInput
@@ -219,6 +228,7 @@ export type GroupOrderByWithRelationInput = {
 
 export type GroupWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  groupName_eventId?: Prisma.GroupGroupNameEventIdCompoundUniqueInput
   AND?: Prisma.GroupWhereInput | Prisma.GroupWhereInput[]
   OR?: Prisma.GroupWhereInput[]
   NOT?: Prisma.GroupWhereInput | Prisma.GroupWhereInput[]
@@ -227,6 +237,7 @@ export type GroupWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Group"> | Date | string
   shortDescription?: Prisma.StringFilter<"Group"> | string
   posterPath?: Prisma.StringNullableFilter<"Group"> | string | null
+  posterKey?: Prisma.StringNullableFilter<"Group"> | string | null
   event?: Prisma.XOR<Prisma.EventScalarRelationFilter, Prisma.EventWhereInput>
   groupMembers?: Prisma.GroupMemberListRelationFilter
   invitations?: Prisma.InvitationListRelationFilter
@@ -235,7 +246,7 @@ export type GroupWhereUniqueInput = Prisma.AtLeast<{
   submissionFiles?: Prisma.SubmissionFileListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
   projectFiles?: Prisma.ProjectFileListRelationFilter
-}, "id">
+}, "id" | "groupName_eventId">
 
 export type GroupOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -244,6 +255,7 @@ export type GroupOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   posterPath?: Prisma.SortOrderInput | Prisma.SortOrder
+  posterKey?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.GroupCountOrderByAggregateInput
   _max?: Prisma.GroupMaxOrderByAggregateInput
   _min?: Prisma.GroupMinOrderByAggregateInput
@@ -259,6 +271,7 @@ export type GroupScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Group"> | Date | string
   shortDescription?: Prisma.StringWithAggregatesFilter<"Group"> | string
   posterPath?: Prisma.StringNullableWithAggregatesFilter<"Group"> | string | null
+  posterKey?: Prisma.StringNullableWithAggregatesFilter<"Group"> | string | null
 }
 
 export type GroupCreateInput = {
@@ -267,6 +280,7 @@ export type GroupCreateInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -284,6 +298,7 @@ export type GroupUncheckedCreateInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -299,6 +314,7 @@ export type GroupUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -316,6 +332,7 @@ export type GroupUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -332,6 +349,7 @@ export type GroupCreateManyInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
 }
 
 export type GroupUpdateManyMutationInput = {
@@ -340,6 +358,7 @@ export type GroupUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GroupUncheckedUpdateManyInput = {
@@ -349,6 +368,7 @@ export type GroupUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GroupListRelationFilter = {
@@ -361,6 +381,11 @@ export type GroupOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type GroupGroupNameEventIdCompoundUniqueInput = {
+  groupName: string
+  eventId: string
+}
+
 export type GroupCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   groupName?: Prisma.SortOrder
@@ -368,6 +393,7 @@ export type GroupCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
 }
 
 export type GroupMaxOrderByAggregateInput = {
@@ -377,6 +403,7 @@ export type GroupMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
 }
 
 export type GroupMinOrderByAggregateInput = {
@@ -386,6 +413,7 @@ export type GroupMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   shortDescription?: Prisma.SortOrder
   posterPath?: Prisma.SortOrder
+  posterKey?: Prisma.SortOrder
 }
 
 export type GroupScalarRelationFilter = {
@@ -539,6 +567,7 @@ export type GroupCreateWithoutEventInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeCreateNestedManyWithoutGroupInput
@@ -554,6 +583,7 @@ export type GroupUncheckedCreateWithoutEventInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -599,6 +629,7 @@ export type GroupScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Group"> | Date | string
   shortDescription?: Prisma.StringFilter<"Group"> | string
   posterPath?: Prisma.StringNullableFilter<"Group"> | string | null
+  posterKey?: Prisma.StringNullableFilter<"Group"> | string | null
 }
 
 export type GroupCreateWithoutGroupChallengesInput = {
@@ -607,6 +638,7 @@ export type GroupCreateWithoutGroupChallengesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -623,6 +655,7 @@ export type GroupUncheckedCreateWithoutGroupChallengesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGroupInput
@@ -653,6 +686,7 @@ export type GroupUpdateWithoutGroupChallengesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -669,6 +703,7 @@ export type GroupUncheckedUpdateWithoutGroupChallengesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGroupNestedInput
@@ -683,6 +718,7 @@ export type GroupCreateWithoutGroupMembersInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeCreateNestedManyWithoutGroupInput
@@ -699,6 +735,7 @@ export type GroupUncheckedCreateWithoutGroupMembersInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGroupInput
@@ -729,6 +766,7 @@ export type GroupUpdateWithoutGroupMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUpdateManyWithoutGroupNestedInput
@@ -745,6 +783,7 @@ export type GroupUncheckedUpdateWithoutGroupMembersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGroupNestedInput
@@ -759,6 +798,7 @@ export type GroupCreateWithoutInvitationsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeCreateNestedManyWithoutGroupInput
@@ -775,6 +815,7 @@ export type GroupUncheckedCreateWithoutInvitationsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutGroupInput
@@ -805,6 +846,7 @@ export type GroupUpdateWithoutInvitationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUpdateManyWithoutGroupNestedInput
@@ -821,6 +863,7 @@ export type GroupUncheckedUpdateWithoutInvitationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutGroupNestedInput
@@ -835,6 +878,7 @@ export type GroupCreateWithoutProjectsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -851,6 +895,7 @@ export type GroupUncheckedCreateWithoutProjectsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -881,6 +926,7 @@ export type GroupUpdateWithoutProjectsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -897,6 +943,7 @@ export type GroupUncheckedUpdateWithoutProjectsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -911,6 +958,7 @@ export type GroupCreateWithoutProjectFilesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -927,6 +975,7 @@ export type GroupUncheckedCreateWithoutProjectFilesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -957,6 +1006,7 @@ export type GroupUpdateWithoutProjectFilesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -973,6 +1023,7 @@ export type GroupUncheckedUpdateWithoutProjectFilesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -987,6 +1038,7 @@ export type GroupCreateWithoutSubmissionsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -1003,6 +1055,7 @@ export type GroupUncheckedCreateWithoutSubmissionsInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -1033,6 +1086,7 @@ export type GroupUpdateWithoutSubmissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -1049,6 +1103,7 @@ export type GroupUncheckedUpdateWithoutSubmissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -1063,6 +1118,7 @@ export type GroupCreateWithoutSubmissionFilesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   event: Prisma.EventCreateNestedOneWithoutGroupsInput
   groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationCreateNestedManyWithoutGroupInput
@@ -1079,6 +1135,7 @@ export type GroupUncheckedCreateWithoutSubmissionFilesInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
   groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutGroupInput
   invitations?: Prisma.InvitationUncheckedCreateNestedManyWithoutGroupInput
   groupChallenges?: Prisma.GroupChallengeUncheckedCreateNestedManyWithoutGroupInput
@@ -1109,6 +1166,7 @@ export type GroupUpdateWithoutSubmissionFilesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   event?: Prisma.EventUpdateOneRequiredWithoutGroupsNestedInput
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
@@ -1125,6 +1183,7 @@ export type GroupUncheckedUpdateWithoutSubmissionFilesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -1139,6 +1198,7 @@ export type GroupCreateManyEventInput = {
   createdAt?: Date | string
   shortDescription: string
   posterPath?: string | null
+  posterKey?: string | null
 }
 
 export type GroupUpdateWithoutEventInput = {
@@ -1147,6 +1207,7 @@ export type GroupUpdateWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUpdateManyWithoutGroupNestedInput
@@ -1162,6 +1223,7 @@ export type GroupUncheckedUpdateWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   invitations?: Prisma.InvitationUncheckedUpdateManyWithoutGroupNestedInput
   groupChallenges?: Prisma.GroupChallengeUncheckedUpdateManyWithoutGroupNestedInput
@@ -1177,6 +1239,7 @@ export type GroupUncheckedUpdateManyWithoutEventInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   shortDescription?: Prisma.StringFieldUpdateOperationsInput | string
   posterPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  posterKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1271,6 +1334,7 @@ export type GroupSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdAt?: boolean
   shortDescription?: boolean
   posterPath?: boolean
+  posterKey?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   groupMembers?: boolean | Prisma.Group$groupMembersArgs<ExtArgs>
   invitations?: boolean | Prisma.Group$invitationsArgs<ExtArgs>
@@ -1289,6 +1353,7 @@ export type GroupSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   shortDescription?: boolean
   posterPath?: boolean
+  posterKey?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["group"]>
 
@@ -1299,6 +1364,7 @@ export type GroupSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   createdAt?: boolean
   shortDescription?: boolean
   posterPath?: boolean
+  posterKey?: boolean
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["group"]>
 
@@ -1309,9 +1375,10 @@ export type GroupSelectScalar = {
   createdAt?: boolean
   shortDescription?: boolean
   posterPath?: boolean
+  posterKey?: boolean
 }
 
-export type GroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupName" | "eventId" | "createdAt" | "shortDescription" | "posterPath", ExtArgs["result"]["group"]>
+export type GroupOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupName" | "eventId" | "createdAt" | "shortDescription" | "posterPath" | "posterKey", ExtArgs["result"]["group"]>
 export type GroupInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventDefaultArgs<ExtArgs>
   groupMembers?: boolean | Prisma.Group$groupMembersArgs<ExtArgs>
@@ -1349,6 +1416,7 @@ export type $GroupPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     createdAt: Date
     shortDescription: string
     posterPath: string | null
+    posterKey: string | null
   }, ExtArgs["result"]["group"]>
   composites: {}
 }
@@ -1786,6 +1854,7 @@ export interface GroupFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Group", 'DateTime'>
   readonly shortDescription: Prisma.FieldRef<"Group", 'String'>
   readonly posterPath: Prisma.FieldRef<"Group", 'String'>
+  readonly posterKey: Prisma.FieldRef<"Group", 'String'>
 }
     
 

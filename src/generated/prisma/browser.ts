@@ -83,6 +83,21 @@ export type ProjectAward = Prisma.ProjectAwardModel
  */
 export type ProjectFile = Prisma.ProjectFileModel
 /**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
  * Model Submission
  * 
  */
@@ -117,18 +132,3 @@ export type SubmissionRating = Prisma.SubmissionRatingModel
  * 
  */
 export type SubmissionReaction = Prisma.SubmissionReactionModel
-/**
- * Model User
- * 
- */
-export type User = Prisma.UserModel
-/**
- * Model RefreshToken
- * 
- */
-export type RefreshToken = Prisma.RefreshTokenModel
-/**
- * Model Session
- * 
- */
-export type Session = Prisma.SessionModel

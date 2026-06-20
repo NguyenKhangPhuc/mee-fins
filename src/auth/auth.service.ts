@@ -106,7 +106,7 @@ export class AuthService {
     const hashPassword = await bcrypt.hash(password, saltOrRounds);
     const newuser: Prisma.UserUncheckedCreateInput = {
       displayName,
-      email,
+      email: email.toLowerCase(),
       passwordHash: hashPassword,
     };
     await this.usersService.createUser({ user: newuser });

@@ -18,9 +18,10 @@ import { GroupMembersController } from './group_members/group_members.controller
 import { GroupMembersModule } from './group_members/group_members.module';
 import { GroupChallengesModule } from './group_challenges/group_challenges.module';
 import { InvitationsModule } from './invitations/invitations.module';
+import { FileModule } from './file/file.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,
