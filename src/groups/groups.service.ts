@@ -21,6 +21,7 @@ import { GroupCreationDto } from './dto/group.dto';
 import { GroupChallengesService } from 'src/group_challenges/group_challenges.service';
 import { GroupMembersService } from 'src/group_members/group_members.service';
 import { InvitationsService } from 'src/invitations/invitations.service';
+import { FileService } from 'src/file/file.service';
 
 @Injectable()
 export class GroupsService {
@@ -30,6 +31,7 @@ export class GroupsService {
     private groupChallengesService: GroupChallengesService,
     private groupMembersService: GroupMembersService,
     private invitationsService: InvitationsService,
+    private fileService: FileService,
   ) {}
 
   async getSingleGroup(query: GroupQueryDto) {
@@ -193,6 +195,49 @@ export class GroupsService {
         message: 'Failed to create group',
         code: INTERNAL_SERVER_ERROR,
       });
+    }
+  }
+  async updateGroupPoster({
+    poster,
+    groupId,
+    oldPosterKey,
+  }: {
+    poster: Express.Multer.File | undefined;
+    oldPosterKey: string;
+    groupId: string;
+  }) {
+    await this.fileService.deleteFile(oldPosterKey);
+    if (!poster) {
+      try {
+        await this.prismaService.group.update({
+          data: { posterKey: null, posterPath: null },
+          where: { id: groupId },
+        });
+        return { success: true };
+      } catch (error) {
+        if (error instanceof InternalServerErrorException) {
+          throw error;
+        }
+        throw new InternalServerErrorException({
+          message: 'Fail to update group poster',
+          code: INTERNAL_SERVER_ERROR,
+        });
+      }
+    } else {
+      const result = await this.fileService.uploadFile(poster, groupId);
+      try {
+        await this.prismaService.group.update({
+          data: { posterKey: result.key, posterPath: result.publicUrl },
+          where: { id: groupId },
+        });
+        return { success: true };
+      } catch {
+        await this.fileService.deleteFile(result.key);
+        throw new InternalServerErrorException({
+          message: 'Fail to update group poster',
+          code: INTERNAL_SERVER_ERROR,
+        });
+      }
     }
   }
 }

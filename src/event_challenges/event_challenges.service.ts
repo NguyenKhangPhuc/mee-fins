@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { EventChallengeUpdationDto } from './dto/event_challenge-updation.dto';
 import {
   INTERNAL_SERVER_ERROR,
   NOT_EXISTED_CHALLENGE_ERROR,
@@ -28,11 +27,14 @@ export class EventChallengesService {
     return result;
   }
 
-  async updateEventChallenge(eventChallenge: EventChallengeUpdationDto) {
+  async updateEventChallenge(
+    eventChallenge: Prisma.EventChallengeUpdateInput,
+    eventChallengeId: string,
+  ) {
     try {
       const result = await this.prismaService.eventChallenge.update({
         data: eventChallenge,
-        where: { id: eventChallenge.id },
+        where: { id: eventChallengeId },
       });
       return result;
     } catch (error) {

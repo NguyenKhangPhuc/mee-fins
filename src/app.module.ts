@@ -26,9 +26,10 @@ import { SubmissionModule } from './submission/submission.module';
 import { SubmissionsModule } from './submissions/submissions.module';
 import { SubmissionFilesModule } from './submission_files/submission_files.module';
 import { FunFactsModule } from './fun_facts/fun_facts.module';
+import { EventAwardsModule } from './event_awards/event_awards.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule, EventAwardsModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,

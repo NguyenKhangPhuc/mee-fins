@@ -17,6 +17,7 @@ import { EventCreationDto } from './dto/event-creation.dto';
 import { EventChallengesService } from 'src/event_challenges/event_challenges.service';
 import { EventGradingCriteriaService } from 'src/event_grading_criteria/event_grading_criteria.service';
 import { FileService } from 'src/file/file.service';
+import { EventAwardsService } from 'src/event_awards/event_awards.service';
 
 @Injectable()
 export class EventsService {
@@ -26,6 +27,7 @@ export class EventsService {
     private eventChallengesService: EventChallengesService,
     private eventCriteriaService: EventGradingCriteriaService,
     private fileService: FileService,
+    private awardService: EventAwardsService,
   ) {}
 
   async getAllEvent(query: EventQueryDto) {
@@ -84,7 +86,7 @@ export class EventsService {
     return result;
   }
 
-  async createEventWithChallengesAndCriteria(body: EventCreationDto) {
+  async createEventWithChallengesAndCriteriaAndAwards(body: EventCreationDto) {
     try {
       await this.prismaService.$transaction(async (tx) => {
         const createdEvent = await this.createEvent({ tx, event: body.event });
@@ -105,6 +107,12 @@ export class EventsService {
           tx,
           criteria,
         });
+        const awards: Prisma.EventAwardCreateManyInput[] = body.awards.map(
+          (award) => {
+            return { ...award, eventId: createdEvent.id };
+          },
+        );
+        await this.awardService.createManyEventAwards({ tx, awards });
       });
     } catch {
       throw new InternalServerErrorException({

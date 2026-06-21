@@ -1,4 +1,5 @@
 import { createZodDto } from 'nestjs-zod';
+import { AWARD_TYPE } from 'src/generated/prisma/enums';
 import z from 'zod';
 
 export const EventCreationSchema = z.object({
@@ -19,6 +20,13 @@ export const EventCreationSchema = z.object({
       criteriaDescription: z.string(),
       percentage: z.number(),
       type: z.enum(['normal', 'specific']),
+    }),
+  ),
+  awards: z.array(
+    z.object({
+      awardType: z.enum(AWARD_TYPE),
+      awardTitle: z.string(),
+      awardPriority: z.number(),
     }),
   ),
 });

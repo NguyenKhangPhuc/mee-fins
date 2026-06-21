@@ -11,10 +11,14 @@ import {
   NOT_EXISTED_USER_ERROR,
 } from 'src/constants/error-code';
 import { ProfileRoleDto } from './dto/role-updation.dto';
+import { FileService } from 'src/file/file.service';
 
 @Injectable()
 export class ProfileService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private fileService: FileService,
+  ) {}
   async createProfile({
     tx,
     profile,
@@ -67,6 +71,50 @@ export class ProfileService {
         message: 'Fail to update user role',
         code: INTERNAL_SERVER_ERROR,
       });
+    }
+  }
+
+  async updateProfilePoster({
+    poster,
+    userId,
+    oldPosterKey,
+  }: {
+    poster: Express.Multer.File | undefined;
+    userId: string;
+    oldPosterKey: string;
+  }) {
+    await this.fileService.deleteFile(oldPosterKey);
+    if (!poster) {
+      try {
+        await this.prismaService.profile.update({
+          data: { avatarKey: null, avatarUrl: null },
+          where: { id: userId },
+        });
+        return { success: true };
+      } catch (error) {
+        if (error instanceof InternalServerErrorException) {
+          throw error;
+        }
+        throw new InternalServerErrorException({
+          message: 'Fail to update profile avatar',
+          code: INTERNAL_SERVER_ERROR,
+        });
+      }
+    } else {
+      const result = await this.fileService.uploadFile(poster, userId);
+      try {
+        await this.prismaService.profile.update({
+          data: { avatarKey: result.key, avatarUrl: result.publicUrl },
+          where: { id: userId },
+        });
+        return { success: true };
+      } catch {
+        await this.fileService.deleteFile(result.key);
+        throw new InternalServerErrorException({
+          message: 'Fail to update profile avatar',
+          code: INTERNAL_SERVER_ERROR,
+        });
+      }
     }
   }
 }

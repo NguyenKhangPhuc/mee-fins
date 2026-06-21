@@ -7,43 +7,41 @@ import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   INTERNAL_SERVER_ERROR,
-  NOT_EXISTED_CRITERIA_ERROR,
+  NOT_EXISTED_AWARD_ERROR,
 } from 'src/constants/error-code';
 
 @Injectable()
-export class EventGradingCriteriaService {
+export class EventAwardsService {
   constructor(private prismaService: PrismaService) {}
-  async createManyEventCriteria({
+  async createManyEventAwards({
     tx,
-    criteria,
+    awards,
   }: {
     tx: Prisma.TransactionClient;
-    criteria: Prisma.EventGradingCriteriaCreateManyInput[];
+    awards: Prisma.EventAwardCreateManyInput[];
   }) {
-    const result = await tx.eventGradingCriteria.createMany({ data: criteria });
+    const result = await tx.eventAward.createMany({ data: awards });
     return result;
   }
 
-  async updateEventCriteria(
-    criteria: Prisma.EventGradingCriteriaUpdateInput,
-    criteriaId: string,
-  ) {
+  async updateEventAward(award: Prisma.EventAwardUpdateInput, awardId: string) {
     try {
-      return await this.prismaService.eventGradingCriteria.update({
-        data: criteria,
-        where: { id: criteriaId },
+      const result = await this.prismaService.eventAward.update({
+        data: award,
+        where: { id: awardId },
       });
+      return result;
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2025') {
           throw new NotFoundException({
-            message: 'Criteria not found',
-            code: NOT_EXISTED_CRITERIA_ERROR,
+            message: 'Award not found',
+            code: NOT_EXISTED_AWARD_ERROR,
           });
         }
       }
       throw new InternalServerErrorException({
-        message: 'Failed to update criteria',
+        message: 'Failed to update event award',
         code: INTERNAL_SERVER_ERROR,
       });
     }
