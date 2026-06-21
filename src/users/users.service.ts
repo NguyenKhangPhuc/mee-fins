@@ -11,10 +11,14 @@ import {
 } from 'src/constants/error-code';
 import { User, Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { ProfileService } from 'src/profile/profile.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private profileService: ProfileService,
+  ) {}
   async findOne(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<User | null> {
@@ -39,9 +43,7 @@ export class UsersService {
           fullName: user.displayName,
           email: user.email,
         };
-        await tx.profile.create({
-          data: profile,
-        });
+        await this.profileService.createProfile({ tx, profile });
       });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {

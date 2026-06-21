@@ -21,9 +21,10 @@ import { InvitationsModule } from './invitations/invitations.module';
 import { FileModule } from './file/file.module';
 import { EventChallengesModule } from './event_challenges/event_challenges.module';
 import { EventGradingCriteriaModule } from './event_grading_criteria/event_grading_criteria.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,
