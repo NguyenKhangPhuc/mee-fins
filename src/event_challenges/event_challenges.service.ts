@@ -1,6 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { EventChallengeUpdationDto } from './dto/event_challenge-updation.dto';
+import {
+  NOT_EXISTED_CRITERIA_ERROR,
+  INTERNAL_SERVER_ERROR,
+  NOT_EXISTED_CHALLENGE_ERROR,
+} from 'src/constants/error-code';
 
 @Injectable()
 export class EventChallengesService {
@@ -17,5 +27,28 @@ export class EventChallengesService {
       data: eventChallenges,
     });
     return result;
+  }
+
+  async updateEventChallenge(eventChallenge: EventChallengeUpdationDto) {
+    try {
+      const result = await this.prismaService.eventChallenge.update({
+        data: eventChallenge,
+        where: { id: eventChallenge.id },
+      });
+      return result;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException({
+            message: 'Challenge not found',
+            code: NOT_EXISTED_CHALLENGE_ERROR,
+          });
+        }
+      }
+      throw new InternalServerErrorException({
+        message: 'Failed to update event challenge',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
   }
 }
