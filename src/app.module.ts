@@ -22,9 +22,13 @@ import { FileModule } from './file/file.module';
 import { EventChallengesModule } from './event_challenges/event_challenges.module';
 import { EventGradingCriteriaModule } from './event_grading_criteria/event_grading_criteria.module';
 import { ProfileModule } from './profile/profile.module';
+import { SubmissionModule } from './submission/submission.module';
+import { SubmissionsModule } from './submissions/submissions.module';
+import { SubmissionFilesModule } from './submission_files/submission_files.module';
+import { FunFactsModule } from './fun_facts/fun_facts.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,

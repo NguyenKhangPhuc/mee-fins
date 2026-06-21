@@ -38,6 +38,7 @@ export type SubmissionFileMinAggregateOutputType = {
   id: string | null
   groupId: string | null
   submissionId: string | null
+  key: string | null
   storagePath: string | null
   originalFileName: string | null
   mimeType: string | null
@@ -49,6 +50,7 @@ export type SubmissionFileMaxAggregateOutputType = {
   id: string | null
   groupId: string | null
   submissionId: string | null
+  key: string | null
   storagePath: string | null
   originalFileName: string | null
   mimeType: string | null
@@ -60,6 +62,7 @@ export type SubmissionFileCountAggregateOutputType = {
   id: number
   groupId: number
   submissionId: number
+  key: number
   storagePath: number
   originalFileName: number
   mimeType: number
@@ -81,6 +84,7 @@ export type SubmissionFileMinAggregateInputType = {
   id?: true
   groupId?: true
   submissionId?: true
+  key?: true
   storagePath?: true
   originalFileName?: true
   mimeType?: true
@@ -92,6 +96,7 @@ export type SubmissionFileMaxAggregateInputType = {
   id?: true
   groupId?: true
   submissionId?: true
+  key?: true
   storagePath?: true
   originalFileName?: true
   mimeType?: true
@@ -103,6 +108,7 @@ export type SubmissionFileCountAggregateInputType = {
   id?: true
   groupId?: true
   submissionId?: true
+  key?: true
   storagePath?: true
   originalFileName?: true
   mimeType?: true
@@ -201,6 +207,7 @@ export type SubmissionFileGroupByOutputType = {
   id: string
   groupId: string
   submissionId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
@@ -235,6 +242,7 @@ export type SubmissionFileWhereInput = {
   id?: Prisma.StringFilter<"SubmissionFile"> | string
   groupId?: Prisma.StringFilter<"SubmissionFile"> | string
   submissionId?: Prisma.StringFilter<"SubmissionFile"> | string
+  key?: Prisma.StringFilter<"SubmissionFile"> | string
   storagePath?: Prisma.StringFilter<"SubmissionFile"> | string
   originalFileName?: Prisma.StringFilter<"SubmissionFile"> | string
   mimeType?: Prisma.StringFilter<"SubmissionFile"> | string
@@ -248,6 +256,7 @@ export type SubmissionFileOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   groupId?: Prisma.SortOrder
   submissionId?: Prisma.SortOrder
+  key?: Prisma.SortOrder
   storagePath?: Prisma.SortOrder
   originalFileName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -264,6 +273,7 @@ export type SubmissionFileWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SubmissionFileWhereInput | Prisma.SubmissionFileWhereInput[]
   groupId?: Prisma.StringFilter<"SubmissionFile"> | string
   submissionId?: Prisma.StringFilter<"SubmissionFile"> | string
+  key?: Prisma.StringFilter<"SubmissionFile"> | string
   storagePath?: Prisma.StringFilter<"SubmissionFile"> | string
   originalFileName?: Prisma.StringFilter<"SubmissionFile"> | string
   mimeType?: Prisma.StringFilter<"SubmissionFile"> | string
@@ -277,6 +287,7 @@ export type SubmissionFileOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   groupId?: Prisma.SortOrder
   submissionId?: Prisma.SortOrder
+  key?: Prisma.SortOrder
   storagePath?: Prisma.SortOrder
   originalFileName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -296,6 +307,7 @@ export type SubmissionFileScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
   groupId?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
   submissionId?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
+  key?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
   storagePath?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
   originalFileName?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
   mimeType?: Prisma.StringWithAggregatesFilter<"SubmissionFile"> | string
@@ -305,11 +317,12 @@ export type SubmissionFileScalarWhereWithAggregatesInput = {
 
 export type SubmissionFileCreateInput = {
   id?: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
   group: Prisma.GroupCreateNestedOneWithoutSubmissionFilesInput
   submission: Prisma.SubmissionCreateNestedOneWithoutSubmissionFilesInput
 }
@@ -318,15 +331,17 @@ export type SubmissionFileUncheckedCreateInput = {
   id?: string
   groupId: string
   submissionId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -340,6 +355,7 @@ export type SubmissionFileUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -351,15 +367,17 @@ export type SubmissionFileCreateManyInput = {
   id?: string
   groupId: string
   submissionId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -371,6 +389,7 @@ export type SubmissionFileUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -392,6 +411,7 @@ export type SubmissionFileCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   groupId?: Prisma.SortOrder
   submissionId?: Prisma.SortOrder
+  key?: Prisma.SortOrder
   storagePath?: Prisma.SortOrder
   originalFileName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -407,6 +427,7 @@ export type SubmissionFileMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   groupId?: Prisma.SortOrder
   submissionId?: Prisma.SortOrder
+  key?: Prisma.SortOrder
   storagePath?: Prisma.SortOrder
   originalFileName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -418,6 +439,7 @@ export type SubmissionFileMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   groupId?: Prisma.SortOrder
   submissionId?: Prisma.SortOrder
+  key?: Prisma.SortOrder
   storagePath?: Prisma.SortOrder
   originalFileName?: Prisma.SortOrder
   mimeType?: Prisma.SortOrder
@@ -515,22 +537,24 @@ export type SubmissionFileUncheckedUpdateManyWithoutSubmissionNestedInput = {
 
 export type SubmissionFileCreateWithoutGroupInput = {
   id?: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
   submission: Prisma.SubmissionCreateNestedOneWithoutSubmissionFilesInput
 }
 
 export type SubmissionFileUncheckedCreateWithoutGroupInput = {
   id?: string
   submissionId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileCreateOrConnectWithoutGroupInput = {
@@ -566,6 +590,7 @@ export type SubmissionFileScalarWhereInput = {
   id?: Prisma.StringFilter<"SubmissionFile"> | string
   groupId?: Prisma.StringFilter<"SubmissionFile"> | string
   submissionId?: Prisma.StringFilter<"SubmissionFile"> | string
+  key?: Prisma.StringFilter<"SubmissionFile"> | string
   storagePath?: Prisma.StringFilter<"SubmissionFile"> | string
   originalFileName?: Prisma.StringFilter<"SubmissionFile"> | string
   mimeType?: Prisma.StringFilter<"SubmissionFile"> | string
@@ -575,22 +600,24 @@ export type SubmissionFileScalarWhereInput = {
 
 export type SubmissionFileCreateWithoutSubmissionInput = {
   id?: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
   group: Prisma.GroupCreateNestedOneWithoutSubmissionFilesInput
 }
 
 export type SubmissionFileUncheckedCreateWithoutSubmissionInput = {
   id?: string
   groupId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileCreateOrConnectWithoutSubmissionInput = {
@@ -622,15 +649,17 @@ export type SubmissionFileUpdateManyWithWhereWithoutSubmissionInput = {
 export type SubmissionFileCreateManyGroupInput = {
   id?: string
   submissionId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileUpdateWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -642,6 +671,7 @@ export type SubmissionFileUpdateWithoutGroupInput = {
 export type SubmissionFileUncheckedUpdateWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -652,6 +682,7 @@ export type SubmissionFileUncheckedUpdateWithoutGroupInput = {
 export type SubmissionFileUncheckedUpdateManyWithoutGroupInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -662,15 +693,17 @@ export type SubmissionFileUncheckedUpdateManyWithoutGroupInput = {
 export type SubmissionFileCreateManySubmissionInput = {
   id?: string
   groupId: string
+  key: string
   storagePath: string
   originalFileName: string
   mimeType: string
   size: bigint | number
-  createdAt: Date | string
+  createdAt?: Date | string
 }
 
 export type SubmissionFileUpdateWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -682,6 +715,7 @@ export type SubmissionFileUpdateWithoutSubmissionInput = {
 export type SubmissionFileUncheckedUpdateWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -692,6 +726,7 @@ export type SubmissionFileUncheckedUpdateWithoutSubmissionInput = {
 export type SubmissionFileUncheckedUpdateManyWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   groupId?: Prisma.StringFieldUpdateOperationsInput | string
+  key?: Prisma.StringFieldUpdateOperationsInput | string
   storagePath?: Prisma.StringFieldUpdateOperationsInput | string
   originalFileName?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.StringFieldUpdateOperationsInput | string
@@ -705,6 +740,7 @@ export type SubmissionFileSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   groupId?: boolean
   submissionId?: boolean
+  key?: boolean
   storagePath?: boolean
   originalFileName?: boolean
   mimeType?: boolean
@@ -718,6 +754,7 @@ export type SubmissionFileSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   groupId?: boolean
   submissionId?: boolean
+  key?: boolean
   storagePath?: boolean
   originalFileName?: boolean
   mimeType?: boolean
@@ -731,6 +768,7 @@ export type SubmissionFileSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   groupId?: boolean
   submissionId?: boolean
+  key?: boolean
   storagePath?: boolean
   originalFileName?: boolean
   mimeType?: boolean
@@ -744,6 +782,7 @@ export type SubmissionFileSelectScalar = {
   id?: boolean
   groupId?: boolean
   submissionId?: boolean
+  key?: boolean
   storagePath?: boolean
   originalFileName?: boolean
   mimeType?: boolean
@@ -751,7 +790,7 @@ export type SubmissionFileSelectScalar = {
   createdAt?: boolean
 }
 
-export type SubmissionFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "submissionId" | "storagePath" | "originalFileName" | "mimeType" | "size" | "createdAt", ExtArgs["result"]["submissionFile"]>
+export type SubmissionFileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "submissionId" | "key" | "storagePath" | "originalFileName" | "mimeType" | "size" | "createdAt", ExtArgs["result"]["submissionFile"]>
 export type SubmissionFileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.GroupDefaultArgs<ExtArgs>
   submission?: boolean | Prisma.SubmissionDefaultArgs<ExtArgs>
@@ -775,6 +814,7 @@ export type $SubmissionFilePayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     groupId: string
     submissionId: string
+    key: string
     storagePath: string
     originalFileName: string
     mimeType: string
@@ -1208,6 +1248,7 @@ export interface SubmissionFileFieldRefs {
   readonly id: Prisma.FieldRef<"SubmissionFile", 'String'>
   readonly groupId: Prisma.FieldRef<"SubmissionFile", 'String'>
   readonly submissionId: Prisma.FieldRef<"SubmissionFile", 'String'>
+  readonly key: Prisma.FieldRef<"SubmissionFile", 'String'>
   readonly storagePath: Prisma.FieldRef<"SubmissionFile", 'String'>
   readonly originalFileName: Prisma.FieldRef<"SubmissionFile", 'String'>
   readonly mimeType: Prisma.FieldRef<"SubmissionFile", 'String'>

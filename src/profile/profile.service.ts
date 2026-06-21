@@ -10,6 +10,7 @@ import {
   INTERNAL_SERVER_ERROR,
   NOT_EXISTED_USER_ERROR,
 } from 'src/constants/error-code';
+import { ProfileRoleDto } from './dto/role-updation.dto';
 
 @Injectable()
 export class ProfileService {
@@ -42,6 +43,28 @@ export class ProfileService {
       }
       throw new InternalServerErrorException({
         message: 'Fail to update user information',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+  async updateProfileRole(profileRole: ProfileRoleDto) {
+    try {
+      const result = await this.prismaService.profile.update({
+        data: { role: profileRole.role },
+        where: { id: profileRole.id },
+      });
+      return result;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException({
+            message: 'User not found',
+            code: NOT_EXISTED_USER_ERROR,
+          });
+        }
+      }
+      throw new InternalServerErrorException({
+        message: 'Fail to update user role',
         code: INTERNAL_SERVER_ERROR,
       });
     }

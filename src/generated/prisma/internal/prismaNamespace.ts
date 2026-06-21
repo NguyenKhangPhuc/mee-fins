@@ -2418,6 +2418,7 @@ export const SubmissionFileScalarFieldEnum = {
   id: 'id',
   groupId: 'groupId',
   submissionId: 'submissionId',
+  key: 'key',
   storagePath: 'storagePath',
   originalFileName: 'originalFileName',
   mimeType: 'mimeType',
