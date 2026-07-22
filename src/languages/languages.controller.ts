@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { LanguagesService } from './languages.service';
 import { LanguageQueryDto } from './dto/language-query.dto';
@@ -17,15 +17,15 @@ export class LanguagesController {
 
     @Post('create')
     @UseGuards(JwtAuthGuard)
-    async createLanguage(@Query() query: LanguageCreationDto) {
-        const language = await this.languagesService.createLanguage(query);
+    async createLanguage(@Body() body: LanguageCreationDto) {
+        const language = await this.languagesService.createLanguage(body);
         return language;
     }
 
     @Delete('delete')
     @UseGuards(JwtAuthGuard)
-    async deleteLanguage(@Query() query: LanguageDeleteDto) {
-        const language = await this.languagesService.deleteLanguage(query);
+    async deleteLanguage(@Body() body: LanguageDeleteDto) {
+        const language = await this.languagesService.deleteLanguage(body);
         return language;
     }
 }
