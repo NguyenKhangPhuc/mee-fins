@@ -18,7 +18,7 @@ export class ProfileService {
   constructor(
     private prismaService: PrismaService,
     private fileService: FileService,
-  ) {}
+  ) { }
   async createProfile({
     tx,
     profile,
@@ -51,28 +51,28 @@ export class ProfileService {
       });
     }
   }
-  async updateProfileRole(profileRole: ProfileRoleDto) {
-    try {
-      const result = await this.prismaService.profile.update({
-        data: { role: profileRole.role },
-        where: { id: profileRole.id },
-      });
-      return result;
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === 'P2025') {
-          throw new NotFoundException({
-            message: 'User not found',
-            code: NOT_EXISTED_USER_ERROR,
-          });
-        }
-      }
-      throw new InternalServerErrorException({
-        message: 'Fail to update user role',
-        code: INTERNAL_SERVER_ERROR,
-      });
-    }
-  }
+  // async updateProfileRole(profileRole: ProfileRoleDto) {
+  //   try {
+  //     const result = await this.prismaService.profile.update({
+  //       data: { role: profileRole.role },
+  //       where: { id: profileRole.id },
+  //     });
+  //     return result;
+  //   } catch (error) {
+  //     if (error instanceof Prisma.PrismaClientKnownRequestError) {
+  //       if (error.code === 'P2025') {
+  //         throw new NotFoundException({
+  //           message: 'User not found',
+  //           code: NOT_EXISTED_USER_ERROR,
+  //         });
+  //       }
+  //     }
+  //     throw new InternalServerErrorException({
+  //       message: 'Fail to update user role',
+  //       code: INTERNAL_SERVER_ERROR,
+  //     });
+  //   }
+  // }
 
   async updateProfilePoster({
     poster,

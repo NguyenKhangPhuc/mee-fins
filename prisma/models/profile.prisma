@@ -4,15 +4,13 @@ model Profile {
     email               String               @unique
     avatarUrl           String?              @map("avatar_url")
     avatarKey           String?              @map("avatar_key")
-    role                PROFILE_ROLE         @default(student)
     companyName         String?              @map("company_name")
+    age                 Int?
     programme           PROGRAMME?
     university          UNIVERSITY?
     degree              DEGREE?
-    year                YEAR?
-    companyUnit         String?              @map("company_unit")
-    jobTitle            String?              @map("job_title")
-    github              String?
+    instagram           String?
+    facebook            String?
     linkedIn            String?
     description         String?
     createdAt           DateTime             @default(now()) @map("created_at")

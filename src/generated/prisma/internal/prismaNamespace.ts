@@ -2516,15 +2516,13 @@ export const ProfileScalarFieldEnum = {
   email: 'email',
   avatarUrl: 'avatarUrl',
   avatarKey: 'avatarKey',
-  role: 'role',
   companyName: 'companyName',
+  age: 'age',
   programme: 'programme',
   university: 'university',
   degree: 'degree',
-  year: 'year',
-  companyUnit: 'companyUnit',
-  jobTitle: 'jobTitle',
-  github: 'github',
+  instagram: 'instagram',
+  facebook: 'facebook',
   linkedIn: 'linkedIn',
   description: 'description',
   createdAt: 'createdAt',
@@ -2872,20 +2870,6 @@ export type ListEnumINVITATION_STATUSFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
- * Reference to a field of type 'PROFILE_ROLE'
- */
-export type EnumPROFILE_ROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PROFILE_ROLE'>
-    
-
-
-/**
- * Reference to a field of type 'PROFILE_ROLE[]'
- */
-export type ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PROFILE_ROLE[]'>
-    
-
-
-/**
  * Reference to a field of type 'PROGRAMME'
  */
 export type EnumPROGRAMMEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PROGRAMME'>
@@ -2924,20 +2908,6 @@ export type EnumDEGREEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'DEGREE[]'
  */
 export type ListEnumDEGREEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DEGREE[]'>
-    
-
-
-/**
- * Reference to a field of type 'YEAR'
- */
-export type EnumYEARFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'YEAR'>
-    
-
-
-/**
- * Reference to a field of type 'YEAR[]'
- */
-export type ListEnumYEARFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'YEAR[]'>
     
 
 

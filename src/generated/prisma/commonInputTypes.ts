@@ -232,11 +232,15 @@ export type EnumINVITATION_STATUSWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumINVITATION_STATUSFilter<$PrismaModel>
 }
 
-export type EnumPROFILE_ROLEFilter<$PrismaModel = never> = {
-  equals?: $Enums.PROFILE_ROLE | Prisma.EnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  in?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel> | $Enums.PROFILE_ROLE
+export type IntNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
 }
 
 export type EnumPROGRAMMENullableFilter<$PrismaModel = never> = {
@@ -260,21 +264,20 @@ export type EnumDEGREENullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel> | $Enums.DEGREE | null
 }
 
-export type EnumYEARNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.YEAR | Prisma.EnumYEARFieldRefInput<$PrismaModel> | null
-  in?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel> | $Enums.YEAR | null
-}
-
-export type EnumPROFILE_ROLEWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.PROFILE_ROLE | Prisma.EnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  in?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPROFILE_ROLEWithAggregatesFilter<$PrismaModel> | $Enums.PROFILE_ROLE
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel>
+export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
 export type EnumPROGRAMMENullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -305,16 +308,6 @@ export type EnumDEGREENullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel>
-}
-
-export type EnumYEARNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.YEAR | Prisma.EnumYEARFieldRefInput<$PrismaModel> | null
-  in?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumYEARNullableWithAggregatesFilter<$PrismaModel> | $Enums.YEAR | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel>
 }
 
 export type EnumPROJECT_STATUSFilter<$PrismaModel = never> = {
@@ -636,13 +629,6 @@ export type NestedEnumINVITATION_STATUSWithAggregatesFilter<$PrismaModel = never
   _max?: Prisma.NestedEnumINVITATION_STATUSFilter<$PrismaModel>
 }
 
-export type NestedEnumPROFILE_ROLEFilter<$PrismaModel = never> = {
-  equals?: $Enums.PROFILE_ROLE | Prisma.EnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  in?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel> | $Enums.PROFILE_ROLE
-}
-
 export type NestedEnumPROGRAMMENullableFilter<$PrismaModel = never> = {
   equals?: $Enums.PROGRAMME | Prisma.EnumPROGRAMMEFieldRefInput<$PrismaModel> | null
   in?: $Enums.PROGRAMME[] | Prisma.ListEnumPROGRAMMEFieldRefInput<$PrismaModel> | null
@@ -664,21 +650,31 @@ export type NestedEnumDEGREENullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel> | $Enums.DEGREE | null
 }
 
-export type NestedEnumYEARNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.YEAR | Prisma.EnumYEARFieldRefInput<$PrismaModel> | null
-  in?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel> | $Enums.YEAR | null
+export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
-export type NestedEnumPROFILE_ROLEWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.PROFILE_ROLE | Prisma.EnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  in?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  notIn?: $Enums.PROFILE_ROLE[] | Prisma.ListEnumPROFILE_ROLEFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumPROFILE_ROLEWithAggregatesFilter<$PrismaModel> | $Enums.PROFILE_ROLE
-  _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumPROFILE_ROLEFilter<$PrismaModel>
+export type NestedFloatNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
 }
 
 export type NestedEnumPROGRAMMENullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -709,16 +705,6 @@ export type NestedEnumDEGREENullableWithAggregatesFilter<$PrismaModel = never> =
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDEGREENullableFilter<$PrismaModel>
-}
-
-export type NestedEnumYEARNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.YEAR | Prisma.EnumYEARFieldRefInput<$PrismaModel> | null
-  in?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.YEAR[] | Prisma.ListEnumYEARFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumYEARNullableWithAggregatesFilter<$PrismaModel> | $Enums.YEAR | null
-  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumYEARNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumPROJECT_STATUSFilter<$PrismaModel = never> = {

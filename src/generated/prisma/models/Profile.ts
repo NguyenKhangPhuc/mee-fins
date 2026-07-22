@@ -20,8 +20,18 @@ export type ProfileModel = runtime.Types.Result.DefaultSelection<Prisma.$Profile
 
 export type AggregateProfile = {
   _count: ProfileCountAggregateOutputType | null
+  _avg: ProfileAvgAggregateOutputType | null
+  _sum: ProfileSumAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
+}
+
+export type ProfileAvgAggregateOutputType = {
+  age: number | null
+}
+
+export type ProfileSumAggregateOutputType = {
+  age: number | null
 }
 
 export type ProfileMinAggregateOutputType = {
@@ -30,15 +40,13 @@ export type ProfileMinAggregateOutputType = {
   email: string | null
   avatarUrl: string | null
   avatarKey: string | null
-  role: $Enums.PROFILE_ROLE | null
   companyName: string | null
+  age: number | null
   programme: $Enums.PROGRAMME | null
   university: $Enums.UNIVERSITY | null
   degree: $Enums.DEGREE | null
-  year: $Enums.YEAR | null
-  companyUnit: string | null
-  jobTitle: string | null
-  github: string | null
+  instagram: string | null
+  facebook: string | null
   linkedIn: string | null
   description: string | null
   createdAt: Date | null
@@ -51,15 +59,13 @@ export type ProfileMaxAggregateOutputType = {
   email: string | null
   avatarUrl: string | null
   avatarKey: string | null
-  role: $Enums.PROFILE_ROLE | null
   companyName: string | null
+  age: number | null
   programme: $Enums.PROGRAMME | null
   university: $Enums.UNIVERSITY | null
   degree: $Enums.DEGREE | null
-  year: $Enums.YEAR | null
-  companyUnit: string | null
-  jobTitle: string | null
-  github: string | null
+  instagram: string | null
+  facebook: string | null
   linkedIn: string | null
   description: string | null
   createdAt: Date | null
@@ -72,15 +78,13 @@ export type ProfileCountAggregateOutputType = {
   email: number
   avatarUrl: number
   avatarKey: number
-  role: number
   companyName: number
+  age: number
   programme: number
   university: number
   degree: number
-  year: number
-  companyUnit: number
-  jobTitle: number
-  github: number
+  instagram: number
+  facebook: number
   linkedIn: number
   description: number
   createdAt: number
@@ -89,21 +93,27 @@ export type ProfileCountAggregateOutputType = {
 }
 
 
+export type ProfileAvgAggregateInputType = {
+  age?: true
+}
+
+export type ProfileSumAggregateInputType = {
+  age?: true
+}
+
 export type ProfileMinAggregateInputType = {
   id?: true
   fullName?: true
   email?: true
   avatarUrl?: true
   avatarKey?: true
-  role?: true
   companyName?: true
+  age?: true
   programme?: true
   university?: true
   degree?: true
-  year?: true
-  companyUnit?: true
-  jobTitle?: true
-  github?: true
+  instagram?: true
+  facebook?: true
   linkedIn?: true
   description?: true
   createdAt?: true
@@ -116,15 +126,13 @@ export type ProfileMaxAggregateInputType = {
   email?: true
   avatarUrl?: true
   avatarKey?: true
-  role?: true
   companyName?: true
+  age?: true
   programme?: true
   university?: true
   degree?: true
-  year?: true
-  companyUnit?: true
-  jobTitle?: true
-  github?: true
+  instagram?: true
+  facebook?: true
   linkedIn?: true
   description?: true
   createdAt?: true
@@ -137,15 +145,13 @@ export type ProfileCountAggregateInputType = {
   email?: true
   avatarUrl?: true
   avatarKey?: true
-  role?: true
   companyName?: true
+  age?: true
   programme?: true
   university?: true
   degree?: true
-  year?: true
-  companyUnit?: true
-  jobTitle?: true
-  github?: true
+  instagram?: true
+  facebook?: true
   linkedIn?: true
   description?: true
   createdAt?: true
@@ -191,6 +197,18 @@ export type ProfileAggregateArgs<ExtArgs extends runtime.Types.Extensions.Intern
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProfileMinAggregateInputType
@@ -221,6 +239,8 @@ export type ProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   _count?: ProfileCountAggregateInputType | true
+  _avg?: ProfileAvgAggregateInputType
+  _sum?: ProfileSumAggregateInputType
   _min?: ProfileMinAggregateInputType
   _max?: ProfileMaxAggregateInputType
 }
@@ -231,20 +251,20 @@ export type ProfileGroupByOutputType = {
   email: string
   avatarUrl: string | null
   avatarKey: string | null
-  role: $Enums.PROFILE_ROLE
   companyName: string | null
+  age: number | null
   programme: $Enums.PROGRAMME | null
   university: $Enums.UNIVERSITY | null
   degree: $Enums.DEGREE | null
-  year: $Enums.YEAR | null
-  companyUnit: string | null
-  jobTitle: string | null
-  github: string | null
+  instagram: string | null
+  facebook: string | null
   linkedIn: string | null
   description: string | null
   createdAt: Date
   updatedAt: Date
   _count: ProfileCountAggregateOutputType | null
+  _avg: ProfileAvgAggregateOutputType | null
+  _sum: ProfileSumAggregateOutputType | null
   _min: ProfileMinAggregateOutputType | null
   _max: ProfileMaxAggregateOutputType | null
 }
@@ -273,15 +293,13 @@ export type ProfileWhereInput = {
   email?: Prisma.StringFilter<"Profile"> | string
   avatarUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
   avatarKey?: Prisma.StringNullableFilter<"Profile"> | string | null
-  role?: Prisma.EnumPROFILE_ROLEFilter<"Profile"> | $Enums.PROFILE_ROLE
   companyName?: Prisma.StringNullableFilter<"Profile"> | string | null
+  age?: Prisma.IntNullableFilter<"Profile"> | number | null
   programme?: Prisma.EnumPROGRAMMENullableFilter<"Profile"> | $Enums.PROGRAMME | null
   university?: Prisma.EnumUNIVERSITYNullableFilter<"Profile"> | $Enums.UNIVERSITY | null
   degree?: Prisma.EnumDEGREENullableFilter<"Profile"> | $Enums.DEGREE | null
-  year?: Prisma.EnumYEARNullableFilter<"Profile"> | $Enums.YEAR | null
-  companyUnit?: Prisma.StringNullableFilter<"Profile"> | string | null
-  jobTitle?: Prisma.StringNullableFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableFilter<"Profile"> | string | null
+  instagram?: Prisma.StringNullableFilter<"Profile"> | string | null
+  facebook?: Prisma.StringNullableFilter<"Profile"> | string | null
   linkedIn?: Prisma.StringNullableFilter<"Profile"> | string | null
   description?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
@@ -305,15 +323,13 @@ export type ProfileOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarKey?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrder
   companyName?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
   programme?: Prisma.SortOrderInput | Prisma.SortOrder
   university?: Prisma.SortOrderInput | Prisma.SortOrder
   degree?: Prisma.SortOrderInput | Prisma.SortOrder
-  year?: Prisma.SortOrderInput | Prisma.SortOrder
-  companyUnit?: Prisma.SortOrderInput | Prisma.SortOrder
-  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  github?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagram?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebook?: Prisma.SortOrderInput | Prisma.SortOrder
   linkedIn?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -340,15 +356,13 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   fullName?: Prisma.StringNullableFilter<"Profile"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
   avatarKey?: Prisma.StringNullableFilter<"Profile"> | string | null
-  role?: Prisma.EnumPROFILE_ROLEFilter<"Profile"> | $Enums.PROFILE_ROLE
   companyName?: Prisma.StringNullableFilter<"Profile"> | string | null
+  age?: Prisma.IntNullableFilter<"Profile"> | number | null
   programme?: Prisma.EnumPROGRAMMENullableFilter<"Profile"> | $Enums.PROGRAMME | null
   university?: Prisma.EnumUNIVERSITYNullableFilter<"Profile"> | $Enums.UNIVERSITY | null
   degree?: Prisma.EnumDEGREENullableFilter<"Profile"> | $Enums.DEGREE | null
-  year?: Prisma.EnumYEARNullableFilter<"Profile"> | $Enums.YEAR | null
-  companyUnit?: Prisma.StringNullableFilter<"Profile"> | string | null
-  jobTitle?: Prisma.StringNullableFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableFilter<"Profile"> | string | null
+  instagram?: Prisma.StringNullableFilter<"Profile"> | string | null
+  facebook?: Prisma.StringNullableFilter<"Profile"> | string | null
   linkedIn?: Prisma.StringNullableFilter<"Profile"> | string | null
   description?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
@@ -372,22 +386,22 @@ export type ProfileOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarKey?: Prisma.SortOrderInput | Prisma.SortOrder
-  role?: Prisma.SortOrder
   companyName?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
   programme?: Prisma.SortOrderInput | Prisma.SortOrder
   university?: Prisma.SortOrderInput | Prisma.SortOrder
   degree?: Prisma.SortOrderInput | Prisma.SortOrder
-  year?: Prisma.SortOrderInput | Prisma.SortOrder
-  companyUnit?: Prisma.SortOrderInput | Prisma.SortOrder
-  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
-  github?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagram?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebook?: Prisma.SortOrderInput | Prisma.SortOrder
   linkedIn?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
+  _avg?: Prisma.ProfileAvgOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
   _min?: Prisma.ProfileMinOrderByAggregateInput
+  _sum?: Prisma.ProfileSumOrderByAggregateInput
 }
 
 export type ProfileScalarWhereWithAggregatesInput = {
@@ -399,15 +413,13 @@ export type ProfileScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Profile"> | string
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   avatarKey?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  role?: Prisma.EnumPROFILE_ROLEWithAggregatesFilter<"Profile"> | $Enums.PROFILE_ROLE
   companyName?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  age?: Prisma.IntNullableWithAggregatesFilter<"Profile"> | number | null
   programme?: Prisma.EnumPROGRAMMENullableWithAggregatesFilter<"Profile"> | $Enums.PROGRAMME | null
   university?: Prisma.EnumUNIVERSITYNullableWithAggregatesFilter<"Profile"> | $Enums.UNIVERSITY | null
   degree?: Prisma.EnumDEGREENullableWithAggregatesFilter<"Profile"> | $Enums.DEGREE | null
-  year?: Prisma.EnumYEARNullableWithAggregatesFilter<"Profile"> | $Enums.YEAR | null
-  companyUnit?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  jobTitle?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
-  github?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  instagram?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
+  facebook?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   linkedIn?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
@@ -419,15 +431,13 @@ export type ProfileCreateInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -451,15 +461,13 @@ export type ProfileUncheckedCreateInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -481,15 +489,13 @@ export type ProfileUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -513,15 +519,13 @@ export type ProfileUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -544,15 +548,13 @@ export type ProfileCreateManyInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -564,15 +566,13 @@ export type ProfileUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -585,15 +585,13 @@ export type ProfileUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -611,19 +609,21 @@ export type ProfileCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   avatarKey?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   programme?: Prisma.SortOrder
   university?: Prisma.SortOrder
   degree?: Prisma.SortOrder
-  year?: Prisma.SortOrder
-  companyUnit?: Prisma.SortOrder
-  jobTitle?: Prisma.SortOrder
-  github?: Prisma.SortOrder
+  instagram?: Prisma.SortOrder
+  facebook?: Prisma.SortOrder
   linkedIn?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProfileAvgOrderByAggregateInput = {
+  age?: Prisma.SortOrder
 }
 
 export type ProfileMaxOrderByAggregateInput = {
@@ -632,15 +632,13 @@ export type ProfileMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   avatarKey?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   programme?: Prisma.SortOrder
   university?: Prisma.SortOrder
   degree?: Prisma.SortOrder
-  year?: Prisma.SortOrder
-  companyUnit?: Prisma.SortOrder
-  jobTitle?: Prisma.SortOrder
-  github?: Prisma.SortOrder
+  instagram?: Prisma.SortOrder
+  facebook?: Prisma.SortOrder
   linkedIn?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -653,19 +651,21 @@ export type ProfileMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   avatarKey?: Prisma.SortOrder
-  role?: Prisma.SortOrder
   companyName?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   programme?: Prisma.SortOrder
   university?: Prisma.SortOrder
   degree?: Prisma.SortOrder
-  year?: Prisma.SortOrder
-  companyUnit?: Prisma.SortOrder
-  jobTitle?: Prisma.SortOrder
-  github?: Prisma.SortOrder
+  instagram?: Prisma.SortOrder
+  facebook?: Prisma.SortOrder
   linkedIn?: Prisma.SortOrder
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ProfileSumOrderByAggregateInput = {
+  age?: Prisma.SortOrder
 }
 
 export type ProfileNullableScalarRelationFilter = {
@@ -701,8 +701,12 @@ export type ProfileUpdateOneRequiredWithoutInvitationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutInvitationsInput, Prisma.ProfileUpdateWithoutInvitationsInput>, Prisma.ProfileUncheckedUpdateWithoutInvitationsInput>
 }
 
-export type EnumPROFILE_ROLEFieldUpdateOperationsInput = {
-  set?: $Enums.PROFILE_ROLE
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type NullableEnumPROGRAMMEFieldUpdateOperationsInput = {
@@ -715,10 +719,6 @@ export type NullableEnumUNIVERSITYFieldUpdateOperationsInput = {
 
 export type NullableEnumDEGREEFieldUpdateOperationsInput = {
   set?: $Enums.DEGREE | null
-}
-
-export type NullableEnumYEARFieldUpdateOperationsInput = {
-  set?: $Enums.YEAR | null
 }
 
 export type ProfileCreateNestedOneWithoutUserInput = {
@@ -872,15 +872,13 @@ export type ProfileCreateWithoutGroupMembersInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -903,15 +901,13 @@ export type ProfileUncheckedCreateWithoutGroupMembersInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -948,15 +944,13 @@ export type ProfileUpdateWithoutGroupMembersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -979,15 +973,13 @@ export type ProfileUncheckedUpdateWithoutGroupMembersInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1008,15 +1000,13 @@ export type ProfileCreateWithoutInvitationsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1039,15 +1029,13 @@ export type ProfileUncheckedCreateWithoutInvitationsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1084,15 +1072,13 @@ export type ProfileUpdateWithoutInvitationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1115,15 +1101,13 @@ export type ProfileUncheckedUpdateWithoutInvitationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1144,15 +1128,13 @@ export type ProfileCreateWithoutUserInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1174,15 +1156,13 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1220,15 +1200,13 @@ export type ProfileUpdateWithoutUserInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1250,15 +1228,13 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1280,15 +1256,13 @@ export type ProfileCreateWithoutProvideSlotsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1311,15 +1285,13 @@ export type ProfileUncheckedCreateWithoutProvideSlotsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1345,15 +1317,13 @@ export type ProfileCreateWithoutExchangeSlotsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1376,15 +1346,13 @@ export type ProfileUncheckedCreateWithoutExchangeSlotsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1421,15 +1389,13 @@ export type ProfileUpdateWithoutProvideSlotsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1452,15 +1418,13 @@ export type ProfileUncheckedUpdateWithoutProvideSlotsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1492,15 +1456,13 @@ export type ProfileUpdateWithoutExchangeSlotsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1523,15 +1485,13 @@ export type ProfileUncheckedUpdateWithoutExchangeSlotsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1552,15 +1512,13 @@ export type ProfileCreateWithoutSubmissionCommentsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1583,15 +1541,13 @@ export type ProfileUncheckedCreateWithoutSubmissionCommentsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1628,15 +1584,13 @@ export type ProfileUpdateWithoutSubmissionCommentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1659,15 +1613,13 @@ export type ProfileUncheckedUpdateWithoutSubmissionCommentsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1688,15 +1640,13 @@ export type ProfileCreateWithoutSubmissionFeedbacksInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1719,15 +1669,13 @@ export type ProfileUncheckedCreateWithoutSubmissionFeedbacksInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1764,15 +1712,13 @@ export type ProfileUpdateWithoutSubmissionFeedbacksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1795,15 +1741,13 @@ export type ProfileUncheckedUpdateWithoutSubmissionFeedbacksInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1824,15 +1768,13 @@ export type ProfileCreateWithoutSubmissionGradingsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1855,15 +1797,13 @@ export type ProfileUncheckedCreateWithoutSubmissionGradingsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1900,15 +1840,13 @@ export type ProfileUpdateWithoutSubmissionGradingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1931,15 +1869,13 @@ export type ProfileUncheckedUpdateWithoutSubmissionGradingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1960,15 +1896,13 @@ export type ProfileCreateWithoutSubmissionRatingsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -1991,15 +1925,13 @@ export type ProfileUncheckedCreateWithoutSubmissionRatingsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -2036,15 +1968,13 @@ export type ProfileUpdateWithoutSubmissionRatingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2067,15 +1997,13 @@ export type ProfileUncheckedUpdateWithoutSubmissionRatingsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2096,15 +2024,13 @@ export type ProfileCreateWithoutSubmissionReactionsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -2127,15 +2053,13 @@ export type ProfileUncheckedCreateWithoutSubmissionReactionsInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -2172,15 +2096,13 @@ export type ProfileUpdateWithoutSubmissionReactionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2203,15 +2125,13 @@ export type ProfileUncheckedUpdateWithoutSubmissionReactionsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2232,15 +2152,13 @@ export type ProfileCreateWithoutUserlanguageInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -2263,15 +2181,13 @@ export type ProfileUncheckedCreateWithoutUserlanguageInput = {
   email: string
   avatarUrl?: string | null
   avatarKey?: string | null
-  role?: $Enums.PROFILE_ROLE
   companyName?: string | null
+  age?: number | null
   programme?: $Enums.PROGRAMME | null
   university?: $Enums.UNIVERSITY | null
   degree?: $Enums.DEGREE | null
-  year?: $Enums.YEAR | null
-  companyUnit?: string | null
-  jobTitle?: string | null
-  github?: string | null
+  instagram?: string | null
+  facebook?: string | null
   linkedIn?: string | null
   description?: string | null
   createdAt?: Date | string
@@ -2308,15 +2224,13 @@ export type ProfileUpdateWithoutUserlanguageInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2339,15 +2253,13 @@ export type ProfileUncheckedUpdateWithoutUserlanguageInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  role?: Prisma.EnumPROFILE_ROLEFieldUpdateOperationsInput | $Enums.PROFILE_ROLE
   companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   programme?: Prisma.NullableEnumPROGRAMMEFieldUpdateOperationsInput | $Enums.PROGRAMME | null
   university?: Prisma.NullableEnumUNIVERSITYFieldUpdateOperationsInput | $Enums.UNIVERSITY | null
   degree?: Prisma.NullableEnumDEGREEFieldUpdateOperationsInput | $Enums.DEGREE | null
-  year?: Prisma.NullableEnumYEARFieldUpdateOperationsInput | $Enums.YEAR | null
-  companyUnit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  github?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2481,15 +2393,13 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   email?: boolean
   avatarUrl?: boolean
   avatarKey?: boolean
-  role?: boolean
   companyName?: boolean
+  age?: boolean
   programme?: boolean
   university?: boolean
   degree?: boolean
-  year?: boolean
-  companyUnit?: boolean
-  jobTitle?: boolean
-  github?: boolean
+  instagram?: boolean
+  facebook?: boolean
   linkedIn?: boolean
   description?: boolean
   createdAt?: boolean
@@ -2514,15 +2424,13 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   avatarUrl?: boolean
   avatarKey?: boolean
-  role?: boolean
   companyName?: boolean
+  age?: boolean
   programme?: boolean
   university?: boolean
   degree?: boolean
-  year?: boolean
-  companyUnit?: boolean
-  jobTitle?: boolean
-  github?: boolean
+  instagram?: boolean
+  facebook?: boolean
   linkedIn?: boolean
   description?: boolean
   createdAt?: boolean
@@ -2536,15 +2444,13 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   email?: boolean
   avatarUrl?: boolean
   avatarKey?: boolean
-  role?: boolean
   companyName?: boolean
+  age?: boolean
   programme?: boolean
   university?: boolean
   degree?: boolean
-  year?: boolean
-  companyUnit?: boolean
-  jobTitle?: boolean
-  github?: boolean
+  instagram?: boolean
+  facebook?: boolean
   linkedIn?: boolean
   description?: boolean
   createdAt?: boolean
@@ -2558,22 +2464,20 @@ export type ProfileSelectScalar = {
   email?: boolean
   avatarUrl?: boolean
   avatarKey?: boolean
-  role?: boolean
   companyName?: boolean
+  age?: boolean
   programme?: boolean
   university?: boolean
   degree?: boolean
-  year?: boolean
-  companyUnit?: boolean
-  jobTitle?: boolean
-  github?: boolean
+  instagram?: boolean
+  facebook?: boolean
   linkedIn?: boolean
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fullName" | "email" | "avatarUrl" | "avatarKey" | "role" | "companyName" | "programme" | "university" | "degree" | "year" | "companyUnit" | "jobTitle" | "github" | "linkedIn" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fullName" | "email" | "avatarUrl" | "avatarKey" | "companyName" | "age" | "programme" | "university" | "degree" | "instagram" | "facebook" | "linkedIn" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   groupMembers?: boolean | Prisma.Profile$groupMembersArgs<ExtArgs>
@@ -2616,15 +2520,13 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     email: string
     avatarUrl: string | null
     avatarKey: string | null
-    role: $Enums.PROFILE_ROLE
     companyName: string | null
+    age: number | null
     programme: $Enums.PROGRAMME | null
     university: $Enums.UNIVERSITY | null
     degree: $Enums.DEGREE | null
-    year: $Enums.YEAR | null
-    companyUnit: string | null
-    jobTitle: string | null
-    github: string | null
+    instagram: string | null
+    facebook: string | null
     linkedIn: string | null
     description: string | null
     createdAt: Date
@@ -3068,15 +2970,13 @@ export interface ProfileFieldRefs {
   readonly email: Prisma.FieldRef<"Profile", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"Profile", 'String'>
   readonly avatarKey: Prisma.FieldRef<"Profile", 'String'>
-  readonly role: Prisma.FieldRef<"Profile", 'PROFILE_ROLE'>
   readonly companyName: Prisma.FieldRef<"Profile", 'String'>
+  readonly age: Prisma.FieldRef<"Profile", 'Int'>
   readonly programme: Prisma.FieldRef<"Profile", 'PROGRAMME'>
   readonly university: Prisma.FieldRef<"Profile", 'UNIVERSITY'>
   readonly degree: Prisma.FieldRef<"Profile", 'DEGREE'>
-  readonly year: Prisma.FieldRef<"Profile", 'YEAR'>
-  readonly companyUnit: Prisma.FieldRef<"Profile", 'String'>
-  readonly jobTitle: Prisma.FieldRef<"Profile", 'String'>
-  readonly github: Prisma.FieldRef<"Profile", 'String'>
+  readonly instagram: Prisma.FieldRef<"Profile", 'String'>
+  readonly facebook: Prisma.FieldRef<"Profile", 'String'>
   readonly linkedIn: Prisma.FieldRef<"Profile", 'String'>
   readonly description: Prisma.FieldRef<"Profile", 'String'>
   readonly createdAt: Prisma.FieldRef<"Profile", 'DateTime'>
