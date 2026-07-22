@@ -393,6 +393,7 @@ export const ModelName = {
   GroupChallenge: 'GroupChallenge',
   GroupMember: 'GroupMember',
   Invitation: 'Invitation',
+  Language: 'Language',
   Profile: 'Profile',
   Project: 'Project',
   ProjectAward: 'ProjectAward',
@@ -400,13 +401,15 @@ export const ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
   Session: 'Session',
+  Slot: 'Slot',
   Submission: 'Submission',
   SubmissionComment: 'SubmissionComment',
   SubmissionFeedback: 'SubmissionFeedback',
   SubmissionFile: 'SubmissionFile',
   SubmissionGrading: 'SubmissionGrading',
   SubmissionRating: 'SubmissionRating',
-  SubmissionReaction: 'SubmissionReaction'
+  SubmissionReaction: 'SubmissionReaction',
+  UserLanguage: 'UserLanguage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "event" | "eventAward" | "eventChallenge" | "eventGradingCriteria" | "funFact" | "group" | "groupChallenge" | "groupMember" | "invitation" | "profile" | "project" | "projectAward" | "projectFile" | "user" | "refreshToken" | "session" | "submission" | "submissionComment" | "submissionFeedback" | "submissionFile" | "submissionGrading" | "submissionRating" | "submissionReaction"
+    modelProps: "event" | "eventAward" | "eventChallenge" | "eventGradingCriteria" | "funFact" | "group" | "groupChallenge" | "groupMember" | "invitation" | "language" | "profile" | "project" | "projectAward" | "projectFile" | "user" | "refreshToken" | "session" | "slot" | "submission" | "submissionComment" | "submissionFeedback" | "submissionFile" | "submissionGrading" | "submissionRating" | "submissionReaction" | "userLanguage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1092,6 +1095,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Language: {
+      payload: Prisma.$LanguagePayload<ExtArgs>
+      fields: Prisma.LanguageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LanguageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LanguageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        findFirst: {
+          args: Prisma.LanguageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LanguageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        findMany: {
+          args: Prisma.LanguageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+        }
+        create: {
+          args: Prisma.LanguageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        createMany: {
+          args: Prisma.LanguageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LanguageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+        }
+        delete: {
+          args: Prisma.LanguageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        update: {
+          args: Prisma.LanguageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        deleteMany: {
+          args: Prisma.LanguageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LanguageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LanguageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>[]
+        }
+        upsert: {
+          args: Prisma.LanguageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LanguagePayload>
+        }
+        aggregate: {
+          args: Prisma.LanguageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLanguage>
+        }
+        groupBy: {
+          args: Prisma.LanguageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LanguageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LanguageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LanguageCountAggregateOutputType> | number
+        }
+      }
+    }
     Profile: {
       payload: Prisma.$ProfilePayload<ExtArgs>
       fields: Prisma.ProfileFieldRefs
@@ -1607,6 +1684,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SessionCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SessionCountAggregateOutputType> | number
+        }
+      }
+    }
+    Slot: {
+      payload: Prisma.$SlotPayload<ExtArgs>
+      fields: Prisma.SlotFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SlotFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SlotFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        findFirst: {
+          args: Prisma.SlotFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SlotFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        findMany: {
+          args: Prisma.SlotFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>[]
+        }
+        create: {
+          args: Prisma.SlotCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        createMany: {
+          args: Prisma.SlotCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SlotCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>[]
+        }
+        delete: {
+          args: Prisma.SlotDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        update: {
+          args: Prisma.SlotUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        deleteMany: {
+          args: Prisma.SlotDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SlotUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SlotUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>[]
+        }
+        upsert: {
+          args: Prisma.SlotUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotPayload>
+        }
+        aggregate: {
+          args: Prisma.SlotAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSlot>
+        }
+        groupBy: {
+          args: Prisma.SlotGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlotGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SlotCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlotCountAggregateOutputType> | number
         }
       }
     }
@@ -2128,6 +2279,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserLanguage: {
+      payload: Prisma.$UserLanguagePayload<ExtArgs>
+      fields: Prisma.UserLanguageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserLanguageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserLanguageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        findFirst: {
+          args: Prisma.UserLanguageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserLanguageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        findMany: {
+          args: Prisma.UserLanguageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>[]
+        }
+        create: {
+          args: Prisma.UserLanguageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        createMany: {
+          args: Prisma.UserLanguageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserLanguageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>[]
+        }
+        delete: {
+          args: Prisma.UserLanguageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        update: {
+          args: Prisma.UserLanguageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        deleteMany: {
+          args: Prisma.UserLanguageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserLanguageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserLanguageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>[]
+        }
+        upsert: {
+          args: Prisma.UserLanguageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserLanguagePayload>
+        }
+        aggregate: {
+          args: Prisma.UserLanguageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserLanguage>
+        }
+        groupBy: {
+          args: Prisma.UserLanguageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserLanguageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserLanguageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserLanguageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2275,6 +2500,16 @@ export const InvitationScalarFieldEnum = {
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
 
 
+export const LanguageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
 export const ProfileScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
@@ -2375,6 +2610,27 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+export const SlotScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  startTime: 'startTime',
+  durationMinutes: 'durationMinutes',
+  status: 'status',
+  provideLanguageId: 'provideLanguageId',
+  exchangeLanguageId: 'exchangeLanguageId',
+  ownerId: 'ownerId',
+  exchangeUserId: 'exchangeUserId',
+  bookedAt: 'bookedAt',
+  roomId: 'roomId',
+  videoRecordUrl: 'videoRecordUrl',
+  videoExpiresAt: 'videoExpiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SlotScalarFieldEnum = (typeof SlotScalarFieldEnum)[keyof typeof SlotScalarFieldEnum]
+
+
 export const SubmissionScalarFieldEnum = {
   id: 'id',
   groupChallengeId: 'groupChallengeId',
@@ -2460,6 +2716,17 @@ export const SubmissionReactionScalarFieldEnum = {
 } as const
 
 export type SubmissionReactionScalarFieldEnum = (typeof SubmissionReactionScalarFieldEnum)[keyof typeof SubmissionReactionScalarFieldEnum]
+
+
+export const UserLanguageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  languageId: 'languageId',
+  proficiency: 'proficiency',
+  createdAt: 'createdAt'
+} as const
+
+export type UserLanguageScalarFieldEnum = (typeof UserLanguageScalarFieldEnum)[keyof typeof UserLanguageScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2708,6 +2975,20 @@ export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
+
+/**
+ * Reference to a field of type 'SlotStatus'
+ */
+export type EnumSlotStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SlotStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SlotStatus[]'
+ */
+export type ListEnumSlotStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SlotStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2827,6 +3108,7 @@ export type GlobalOmitConfig = {
   groupChallenge?: Prisma.GroupChallengeOmit
   groupMember?: Prisma.GroupMemberOmit
   invitation?: Prisma.InvitationOmit
+  language?: Prisma.LanguageOmit
   profile?: Prisma.ProfileOmit
   project?: Prisma.ProjectOmit
   projectAward?: Prisma.ProjectAwardOmit
@@ -2834,6 +3116,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   refreshToken?: Prisma.RefreshTokenOmit
   session?: Prisma.SessionOmit
+  slot?: Prisma.SlotOmit
   submission?: Prisma.SubmissionOmit
   submissionComment?: Prisma.SubmissionCommentOmit
   submissionFeedback?: Prisma.SubmissionFeedbackOmit
@@ -2841,6 +3124,7 @@ export type GlobalOmitConfig = {
   submissionGrading?: Prisma.SubmissionGradingOmit
   submissionRating?: Prisma.SubmissionRatingOmit
   submissionReaction?: Prisma.SubmissionReactionOmit
+  userLanguage?: Prisma.UserLanguageOmit
 }
 
 /* Types for Logging */

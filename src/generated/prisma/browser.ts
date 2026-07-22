@@ -63,6 +63,11 @@ export type GroupMember = Prisma.GroupMemberModel
  */
 export type Invitation = Prisma.InvitationModel
 /**
+ * Model Language
+ * 
+ */
+export type Language = Prisma.LanguageModel
+/**
  * Model Profile
  * 
  */
@@ -98,6 +103,11 @@ export type RefreshToken = Prisma.RefreshTokenModel
  */
 export type Session = Prisma.SessionModel
 /**
+ * Model Slot
+ * 
+ */
+export type Slot = Prisma.SlotModel
+/**
  * Model Submission
  * 
  */
@@ -132,3 +142,8 @@ export type SubmissionRating = Prisma.SubmissionRatingModel
  * 
  */
 export type SubmissionReaction = Prisma.SubmissionReactionModel
+/**
+ * Model UserLanguage
+ * 
+ */
+export type UserLanguage = Prisma.UserLanguageModel

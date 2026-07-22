@@ -1,0 +1,13 @@
+model UserLanguage {
+    id          String   @id @default(uuid())
+    userId      String   @map("user_id")
+    user        Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+    languageId  String   @map("language_id")
+    language    Language @relation(fields: [languageId], references: [id], onDelete: Cascade)
+    proficiency String   @map("proficiency")
+    createdAt   DateTime @default(now()) @map("created_at")
+
+    @@unique([userId, languageId])
+    @@map("user_languages")
+    @@schema("public")
+}

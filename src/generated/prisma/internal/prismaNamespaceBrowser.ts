@@ -60,6 +60,7 @@ export const ModelName = {
   GroupChallenge: 'GroupChallenge',
   GroupMember: 'GroupMember',
   Invitation: 'Invitation',
+  Language: 'Language',
   Profile: 'Profile',
   Project: 'Project',
   ProjectAward: 'ProjectAward',
@@ -67,13 +68,15 @@ export const ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
   Session: 'Session',
+  Slot: 'Slot',
   Submission: 'Submission',
   SubmissionComment: 'SubmissionComment',
   SubmissionFeedback: 'SubmissionFeedback',
   SubmissionFile: 'SubmissionFile',
   SubmissionGrading: 'SubmissionGrading',
   SubmissionRating: 'SubmissionRating',
-  SubmissionReaction: 'SubmissionReaction'
+  SubmissionReaction: 'SubmissionReaction',
+  UserLanguage: 'UserLanguage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -200,6 +203,16 @@ export const InvitationScalarFieldEnum = {
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
 
 
+export const LanguageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
 export const ProfileScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
@@ -300,6 +313,27 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+export const SlotScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  startTime: 'startTime',
+  durationMinutes: 'durationMinutes',
+  status: 'status',
+  provideLanguageId: 'provideLanguageId',
+  exchangeLanguageId: 'exchangeLanguageId',
+  ownerId: 'ownerId',
+  exchangeUserId: 'exchangeUserId',
+  bookedAt: 'bookedAt',
+  roomId: 'roomId',
+  videoRecordUrl: 'videoRecordUrl',
+  videoExpiresAt: 'videoExpiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SlotScalarFieldEnum = (typeof SlotScalarFieldEnum)[keyof typeof SlotScalarFieldEnum]
+
+
 export const SubmissionScalarFieldEnum = {
   id: 'id',
   groupChallengeId: 'groupChallengeId',
@@ -385,6 +419,17 @@ export const SubmissionReactionScalarFieldEnum = {
 } as const
 
 export type SubmissionReactionScalarFieldEnum = (typeof SubmissionReactionScalarFieldEnum)[keyof typeof SubmissionReactionScalarFieldEnum]
+
+
+export const UserLanguageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  languageId: 'languageId',
+  proficiency: 'proficiency',
+  createdAt: 'createdAt'
+} as const
+
+export type UserLanguageScalarFieldEnum = (typeof UserLanguageScalarFieldEnum)[keyof typeof UserLanguageScalarFieldEnum]
 
 
 export const SortOrder = {

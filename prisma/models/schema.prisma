@@ -75,6 +75,15 @@ enum INVITATION_STATUS {
   @@schema("public")
 }
 
+enum SlotStatus {
+  OPEN
+  BOOKED
+  COMPLETED
+  CANCELLED
+
+  @@schema("public")
+}
+
 enum CRITERIA_TYPE {
   normal
   specific

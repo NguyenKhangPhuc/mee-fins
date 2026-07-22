@@ -72,6 +72,16 @@ export const INVITATION_STATUS = {
 export type INVITATION_STATUS = (typeof INVITATION_STATUS)[keyof typeof INVITATION_STATUS]
 
 
+export const SlotStatus = {
+  OPEN: 'OPEN',
+  BOOKED: 'BOOKED',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type SlotStatus = (typeof SlotStatus)[keyof typeof SlotStatus]
+
+
 export const CRITERIA_TYPE = {
   normal: 'normal',
   specific: 'specific'

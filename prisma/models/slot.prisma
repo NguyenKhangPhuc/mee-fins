@@ -1,0 +1,30 @@
+model Slot {
+    id              String     @id @default(uuid())
+    title           String
+    startTime       DateTime
+    durationMinutes Int
+    status          SlotStatus @default(OPEN)
+
+    provideLanguageId String
+    provideLanguage   Language @relation("ProvideLanguage", fields: [provideLanguageId], references: [id])
+
+    exchangeLanguageId String
+    exchangeLanguage   Language @relation("ExchangeLanguage", fields: [exchangeLanguageId], references: [id])
+
+    ownerId String
+    owner   Profile @relation("SlotOwner", fields: [ownerId], references: [id])
+
+    exchangeUserId String?
+    exchangeUser   Profile?  @relation("SlotExchangeUser", fields: [exchangeUserId], references: [id])
+    bookedAt       DateTime?
+
+    roomId         String    @unique @default(uuid())
+    videoRecordUrl String?
+    videoExpiresAt DateTime?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([startTime, status])
+    @@schema("public")
+}

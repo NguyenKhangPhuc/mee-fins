@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:16-alpine
     container_name: itee-spot-db
     restart: always
     environment:

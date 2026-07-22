@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migrate": "npx prisma migrate dev --schema=./prisma --name",
     "type": "npx prisma generate",
-    "create": "nest g"
+    "create": "npx nest g"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1069.0",

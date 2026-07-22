@@ -25,6 +25,9 @@ model Profile {
     submissionRatings   SubmissionRating[]
     submissionFeedbacks SubmissionFeedback[]
     submissionComments  SubmissionComment[]
+    userlanguage        UserLanguage[]
+    provideSlots        Slot[]               @relation("SlotOwner")
+    exchangeSlots       Slot[]               @relation("SlotExchangeUser")
 
     @@map("profiles")
     @@schema("public")
