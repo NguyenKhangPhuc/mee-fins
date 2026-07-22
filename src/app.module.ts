@@ -30,9 +30,10 @@ import { EventAwardsModule } from './event_awards/event_awards.module';
 import { LanguageModule } from './language/language.module';
 import { LanguagesModule } from './languages/languages.module';
 import { SlotsModule } from './slots/slots.module';
+import { UserLanguagesModule } from './user_languages/user_languages.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule, EventAwardsModule, LanguageModule, LanguagesModule, SlotsModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule, EventAwardsModule, LanguageModule, LanguagesModule, SlotsModule, UserLanguagesModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,
