@@ -3,6 +3,7 @@ import { INTERNAL_SERVER_ERROR } from 'src/constants/error-code';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SlotCreationDto } from './dto/slot-creation.dto';
 import { SlotDeletionDto } from './dto/slot-deletion.dto';
+import { SlotStatus } from 'src/generated/prisma/enums';
 
 @Injectable()
 export class SlotsService {
@@ -55,6 +56,41 @@ export class SlotsService {
         } catch {
             throw new InternalServerErrorException({
                 message: 'Failed to delete the slot',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
+
+    async isSlotParticipatedByUser(slotId: string, userId: string): Promise<boolean> {
+        try {
+            const slot = await this.prisma.slot.findFirst({
+                where: {
+                    id: slotId,
+                    OR: [
+                        { ownerId: userId },
+                        { exchangeUserId: userId }
+                    ]
+                }
+            })
+            return !!slot;
+        } catch {
+            throw new InternalServerErrorException({
+                message: 'Failed to check if the slot is participated by the user',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
+
+    async updateSlotStatus(slotId: string, status: SlotStatus) {
+        try {
+            const slot = await this.prisma.slot.update({
+                where: { id: slotId },
+                data: { status }
+            })
+            return slot;
+        } catch {
+            throw new InternalServerErrorException({
+                message: 'Failed to update the slot status',
                 code: INTERNAL_SERVER_ERROR,
             });
         }

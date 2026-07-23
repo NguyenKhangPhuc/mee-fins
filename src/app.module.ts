@@ -31,9 +31,10 @@ import { LanguageModule } from './language/language.module';
 import { LanguagesModule } from './languages/languages.module';
 import { SlotsModule } from './slots/slots.module';
 import { UserLanguagesModule } from './user_languages/user_languages.module';
+import { LivekitModule } from './livekit/livekit.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule, EventAwardsModule, LanguageModule, LanguagesModule, SlotsModule, UserLanguagesModule],
+  imports: [AuthModule, UsersModule, PrismaModule, EventsModule, GroupsModule, QueryModule, GroupMembersModule, GroupChallengesModule, InvitationsModule, FileModule, EventChallengesModule, EventGradingCriteriaModule, ProfileModule, SubmissionModule, SubmissionsModule, SubmissionFilesModule, FunFactsModule, EventAwardsModule, LanguageModule, LanguagesModule, SlotsModule, UserLanguagesModule, LivekitModule],
   controllers: [AppController, GroupMembersController],
   providers: [
     AppService,

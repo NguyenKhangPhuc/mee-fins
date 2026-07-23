@@ -16,3 +16,7 @@ export const r2BucketName = process.env.CLOUDFLARE_R2_BUCKET_NAME;
 export const r2PublicUrl = process.env.CLOUDFLARE_R2_PUBLIC_URL;
 export const r2Secret = process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY;
 export const r2Client = process.env.CLOUDFLARE_R2_ACCESS_KEY_ID;
+
+export const livekitApiKey = process.env.LIVEKIT_API_KEY || 'devkey';
+export const livekitApiSecret = process.env.LIVEKIT_API_SECRET || 'secretsecretsecretsecretsecret32';
+export const livekitUrl = process.env.LIVEKIT_URL || 'http://localhost:7880';
