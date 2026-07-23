@@ -26,7 +26,7 @@ export class AuthController {
     private authService: AuthService,
     private sessionService: SessionService,
     private refreshTokenService: RefreshTokenService,
-  ) {}
+  ) { }
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(
@@ -98,7 +98,7 @@ export class AuthController {
 
   @Get('github')
   @UseGuards(GithubAuthGuard)
-  githubLogin() {}
+  githubLogin() { }
 
   @Get('github/callback')
   @UseGuards(GithubAuthGuard)
@@ -106,9 +106,9 @@ export class AuthController {
     @CurrentUser() user: SafeUser,
     @Ip() ip: string,
     @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
+    @Res() res: Response,
   ) {
     await this.login(user, req, ip, res);
-    res.redirect(frontendUrl as string);
+    return res.redirect(frontendUrl as string);
   }
 }

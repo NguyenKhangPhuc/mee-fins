@@ -755,6 +755,14 @@ export type SlotUncheckedUpdateManyWithoutExchangeUserNestedInput = {
   deleteMany?: Prisma.SlotScalarWhereInput | Prisma.SlotScalarWhereInput[]
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type EnumSlotStatusFieldUpdateOperationsInput = {
   set?: $Enums.SlotStatus
 }

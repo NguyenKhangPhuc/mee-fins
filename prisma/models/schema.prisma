@@ -19,90 +19,11 @@ datasource db {
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
-enum EVENT_STATUS {
-  finished
-  ongoing
-
-  @@schema("public")
-}
-
-enum PROFILE_ROLE {
-  admin
-  student
-  judge
-
-  @@schema("public")
-}
-
-enum UNIVERSITY {
-  OAMK     @map("Oulu University of Applied Science")
-  OULU_UNI @map("University of Oulu")
-
-  @@schema("public")
-}
-
-enum PROGRAMME {
-  COMPUTER_SCIENCE          @map("Computer Science and Engineering")
-  INFORMATION_SCIENCE       @map("Information Processing Science")
-  ELECTRONICS_COMMUNICATION @map("Electronics and Communications Engineering")
-  BIOMEDICAL                @map("Biomedical Engineering")
-
-  @@schema("public")
-}
-
-enum DEGREE {
-  Bachelor
-  Master
-  PHD      @map("Ph.D")
-
-  @@schema("public")
-}
-
-enum YEAR {
-  FIRST_YEAR  @map("First Year")
-  SECOND_YEAR @map("Second Year")
-  THIRD_YEAR  @map("Third Year")
-  OTHER       @map("Other")
-
-  @@schema("public")
-}
-
-enum INVITATION_STATUS {
-  pending
-  rejected
-  accepted
-
-  @@schema("public")
-}
-
 enum SlotStatus {
   OPEN
   BOOKED
   COMPLETED
   CANCELLED
-
-  @@schema("public")
-}
-
-enum CRITERIA_TYPE {
-  normal
-  specific
-
-  @@schema("public")
-}
-
-enum AWARD_TYPE {
-  general
-  specific
-  participant
-
-  @@schema("public")
-}
-
-enum PROJECT_STATUS {
-  pending
-  rejected
-  accepted
 
   @@schema("public")
 }

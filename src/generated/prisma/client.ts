@@ -29,8 +29,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Events
- * const events = await prisma.event.findMany()
+ * // Fetch zero or more Languages
+ * const languages = await prisma.language.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -39,51 +39,6 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-/**
- * Model Event
- * 
- */
-export type Event = Prisma.EventModel
-/**
- * Model EventAward
- * 
- */
-export type EventAward = Prisma.EventAwardModel
-/**
- * Model EventChallenge
- * 
- */
-export type EventChallenge = Prisma.EventChallengeModel
-/**
- * Model EventGradingCriteria
- * 
- */
-export type EventGradingCriteria = Prisma.EventGradingCriteriaModel
-/**
- * Model FunFact
- * 
- */
-export type FunFact = Prisma.FunFactModel
-/**
- * Model Group
- * 
- */
-export type Group = Prisma.GroupModel
-/**
- * Model GroupChallenge
- * 
- */
-export type GroupChallenge = Prisma.GroupChallengeModel
-/**
- * Model GroupMember
- * 
- */
-export type GroupMember = Prisma.GroupMemberModel
-/**
- * Model Invitation
- * 
- */
-export type Invitation = Prisma.InvitationModel
 /**
  * Model Language
  * 
@@ -94,21 +49,6 @@ export type Language = Prisma.LanguageModel
  * 
  */
 export type Profile = Prisma.ProfileModel
-/**
- * Model Project
- * 
- */
-export type Project = Prisma.ProjectModel
-/**
- * Model ProjectAward
- * 
- */
-export type ProjectAward = Prisma.ProjectAwardModel
-/**
- * Model ProjectFile
- * 
- */
-export type ProjectFile = Prisma.ProjectFileModel
 /**
  * Model User
  * 
@@ -129,41 +69,6 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type Slot = Prisma.SlotModel
-/**
- * Model Submission
- * 
- */
-export type Submission = Prisma.SubmissionModel
-/**
- * Model SubmissionComment
- * 
- */
-export type SubmissionComment = Prisma.SubmissionCommentModel
-/**
- * Model SubmissionFeedback
- * 
- */
-export type SubmissionFeedback = Prisma.SubmissionFeedbackModel
-/**
- * Model SubmissionFile
- * 
- */
-export type SubmissionFile = Prisma.SubmissionFileModel
-/**
- * Model SubmissionGrading
- * 
- */
-export type SubmissionGrading = Prisma.SubmissionGradingModel
-/**
- * Model SubmissionRating
- * 
- */
-export type SubmissionRating = Prisma.SubmissionRatingModel
-/**
- * Model SubmissionReaction
- * 
- */
-export type SubmissionReaction = Prisma.SubmissionReactionModel
 /**
  * Model UserLanguage
  * 

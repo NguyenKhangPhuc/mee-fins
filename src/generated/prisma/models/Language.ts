@@ -309,6 +309,14 @@ export type LanguageScalarRelationFilter = {
   isNot?: Prisma.LanguageWhereInput
 }
 
+export type StringFieldUpdateOperationsInput = {
+  set?: string
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type LanguageCreateNestedOneWithoutProvideSlotsInput = {
   create?: Prisma.XOR<Prisma.LanguageCreateWithoutProvideSlotsInput, Prisma.LanguageUncheckedCreateWithoutProvideSlotsInput>
   connectOrCreate?: Prisma.LanguageCreateOrConnectWithoutProvideSlotsInput
