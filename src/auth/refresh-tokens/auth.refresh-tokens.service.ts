@@ -20,7 +20,7 @@ export class RefreshTokenService {
   constructor(
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async createRefreshToken(
     refreshToken: Prisma.RefreshTokenUncheckedCreateInput,

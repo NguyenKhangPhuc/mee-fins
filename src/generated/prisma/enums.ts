@@ -9,69 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const EVENT_STATUS = {
-  finished: 'finished',
-  ongoing: 'ongoing'
-} as const
-
-export type EVENT_STATUS = (typeof EVENT_STATUS)[keyof typeof EVENT_STATUS]
-
-
-export const PROFILE_ROLE = {
-  admin: 'admin',
-  student: 'student',
-  judge: 'judge'
-} as const
-
-export type PROFILE_ROLE = (typeof PROFILE_ROLE)[keyof typeof PROFILE_ROLE]
-
-
-export const UNIVERSITY = {
-  OAMK: 'OAMK',
-  OULU_UNI: 'OULU_UNI'
-} as const
-
-export type UNIVERSITY = (typeof UNIVERSITY)[keyof typeof UNIVERSITY]
-
-
-export const PROGRAMME = {
-  COMPUTER_SCIENCE: 'COMPUTER_SCIENCE',
-  INFORMATION_SCIENCE: 'INFORMATION_SCIENCE',
-  ELECTRONICS_COMMUNICATION: 'ELECTRONICS_COMMUNICATION',
-  BIOMEDICAL: 'BIOMEDICAL'
-} as const
-
-export type PROGRAMME = (typeof PROGRAMME)[keyof typeof PROGRAMME]
-
-
-export const DEGREE = {
-  Bachelor: 'Bachelor',
-  Master: 'Master',
-  PHD: 'PHD'
-} as const
-
-export type DEGREE = (typeof DEGREE)[keyof typeof DEGREE]
-
-
-export const YEAR = {
-  FIRST_YEAR: 'FIRST_YEAR',
-  SECOND_YEAR: 'SECOND_YEAR',
-  THIRD_YEAR: 'THIRD_YEAR',
-  OTHER: 'OTHER'
-} as const
-
-export type YEAR = (typeof YEAR)[keyof typeof YEAR]
-
-
-export const INVITATION_STATUS = {
-  pending: 'pending',
-  rejected: 'rejected',
-  accepted: 'accepted'
-} as const
-
-export type INVITATION_STATUS = (typeof INVITATION_STATUS)[keyof typeof INVITATION_STATUS]
-
-
 export const SlotStatus = {
   OPEN: 'OPEN',
   BOOKED: 'BOOKED',
@@ -80,29 +17,3 @@ export const SlotStatus = {
 } as const
 
 export type SlotStatus = (typeof SlotStatus)[keyof typeof SlotStatus]
-
-
-export const CRITERIA_TYPE = {
-  normal: 'normal',
-  specific: 'specific'
-} as const
-
-export type CRITERIA_TYPE = (typeof CRITERIA_TYPE)[keyof typeof CRITERIA_TYPE]
-
-
-export const AWARD_TYPE = {
-  general: 'general',
-  specific: 'specific',
-  participant: 'participant'
-} as const
-
-export type AWARD_TYPE = (typeof AWARD_TYPE)[keyof typeof AWARD_TYPE]
-
-
-export const PROJECT_STATUS = {
-  pending: 'pending',
-  rejected: 'rejected',
-  accepted: 'accepted'
-} as const
-
-export type PROJECT_STATUS = (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS]

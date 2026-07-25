@@ -93,6 +93,7 @@ export class AuthController {
     @Ip() ip: string,
     @Res({ passthrough: true }) res: Response,
   ) {
+    console.log("Login again, revoked already")
     return await this.login(user, req, ip, res);
   }
 
@@ -110,5 +111,11 @@ export class AuthController {
   ) {
     await this.login(user, req, ip, res);
     return res.redirect(frontendUrl as string);
+  }
+
+  @Get('user')
+  @UseGuards(JwtAuthGuard)
+  getUser(@CurrentUser() user: SafeUser) {
+    return user;
   }
 }

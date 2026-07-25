@@ -1041,6 +1041,7 @@ export const SlotScalarFieldEnum = {
   id: 'id',
   title: 'title',
   startTime: 'startTime',
+  endTime: 'endTime',
   durationMinutes: 'durationMinutes',
   status: 'status',
   provideLanguageId: 'provideLanguageId',

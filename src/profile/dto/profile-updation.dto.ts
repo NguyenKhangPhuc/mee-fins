@@ -1,18 +1,12 @@
 import { createZodDto } from 'nestjs-zod';
-import {
-  DEGREE,
-  PROGRAMME,
-  UNIVERSITY,
-  YEAR,
-} from 'src/generated/prisma/enums';
 import z from 'zod';
 
 export const ProfileUpdationSchema = z.object({
   id: z.string(),
   fullName: z.string(),
-  programme: z.enum(PROGRAMME),
-  university: z.enum(UNIVERSITY),
-  degree: z.enum(DEGREE),
+  programme: z.string().optional(),
+  university: z.string().optional(),
+  degree: z.string().optional(),
   facebook: z.string(),
   instagram: z.string(),
   linkedIn: z.string(),

@@ -36,7 +36,9 @@ export class FileService {
     });
   }
   async uploadFile(file: Express.Multer.File, id: string) {
-    const key = `${id}/${Date.now()}-${file.filename}`;
+    console.log("Failed in here " + file + " --- " + id)
+    const fileName = file.originalname || file.filename || 'file';
+    const key = `${id}/${Date.now()}-${fileName}`;
     try {
       await this.s3.send(
         new PutObjectCommand({
@@ -47,7 +49,8 @@ export class FileService {
         }),
       );
       return { key, publicUrl: `${this.publicUrl}/${key}` };
-    } catch {
+    } catch (error) {
+      console.log("The specific error of upload file" + error)
       throw new InternalServerErrorException({
         message: 'Failed to upload file',
         code: INTERNAL_SERVER_ERROR,

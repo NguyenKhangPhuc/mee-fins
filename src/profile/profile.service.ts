@@ -81,9 +81,11 @@ export class ProfileService {
   }: {
     poster: Express.Multer.File | undefined;
     userId: string;
-    oldPosterKey: string;
+    oldPosterKey: string | undefined;
   }) {
-    await this.fileService.deleteFile(oldPosterKey);
+    if (oldPosterKey) {
+      await this.fileService.deleteFile(oldPosterKey);
+    }
     if (!poster) {
       try {
         await this.prismaService.profile.update({
@@ -92,6 +94,7 @@ export class ProfileService {
         });
         return { success: true };
       } catch (error) {
+        console.log("Error in !poster" + error)
         if (error instanceof InternalServerErrorException) {
           throw error;
         }
@@ -108,13 +111,34 @@ export class ProfileService {
           where: { id: userId },
         });
         return { success: true };
-      } catch {
+      } catch (error) {
+        console.log(error + "Error in upload and update file")
         await this.fileService.deleteFile(result.key);
         throw new InternalServerErrorException({
           message: 'Fail to update profile avatar',
           code: INTERNAL_SERVER_ERROR,
         });
       }
+    }
+  }
+
+  async getUserProfile(userId: string) {
+    try {
+      const result = await this.prismaService.profile.findUnique({ where: { id: userId } })
+      return result
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException({
+            message: 'User not found',
+            code: NOT_EXISTED_USER_ERROR,
+          });
+        }
+      }
+      throw new InternalServerErrorException({
+        message: 'Fail to get user information',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }

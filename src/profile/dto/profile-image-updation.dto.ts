@@ -4,7 +4,7 @@ import z from "zod";
 
 export const ProfileImageUpdationSchema = z.object({
     poster: FileSchema,
-    oldPosterKey: z.string(),
+    oldPosterKey: z.string().optional(),
 });
 
 export class ProfileImageUpdationDto extends createZodDto(ProfileImageUpdationSchema) { }

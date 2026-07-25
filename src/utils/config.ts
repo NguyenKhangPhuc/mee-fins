@@ -20,3 +20,4 @@ export const r2Client = process.env.CLOUDFLARE_R2_ACCESS_KEY_ID;
 export const livekitApiKey = process.env.LIVEKIT_API_KEY || 'devkey';
 export const livekitApiSecret = process.env.LIVEKIT_API_SECRET || 'secretsecretsecretsecretsecret32';
 export const livekitUrl = process.env.LIVEKIT_URL || 'http://localhost:7880';
+

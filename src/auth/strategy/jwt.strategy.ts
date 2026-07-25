@@ -1,4 +1,3 @@
-// src/auth/strategies/jwt.strategy.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -8,6 +7,12 @@ import { jwtSecret } from 'src/utils/config';
 import { SignedAccessToken } from 'src/types/tokens';
 import { NOT_EXISTED_USER_ERROR } from 'src/constants/error-code';
 
+function parseCookie(cookieHeader: string | undefined, name: string): string | null {
+  if (!cookieHeader) return null;
+  const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private usersService: UsersService) {
@@ -15,7 +20,13 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req: Request) => {
           const cookies = req.cookies as Record<string, string> | undefined;
-          return cookies?.access_token ?? null;
+          if (cookies?.access_token) {
+            return cookies.access_token;
+          }
+          const rawHeaderCookie = req.headers?.cookie as string | undefined;
+          console.log(`this is the access token: ${rawHeaderCookie} - this is the cookies: ${JSON.stringify(cookies || {})} - raw headers cookie: ${req.headers?.cookie}`);
+
+          return parseCookie(rawHeaderCookie, 'access_token');
         },
       ]),
 

@@ -38,6 +38,7 @@ export type SlotMinAggregateOutputType = {
   id: string | null
   title: string | null
   startTime: Date | null
+  endTime: Date | null
   durationMinutes: number | null
   status: $Enums.SlotStatus | null
   provideLanguageId: string | null
@@ -56,6 +57,7 @@ export type SlotMaxAggregateOutputType = {
   id: string | null
   title: string | null
   startTime: Date | null
+  endTime: Date | null
   durationMinutes: number | null
   status: $Enums.SlotStatus | null
   provideLanguageId: string | null
@@ -74,6 +76,7 @@ export type SlotCountAggregateOutputType = {
   id: number
   title: number
   startTime: number
+  endTime: number
   durationMinutes: number
   status: number
   provideLanguageId: number
@@ -102,6 +105,7 @@ export type SlotMinAggregateInputType = {
   id?: true
   title?: true
   startTime?: true
+  endTime?: true
   durationMinutes?: true
   status?: true
   provideLanguageId?: true
@@ -120,6 +124,7 @@ export type SlotMaxAggregateInputType = {
   id?: true
   title?: true
   startTime?: true
+  endTime?: true
   durationMinutes?: true
   status?: true
   provideLanguageId?: true
@@ -138,6 +143,7 @@ export type SlotCountAggregateInputType = {
   id?: true
   title?: true
   startTime?: true
+  endTime?: true
   durationMinutes?: true
   status?: true
   provideLanguageId?: true
@@ -243,6 +249,7 @@ export type SlotGroupByOutputType = {
   id: string
   title: string
   startTime: Date
+  endTime: Date
   durationMinutes: number
   status: $Enums.SlotStatus
   provideLanguageId: string
@@ -284,6 +291,7 @@ export type SlotWhereInput = {
   id?: Prisma.StringFilter<"Slot"> | string
   title?: Prisma.StringFilter<"Slot"> | string
   startTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
+  endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFilter<"Slot"> | string
@@ -306,6 +314,7 @@ export type SlotOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   provideLanguageId?: Prisma.SortOrder
@@ -332,6 +341,7 @@ export type SlotWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SlotWhereInput | Prisma.SlotWhereInput[]
   title?: Prisma.StringFilter<"Slot"> | string
   startTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
+  endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFilter<"Slot"> | string
@@ -353,6 +363,7 @@ export type SlotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   provideLanguageId?: Prisma.SortOrder
@@ -379,6 +390,7 @@ export type SlotScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Slot"> | string
   title?: Prisma.StringWithAggregatesFilter<"Slot"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"Slot"> | Date | string
+  endTime?: Prisma.DateTimeWithAggregatesFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntWithAggregatesFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusWithAggregatesFilter<"Slot"> | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
@@ -397,6 +409,7 @@ export type SlotCreateInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
@@ -415,6 +428,7 @@ export type SlotUncheckedCreateInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -433,6 +447,7 @@ export type SlotUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -451,6 +466,7 @@ export type SlotUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -469,6 +485,7 @@ export type SlotCreateManyInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -487,6 +504,7 @@ export type SlotUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -501,6 +519,7 @@ export type SlotUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -529,6 +548,7 @@ export type SlotCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   provideLanguageId?: Prisma.SortOrder
@@ -551,6 +571,7 @@ export type SlotMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   provideLanguageId?: Prisma.SortOrder
@@ -569,6 +590,7 @@ export type SlotMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   startTime?: Prisma.SortOrder
+  endTime?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   provideLanguageId?: Prisma.SortOrder
@@ -771,6 +793,7 @@ export type SlotCreateWithoutExchangeLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
@@ -788,6 +811,7 @@ export type SlotUncheckedCreateWithoutExchangeLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -815,6 +839,7 @@ export type SlotCreateWithoutProvideLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
@@ -832,6 +857,7 @@ export type SlotUncheckedCreateWithoutProvideLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   exchangeLanguageId: string
@@ -878,6 +904,7 @@ export type SlotScalarWhereInput = {
   id?: Prisma.StringFilter<"Slot"> | string
   title?: Prisma.StringFilter<"Slot"> | string
   startTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
+  endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFilter<"Slot"> | string
@@ -912,6 +939,7 @@ export type SlotCreateWithoutOwnerInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
@@ -929,6 +957,7 @@ export type SlotUncheckedCreateWithoutOwnerInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -956,6 +985,7 @@ export type SlotCreateWithoutExchangeUserInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
@@ -973,6 +1003,7 @@ export type SlotUncheckedCreateWithoutExchangeUserInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -1032,6 +1063,7 @@ export type SlotCreateManyExchangeLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -1049,6 +1081,7 @@ export type SlotCreateManyProvideLanguageInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   exchangeLanguageId: string
@@ -1066,6 +1099,7 @@ export type SlotUpdateWithoutExchangeLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1083,6 +1117,7 @@ export type SlotUncheckedUpdateWithoutExchangeLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1100,6 +1135,7 @@ export type SlotUncheckedUpdateManyWithoutExchangeLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1117,6 +1153,7 @@ export type SlotUpdateWithoutProvideLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1134,6 +1171,7 @@ export type SlotUncheckedUpdateWithoutProvideLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1151,6 +1189,7 @@ export type SlotUncheckedUpdateManyWithoutProvideLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1168,6 +1207,7 @@ export type SlotCreateManyOwnerInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -1185,6 +1225,7 @@ export type SlotCreateManyExchangeUserInput = {
   id?: string
   title: string
   startTime: Date | string
+  endTime: Date | string
   durationMinutes: number
   status?: $Enums.SlotStatus
   provideLanguageId: string
@@ -1202,6 +1243,7 @@ export type SlotUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1219,6 +1261,7 @@ export type SlotUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1236,6 +1279,7 @@ export type SlotUncheckedUpdateManyWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1253,6 +1297,7 @@ export type SlotUpdateWithoutExchangeUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1270,6 +1315,7 @@ export type SlotUncheckedUpdateWithoutExchangeUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1287,6 +1333,7 @@ export type SlotUncheckedUpdateManyWithoutExchangeUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1306,6 +1353,7 @@ export type SlotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   title?: boolean
   startTime?: boolean
+  endTime?: boolean
   durationMinutes?: boolean
   status?: boolean
   provideLanguageId?: boolean
@@ -1328,6 +1376,7 @@ export type SlotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   title?: boolean
   startTime?: boolean
+  endTime?: boolean
   durationMinutes?: boolean
   status?: boolean
   provideLanguageId?: boolean
@@ -1350,6 +1399,7 @@ export type SlotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   title?: boolean
   startTime?: boolean
+  endTime?: boolean
   durationMinutes?: boolean
   status?: boolean
   provideLanguageId?: boolean
@@ -1372,6 +1422,7 @@ export type SlotSelectScalar = {
   id?: boolean
   title?: boolean
   startTime?: boolean
+  endTime?: boolean
   durationMinutes?: boolean
   status?: boolean
   provideLanguageId?: boolean
@@ -1386,7 +1437,7 @@ export type SlotSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "startTime" | "durationMinutes" | "status" | "provideLanguageId" | "exchangeLanguageId" | "ownerId" | "exchangeUserId" | "bookedAt" | "roomId" | "videoRecordUrl" | "videoExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["slot"]>
+export type SlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "startTime" | "endTime" | "durationMinutes" | "status" | "provideLanguageId" | "exchangeLanguageId" | "ownerId" | "exchangeUserId" | "bookedAt" | "roomId" | "videoRecordUrl" | "videoExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["slot"]>
 export type SlotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provideLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
   exchangeLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
@@ -1418,6 +1469,7 @@ export type $SlotPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: string
     title: string
     startTime: Date
+    endTime: Date
     durationMinutes: number
     status: $Enums.SlotStatus
     provideLanguageId: string
@@ -1860,6 +1912,7 @@ export interface SlotFieldRefs {
   readonly id: Prisma.FieldRef<"Slot", 'String'>
   readonly title: Prisma.FieldRef<"Slot", 'String'>
   readonly startTime: Prisma.FieldRef<"Slot", 'DateTime'>
+  readonly endTime: Prisma.FieldRef<"Slot", 'DateTime'>
   readonly durationMinutes: Prisma.FieldRef<"Slot", 'Int'>
   readonly status: Prisma.FieldRef<"Slot", 'SlotStatus'>
   readonly provideLanguageId: Prisma.FieldRef<"Slot", 'String'>

@@ -39,7 +39,8 @@ export class SlotsService {
                 data: body
             })
             return slot;
-        } catch {
+        } catch (error) {
+            console.log(error)
             throw new InternalServerErrorException({
                 message: 'Failed to create a new slot',
                 code: INTERNAL_SERVER_ERROR,

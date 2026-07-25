@@ -2,6 +2,7 @@ model Slot {
     id              String     @id @default(uuid())
     title           String
     startTime       DateTime
+    endTime         DateTime
     durationMinutes Int
     status          SlotStatus @default(OPEN)
 
@@ -26,5 +27,6 @@ model Slot {
     updatedAt DateTime @updatedAt
 
     @@index([startTime, status])
+    @@map("slots")
     @@schema("public")
 }
