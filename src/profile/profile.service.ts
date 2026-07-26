@@ -3,7 +3,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma } from 'src/generated/prisma/client';
+import { Prisma, SlotStatus } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileUpdationDto } from './dto/profile-updation.dto';
 import {
@@ -142,14 +142,28 @@ export class ProfileService {
     }
   }
 
-  async getUserProfileWithLanguageAndSlots() {
+  async getUserProfileWithLanguageAndSlots(currentUserId: string) {
     try {
+      const today = new Date();
+
       const result = await this.prismaService.profile.findMany({
+        where: {
+          id: {
+            not: currentUserId,
+          },
+        },
         include: {
           userlanguage: true,
-          provideSlots: true,
-        }
-      })
+          provideSlots: {
+            where: {
+              startTime: {
+                gte: today,
+              },
+              status: SlotStatus.OPEN,
+            },
+          },
+        },
+      });
       return result;
     } catch (error) {
       throw new InternalServerErrorException({

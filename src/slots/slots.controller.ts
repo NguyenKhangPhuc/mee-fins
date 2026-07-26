@@ -4,6 +4,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { SlotUserIdDto } from './dto/slot-user_id.dto';
 import { SlotCreationDto } from './dto/slot-creation.dto';
 import { SlotDeletionDto } from './dto/slot-deletion.dto';
+import { SlotExchangeUpdationDto } from './dto/slot-exchange-updation.dto';
 
 @Controller('slots')
 export class SlotsController {
@@ -24,5 +25,11 @@ export class SlotsController {
     @UseGuards(JwtAuthGuard)
     async deleteSlotById(@Body() body: SlotDeletionDto) {
         return this.slotsService.deleteSlotById(body);
+    }
+
+    @Post('book')
+    @UseGuards(JwtAuthGuard)
+    async bookUserSlot(@Body() body: SlotExchangeUpdationDto) {
+        return this.slotsService.updateSlotExchangeUser(body);
     }
 }

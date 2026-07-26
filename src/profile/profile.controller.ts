@@ -40,7 +40,7 @@ export class ProfileController {
 
     @Get('languages-and-slots')
     @UseGuards(JwtAuthGuard)
-    async getUserLanguagesAndSlots() {
-        return await this.profileService.getUserProfileWithLanguageAndSlots()
+    async getUserLanguagesAndSlots(@CurrentUser() user: safeUser.SafeUser) {
+        return await this.profileService.getUserProfileWithLanguageAndSlots(user.id);
     }
 }
