@@ -36,4 +36,11 @@ export class ProfileController {
             oldPosterKey: body?.oldPosterKey,
         });
     }
+
+
+    @Get('languages-and-slots')
+    @UseGuards(JwtAuthGuard)
+    async getUserLanguagesAndSlots() {
+        return await this.profileService.getUserProfileWithLanguageAndSlots()
+    }
 }

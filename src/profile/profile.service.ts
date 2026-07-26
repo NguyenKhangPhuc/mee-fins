@@ -141,4 +141,21 @@ export class ProfileService {
       });
     }
   }
+
+  async getUserProfileWithLanguageAndSlots() {
+    try {
+      const result = await this.prismaService.profile.findMany({
+        include: {
+          userlanguage: true,
+          provideSlots: true,
+        }
+      })
+      return result;
+    } catch (error) {
+      throw new InternalServerErrorException({
+        message: 'Fail to get user language and slots',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
 }
