@@ -5,6 +5,8 @@ import { SlotUserIdDto } from './dto/slot-user_id.dto';
 import { SlotCreationDto } from './dto/slot-creation.dto';
 import { SlotDeletionDto } from './dto/slot-deletion.dto';
 import { SlotExchangeUpdationDto } from './dto/slot-exchange-updation.dto';
+import { CurrentUser } from 'src/decorators/current-user.decorator';
+import type { SafeUser } from 'src/types/safe-user';
 
 @Controller('slots')
 export class SlotsController {
@@ -23,8 +25,8 @@ export class SlotsController {
 
     @Post('delete')
     @UseGuards(JwtAuthGuard)
-    async deleteSlotById(@Body() body: SlotDeletionDto) {
-        return this.slotsService.deleteSlotById(body);
+    async deleteSlotById(@CurrentUser() user: SafeUser, @Body() body: SlotDeletionDto) {
+        return this.slotsService.deleteSlotById(body, user.id);
     }
 
     @Post('book')

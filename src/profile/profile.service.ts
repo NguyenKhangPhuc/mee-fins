@@ -172,4 +172,33 @@ export class ProfileService {
       });
     }
   }
+
+
+  async getUserProfileWithLanguageAndSlotsById(currentUserId: string) {
+    try {
+      const today = new Date();
+
+      const result = await this.prismaService.profile.findFirst({
+        where: {
+          id: currentUserId
+        },
+        include: {
+          userlanguage: true,
+          provideSlots: {
+            where: {
+              startTime: {
+                gte: today,
+              },
+            },
+          },
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new InternalServerErrorException({
+        message: 'Fail to get user language and slots',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
 }

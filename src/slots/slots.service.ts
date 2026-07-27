@@ -50,10 +50,10 @@ export class SlotsService {
         }
     }
 
-    async deleteSlotById(body: SlotDeletionDto) {
+    async deleteSlotById(body: SlotDeletionDto, userId: string) {
         try {
             const slot = await this.prisma.slot.delete({
-                where: body
+                where: { id: body.id, ownerId: userId }
             })
             return slot;
         } catch {
@@ -64,7 +64,7 @@ export class SlotsService {
         }
     }
 
-    async isSlotParticipatedByUser(slotId: string, userId: string): Promise<boolean> {
+    async isSlotParticipatedByUser(slotId: string, userId: string) {
         try {
             const slot = await this.prisma.slot.findFirst({
                 where: {
@@ -75,7 +75,7 @@ export class SlotsService {
                     ]
                 }
             })
-            return !!slot;
+            return slot;
         } catch {
             throw new InternalServerErrorException({
                 message: 'Failed to check if the slot is participated by the user',

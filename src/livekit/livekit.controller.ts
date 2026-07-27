@@ -18,15 +18,7 @@ export class LivekitController {
     @Post('generate-token')
     @UseGuards(JwtAuthGuard)
     async getToken(@Body() body: TokenCreationDto, @CurrentUser() user: SafeUser) {
-        const isAuthorized = await this.slotService.isSlotParticipatedByUser(body.slotId, user.id);
-        if (!isAuthorized) {
-            throw new UnauthorizedException({
-                message: 'You are not authorized to access this slot',
-                code: SLOT_NOT_PARTICIPATED_ERROR,
-            });
-        }
-
-        const token = await this.liveKitService.generateToken(body.roomId, body.userId);
+        const token = await this.liveKitService.generateToken(body, user.id);
         return { token };
     }
 
