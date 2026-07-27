@@ -19,7 +19,6 @@ model Slot {
     exchangeUser   Profile?  @relation("SlotExchangeUser", fields: [exchangeUserId], references: [id])
     bookedAt       DateTime?
 
-    roomId         String    @unique @default(uuid())
     videoRecordUrl String?
     videoExpiresAt DateTime?
 

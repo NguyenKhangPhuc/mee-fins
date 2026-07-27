@@ -29,7 +29,6 @@ export class JwtRefreshStrategy extends PassportStrategy(
           const cookies = req.cookies as Record<string, string> | undefined;
           let token = cookies?.refresh_token;
 
-          console.log(`this is the refresh token: ${token} - this is the cookies: ${JSON.stringify(cookies || {})} - raw headers cookie: ${req.headers?.cookie}`);
           return token ?? null;
         },
       ]),
@@ -40,13 +39,11 @@ export class JwtRefreshStrategy extends PassportStrategy(
   }
 
   async validate(payload: SignedRefreshToken) {
-    console.log(`this is the payload: ${JSON.stringify(payload)}`);
     await this.refreshTokenService.revokeRefreshToken({
       payload,
     });
 
     const user = await this.usersService.findOne({ id: payload.userId });
-    console.log(`this is the user: ${JSON.stringify(user)}`);
     if (!user) {
       throw new UnauthorizedException({
         message: 'User not found',

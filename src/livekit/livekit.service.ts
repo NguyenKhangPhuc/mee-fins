@@ -2,14 +2,24 @@ import { BadRequestException, ForbiddenException, Injectable, UnauthorizedExcept
 import { livekitApiKey, livekitApiSecret, livekitUrl } from 'src/utils/config';
 import { AccessToken, RoomServiceClient } from 'livekit-server-sdk';
 import { SlotsService } from 'src/slots/slots.service';
-import { SLOT_NOT_PARTICIPATED_ERROR } from 'src/constants/error-code';
+import { SLOT_ALREADY_ENDED, SLOT_NOT_PARTICIPATED_ERROR, SLOT_NOT_STARTED } from 'src/constants/error-code';
 import { TokenCreationDto } from './dto/token-creation.dto';
+import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class LivekitService {
-    constructor(private readonly slotService: SlotsService) { }
+    private roomService: RoomServiceClient;
     private readonly apiKey = livekitApiKey;
     private readonly apiSecret = livekitApiSecret;
-    private readonly livekitUrl = livekitUrl;
+    private readonly url = livekitUrl;
+    constructor(private readonly slotService: SlotsService,
+    ) {
+        this.roomService = new RoomServiceClient(
+            this.url,
+            this.apiKey,
+            this.apiSecret,
+        );
+    }
+
 
     async generateToken(body: TokenCreationDto, userId: string): Promise<string> {
         const slot = await this.slotService.isSlotParticipatedByUser(body.slotId, userId);
@@ -25,26 +35,25 @@ export class LivekitService {
         const allowedStartTime = new Date(startTime.getTime() - 5 * 60 * 1000);
 
         if (now < allowedStartTime) {
-            throw new ForbiddenException('The meeting has not started yet, please wait');
+            throw new ForbiddenException({ message: "The meeting has not started yet, please wait", code: SLOT_NOT_STARTED });
         }
 
         if (now > endTime) {
-            throw new BadRequestException('The meeting has ended');
+            throw new BadRequestException({ message: 'The meeting has ended', code: SLOT_ALREADY_ENDED });
         }
         const at = new AccessToken(this.apiKey, this.apiSecret, {
             identity: userId,
         });
         at.addGrant({
             roomJoin: true,
-            room: body.roomId,
+            room: slot.id,
             canPublish: true,
             canSubscribe: true,
             canPublishData: true,
         });
         return await at.toJwt();
     }
-    async closeRoom(roomId: string) {
-        const roomService = new RoomServiceClient(this.livekitUrl, this.apiKey, this.apiSecret);
-        await roomService.deleteRoom(roomId);
+    async closeRoom(slotId: string) {
+        await this.roomService.deleteRoom(slotId);
     }
 }

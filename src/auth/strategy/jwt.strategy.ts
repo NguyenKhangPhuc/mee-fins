@@ -24,7 +24,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             return cookies.access_token;
           }
           const rawHeaderCookie = req.headers?.cookie as string | undefined;
-          console.log(`this is the access token: ${rawHeaderCookie} - this is the cookies: ${JSON.stringify(cookies || {})} - raw headers cookie: ${req.headers?.cookie}`);
 
           return parseCookie(rawHeaderCookie, 'access_token');
         },

@@ -1049,7 +1049,6 @@ export const SlotScalarFieldEnum = {
   ownerId: 'ownerId',
   exchangeUserId: 'exchangeUserId',
   bookedAt: 'bookedAt',
-  roomId: 'roomId',
   videoRecordUrl: 'videoRecordUrl',
   videoExpiresAt: 'videoExpiresAt',
   createdAt: 'createdAt',

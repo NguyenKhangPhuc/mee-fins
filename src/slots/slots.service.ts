@@ -6,10 +6,25 @@ import { SlotDeletionDto } from './dto/slot-deletion.dto';
 import { SlotStatus } from 'src/generated/prisma/enums';
 import { SlotExchangeUpdationDto } from './dto/slot-exchange-updation.dto';
 import { Prisma } from 'src/generated/prisma/client';
+import { RoomServiceClient } from 'livekit-server-sdk';
+import { livekitApiKey, livekitApiSecret, livekitUrl } from 'src/utils/config';
+import { InjectQueue } from '@nestjs/bullmq';
+import { Queue } from 'bullmq';
 
 @Injectable()
 export class SlotsService {
-    constructor(private readonly prisma: PrismaService) { }
+    private roomService: RoomServiceClient;
+    private readonly apiKey = livekitApiKey;
+    private readonly apiSecret = livekitApiSecret;
+    private readonly url = livekitUrl;
+    constructor(private readonly prisma: PrismaService, @InjectQueue('meeting-timeout') private timeoutQueue: Queue,
+    ) {
+        this.roomService = new RoomServiceClient(
+            this.url,
+            this.apiKey,
+            this.apiSecret,
+        );
+    }
 
     async getAllSlotsByUserId(userId: string) {
         try {
@@ -34,27 +49,56 @@ export class SlotsService {
         }
 
     }
+    async getDbNow(): Promise<Date> {
+        const result = await this.prisma.$queryRaw<{ now: Date }[]>`SELECT NOW() as now`;
+        return result[0].now;
+    }
 
     async createSlot(body: SlotCreationDto) {
         try {
             const slot = await this.prisma.slot.create({
                 data: body
             })
+            await this.scheduleTimeoutJob(slot.id, slot.endTime);
+
             return slot;
         } catch (error) {
-            console.log(error)
             throw new InternalServerErrorException({
                 message: 'Failed to create a new slot',
                 code: INTERNAL_SERVER_ERROR,
             });
         }
     }
+    async scheduleTimeoutJob(slotId: string, endTime: Date) {
+        const dbNow = await this.getDbNow();
+        const delay = endTime.getTime() - dbNow.getTime();
+
+        if (delay <= 0) {
+            console.warn(`Slot ${slotId} have negative endtime, ignore`);
+            return;
+        }
+
+        await this.timeoutQueue.add(
+            'end-meeting',
+            { slotId }, // roomName = slotId, nên chỉ cần truyền slotId
+            {
+                delay,
+                jobId: `timeout-${slotId}`,
+                removeOnComplete: true,
+                removeOnFail: 1000,
+            },
+        );
+
+    }
+
 
     async deleteSlotById(body: SlotDeletionDto, userId: string) {
         try {
             const slot = await this.prisma.slot.delete({
                 where: { id: body.id, ownerId: userId }
             })
+            await this.timeoutQueue.remove(`timeout-${body.id}`);
+
             return slot;
         } catch {
             throw new InternalServerErrorException({
@@ -72,7 +116,8 @@ export class SlotsService {
                     OR: [
                         { ownerId: userId },
                         { exchangeUserId: userId }
-                    ]
+                    ],
+                    status: SlotStatus.BOOKED
                 }
             })
             return slot;
@@ -124,5 +169,23 @@ export class SlotsService {
                 code: INTERNAL_SERVER_ERROR,
             });
         }
+    }
+    async forceEndMeeting(roomName: string) {
+        try {
+            await this.roomService.deleteRoom(roomName);
+        } catch (err) {
+            console.warn(`Room ${roomName} already closed: ${err instanceof Error && err.message}`);
+        }
+    }
+    async recoverPendingTimeouts() {
+        const activeSlots = await this.prisma.slot.findMany({
+            where: { status: SlotStatus.OPEN }, // tùy enum SlotStatus của bạn
+        });
+
+        for (const slot of activeSlots) {
+            await this.scheduleTimeoutJob(slot.id, slot.endTime);
+        }
+
+        console.log(`Recovered ${activeSlots.length} pending timeout jobs`);
     }
 }

@@ -94,7 +94,6 @@ export class ProfileService {
         });
         return { success: true };
       } catch (error) {
-        console.log("Error in !poster" + error)
         if (error instanceof InternalServerErrorException) {
           throw error;
         }
@@ -112,7 +111,6 @@ export class ProfileService {
         });
         return { success: true };
       } catch (error) {
-        console.log(error + "Error in upload and update file")
         await this.fileService.deleteFile(result.key);
         throw new InternalServerErrorException({
           message: 'Fail to update profile avatar',
@@ -177,7 +175,7 @@ export class ProfileService {
   async getUserProfileWithLanguageAndSlotsById(currentUserId: string) {
     try {
       const today = new Date();
-
+      today.setHours(0, 0, 0, 0);
       const result = await this.prismaService.profile.findFirst({
         where: {
           id: currentUserId
@@ -191,6 +189,13 @@ export class ProfileService {
               },
             },
           },
+          exchangeSlots: {
+            where: {
+              startTime: {
+                gte: today,
+              },
+            },
+          }
         },
       });
       return result;

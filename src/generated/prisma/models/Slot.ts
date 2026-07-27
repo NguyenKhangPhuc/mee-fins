@@ -46,7 +46,6 @@ export type SlotMinAggregateOutputType = {
   ownerId: string | null
   exchangeUserId: string | null
   bookedAt: Date | null
-  roomId: string | null
   videoRecordUrl: string | null
   videoExpiresAt: Date | null
   createdAt: Date | null
@@ -65,7 +64,6 @@ export type SlotMaxAggregateOutputType = {
   ownerId: string | null
   exchangeUserId: string | null
   bookedAt: Date | null
-  roomId: string | null
   videoRecordUrl: string | null
   videoExpiresAt: Date | null
   createdAt: Date | null
@@ -84,7 +82,6 @@ export type SlotCountAggregateOutputType = {
   ownerId: number
   exchangeUserId: number
   bookedAt: number
-  roomId: number
   videoRecordUrl: number
   videoExpiresAt: number
   createdAt: number
@@ -113,7 +110,6 @@ export type SlotMinAggregateInputType = {
   ownerId?: true
   exchangeUserId?: true
   bookedAt?: true
-  roomId?: true
   videoRecordUrl?: true
   videoExpiresAt?: true
   createdAt?: true
@@ -132,7 +128,6 @@ export type SlotMaxAggregateInputType = {
   ownerId?: true
   exchangeUserId?: true
   bookedAt?: true
-  roomId?: true
   videoRecordUrl?: true
   videoExpiresAt?: true
   createdAt?: true
@@ -151,7 +146,6 @@ export type SlotCountAggregateInputType = {
   ownerId?: true
   exchangeUserId?: true
   bookedAt?: true
-  roomId?: true
   videoRecordUrl?: true
   videoExpiresAt?: true
   createdAt?: true
@@ -257,7 +251,6 @@ export type SlotGroupByOutputType = {
   ownerId: string
   exchangeUserId: string | null
   bookedAt: Date | null
-  roomId: string
   videoRecordUrl: string | null
   videoExpiresAt: Date | null
   createdAt: Date
@@ -299,7 +292,6 @@ export type SlotWhereInput = {
   ownerId?: Prisma.StringFilter<"Slot"> | string
   exchangeUserId?: Prisma.StringNullableFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
-  roomId?: Prisma.StringFilter<"Slot"> | string
   videoRecordUrl?: Prisma.StringNullableFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Slot"> | Date | string
@@ -322,7 +314,6 @@ export type SlotOrderByWithRelationInput = {
   ownerId?: Prisma.SortOrder
   exchangeUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   bookedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  roomId?: Prisma.SortOrder
   videoRecordUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   videoExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -335,7 +326,6 @@ export type SlotOrderByWithRelationInput = {
 
 export type SlotWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  roomId?: string
   AND?: Prisma.SlotWhereInput | Prisma.SlotWhereInput[]
   OR?: Prisma.SlotWhereInput[]
   NOT?: Prisma.SlotWhereInput | Prisma.SlotWhereInput[]
@@ -357,7 +347,7 @@ export type SlotWhereUniqueInput = Prisma.AtLeast<{
   exchangeLanguage?: Prisma.XOR<Prisma.LanguageScalarRelationFilter, Prisma.LanguageWhereInput>
   owner?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   exchangeUser?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
-}, "id" | "roomId">
+}, "id">
 
 export type SlotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -371,7 +361,6 @@ export type SlotOrderByWithAggregationInput = {
   ownerId?: Prisma.SortOrder
   exchangeUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   bookedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  roomId?: Prisma.SortOrder
   videoRecordUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   videoExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -398,7 +387,6 @@ export type SlotScalarWhereWithAggregatesInput = {
   ownerId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
   exchangeUserId?: Prisma.StringNullableWithAggregatesFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Slot"> | Date | string | null
-  roomId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
   videoRecordUrl?: Prisma.StringNullableWithAggregatesFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Slot"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Slot"> | Date | string
@@ -413,7 +401,6 @@ export type SlotCreateInput = {
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -436,7 +423,6 @@ export type SlotUncheckedCreateInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -451,7 +437,6 @@ export type SlotUpdateInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -474,7 +459,6 @@ export type SlotUncheckedUpdateInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -493,7 +477,6 @@ export type SlotCreateManyInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -508,7 +491,6 @@ export type SlotUpdateManyMutationInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -527,7 +509,6 @@ export type SlotUncheckedUpdateManyInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -556,7 +537,6 @@ export type SlotCountOrderByAggregateInput = {
   ownerId?: Prisma.SortOrder
   exchangeUserId?: Prisma.SortOrder
   bookedAt?: Prisma.SortOrder
-  roomId?: Prisma.SortOrder
   videoRecordUrl?: Prisma.SortOrder
   videoExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -579,7 +559,6 @@ export type SlotMaxOrderByAggregateInput = {
   ownerId?: Prisma.SortOrder
   exchangeUserId?: Prisma.SortOrder
   bookedAt?: Prisma.SortOrder
-  roomId?: Prisma.SortOrder
   videoRecordUrl?: Prisma.SortOrder
   videoExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -598,7 +577,6 @@ export type SlotMinOrderByAggregateInput = {
   ownerId?: Prisma.SortOrder
   exchangeUserId?: Prisma.SortOrder
   bookedAt?: Prisma.SortOrder
-  roomId?: Prisma.SortOrder
   videoRecordUrl?: Prisma.SortOrder
   videoExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -797,7 +775,6 @@ export type SlotCreateWithoutExchangeLanguageInput = {
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -818,7 +795,6 @@ export type SlotUncheckedCreateWithoutExchangeLanguageInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -843,7 +819,6 @@ export type SlotCreateWithoutProvideLanguageInput = {
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -864,7 +839,6 @@ export type SlotUncheckedCreateWithoutProvideLanguageInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -912,7 +886,6 @@ export type SlotScalarWhereInput = {
   ownerId?: Prisma.StringFilter<"Slot"> | string
   exchangeUserId?: Prisma.StringNullableFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
-  roomId?: Prisma.StringFilter<"Slot"> | string
   videoRecordUrl?: Prisma.StringNullableFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Slot"> | Date | string
@@ -943,7 +916,6 @@ export type SlotCreateWithoutOwnerInput = {
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -964,7 +936,6 @@ export type SlotUncheckedCreateWithoutOwnerInput = {
   exchangeLanguageId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -989,7 +960,6 @@ export type SlotCreateWithoutExchangeUserInput = {
   durationMinutes: number
   status?: $Enums.SlotStatus
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1010,7 +980,6 @@ export type SlotUncheckedCreateWithoutExchangeUserInput = {
   exchangeLanguageId: string
   ownerId: string
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1070,7 +1039,6 @@ export type SlotCreateManyExchangeLanguageInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1088,7 +1056,6 @@ export type SlotCreateManyProvideLanguageInput = {
   ownerId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1103,7 +1070,6 @@ export type SlotUpdateWithoutExchangeLanguageInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1124,7 +1090,6 @@ export type SlotUncheckedUpdateWithoutExchangeLanguageInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1142,7 +1107,6 @@ export type SlotUncheckedUpdateManyWithoutExchangeLanguageInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1157,7 +1121,6 @@ export type SlotUpdateWithoutProvideLanguageInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1178,7 +1141,6 @@ export type SlotUncheckedUpdateWithoutProvideLanguageInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1196,7 +1158,6 @@ export type SlotUncheckedUpdateManyWithoutProvideLanguageInput = {
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1214,7 +1175,6 @@ export type SlotCreateManyOwnerInput = {
   exchangeLanguageId: string
   exchangeUserId?: string | null
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1232,7 +1192,6 @@ export type SlotCreateManyExchangeUserInput = {
   exchangeLanguageId: string
   ownerId: string
   bookedAt?: Date | string | null
-  roomId?: string
   videoRecordUrl?: string | null
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
@@ -1247,7 +1206,6 @@ export type SlotUpdateWithoutOwnerInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1268,7 +1226,6 @@ export type SlotUncheckedUpdateWithoutOwnerInput = {
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1286,7 +1243,6 @@ export type SlotUncheckedUpdateManyWithoutOwnerInput = {
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
   exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1301,7 +1257,6 @@ export type SlotUpdateWithoutExchangeUserInput = {
   durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1322,7 +1277,6 @@ export type SlotUncheckedUpdateWithoutExchangeUserInput = {
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1340,7 +1294,6 @@ export type SlotUncheckedUpdateManyWithoutExchangeUserInput = {
   exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
   ownerId?: Prisma.StringFieldUpdateOperationsInput | string
   bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  roomId?: Prisma.StringFieldUpdateOperationsInput | string
   videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1361,7 +1314,6 @@ export type SlotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   ownerId?: boolean
   exchangeUserId?: boolean
   bookedAt?: boolean
-  roomId?: boolean
   videoRecordUrl?: boolean
   videoExpiresAt?: boolean
   createdAt?: boolean
@@ -1384,7 +1336,6 @@ export type SlotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   ownerId?: boolean
   exchangeUserId?: boolean
   bookedAt?: boolean
-  roomId?: boolean
   videoRecordUrl?: boolean
   videoExpiresAt?: boolean
   createdAt?: boolean
@@ -1407,7 +1358,6 @@ export type SlotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   ownerId?: boolean
   exchangeUserId?: boolean
   bookedAt?: boolean
-  roomId?: boolean
   videoRecordUrl?: boolean
   videoExpiresAt?: boolean
   createdAt?: boolean
@@ -1430,14 +1380,13 @@ export type SlotSelectScalar = {
   ownerId?: boolean
   exchangeUserId?: boolean
   bookedAt?: boolean
-  roomId?: boolean
   videoRecordUrl?: boolean
   videoExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "startTime" | "endTime" | "durationMinutes" | "status" | "provideLanguageId" | "exchangeLanguageId" | "ownerId" | "exchangeUserId" | "bookedAt" | "roomId" | "videoRecordUrl" | "videoExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["slot"]>
+export type SlotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "startTime" | "endTime" | "durationMinutes" | "status" | "provideLanguageId" | "exchangeLanguageId" | "ownerId" | "exchangeUserId" | "bookedAt" | "videoRecordUrl" | "videoExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["slot"]>
 export type SlotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provideLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
   exchangeLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
@@ -1477,7 +1426,6 @@ export type $SlotPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     ownerId: string
     exchangeUserId: string | null
     bookedAt: Date | null
-    roomId: string
     videoRecordUrl: string | null
     videoExpiresAt: Date | null
     createdAt: Date
@@ -1920,7 +1868,6 @@ export interface SlotFieldRefs {
   readonly ownerId: Prisma.FieldRef<"Slot", 'String'>
   readonly exchangeUserId: Prisma.FieldRef<"Slot", 'String'>
   readonly bookedAt: Prisma.FieldRef<"Slot", 'DateTime'>
-  readonly roomId: Prisma.FieldRef<"Slot", 'String'>
   readonly videoRecordUrl: Prisma.FieldRef<"Slot", 'String'>
   readonly videoExpiresAt: Prisma.FieldRef<"Slot", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Slot", 'DateTime'>

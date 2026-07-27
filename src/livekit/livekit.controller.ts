@@ -26,7 +26,7 @@ export class LivekitController {
     @UseGuards(JwtAuthGuard)
     async closeRoom(@Body() body: RoomCloseDto) {
         await this.slotService.updateSlotStatus(body.slotId, SlotStatus.COMPLETED);
-        await this.liveKitService.closeRoom(body.roomId);
+        await this.liveKitService.closeRoom(body.slotId);
         return { message: 'Room closed successfully' };
     }
 }
