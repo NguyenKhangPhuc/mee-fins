@@ -19,6 +19,7 @@ export class LivekitController {
     @UseGuards(JwtAuthGuard)
     async getToken(@Body() body: TokenCreationDto, @CurrentUser() user: SafeUser) {
         const token = await this.liveKitService.generateToken(body, user.id);
+        const dbNow = await this.slotService.getDbNow();
         return { token };
     }
 

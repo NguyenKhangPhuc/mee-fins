@@ -9,7 +9,7 @@ export const SlotCreationSchema = z.object({
     exchangeLanguageId: z.uuid({ message: 'Invalid exchange language ID' }),
     startTime: z.coerce.date({ message: 'Start time is required' }),
     endTime: z.coerce.date({ message: 'End time is required' }),
-    durationMinutes: z.number().int().positive({ message: 'Duration must be a positive integer' }).min(15, { message: 'Duration must be at least 1 minute' }).max(60, { message: 'Duration cannot exceed 60 minutes' }),
+    durationMinutes: z.number().int().positive({ message: 'Duration must be a positive integer' }).min(5, { message: 'Duration must be at least 1 minute' }).max(60, { message: 'Duration cannot exceed 60 minutes' }),
 });
 
 export class SlotCreationDto extends createZodDto(SlotCreationSchema) { }

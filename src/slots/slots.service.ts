@@ -94,12 +94,12 @@ export class SlotsService {
     async scheduleTimeoutJob(slotId: string, endTime: Date) {
         const dbNow = await this.getDbNow();
         const delay = endTime.getTime() - dbNow.getTime();
-
+        console.log(`${endTime.getTime()} - ${dbNow.getTime()} = ${delay}`)
         if (delay <= 0) {
             console.warn(`Slot ${slotId} have negative endtime, ignore`);
             return;
         }
-
+        console.log('Send to bullMQ')
         await this.timeoutQueue.add(
             'end-meeting',
             { slotId }, // roomName = slotId, nên chỉ cần truyền slotId
@@ -117,7 +117,7 @@ export class SlotsService {
     async deleteSlotById(body: SlotDeletionDto, userId: string) {
         try {
             const slot = await this.prisma.slot.delete({
-                where: { id: body.id, ownerId: userId }
+                where: { id: body.id, ownerId: userId, status: SlotStatus.OPEN }
             })
             await this.timeoutQueue.remove(`timeout-${body.id}`);
 
@@ -151,12 +151,40 @@ export class SlotsService {
         }
     }
 
+    async getSingleSlotBySlotAndUserId(slotId: string, userId: string) {
+        try {
+            const slot = await this.prisma.slot.findFirst({
+                where: {
+                    id: slotId,
+                    OR: [
+                        { ownerId: userId },
+                        { exchangeUserId: userId }
+                    ],
+                    status: SlotStatus.BOOKED
+                },
+                include: {
+                    exchangeLanguage: true,
+                    provideLanguage: true
+                }
+            })
+            return slot;
+        } catch {
+            throw new InternalServerErrorException({
+                message: 'Failed to check if the slot is participated by the user',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
+
     async updateSlotStatus(slotId: string, status: SlotStatus) {
         try {
             const slot = await this.prisma.slot.update({
                 where: { id: slotId },
                 data: { status }
             })
+            if (status == SlotStatus.CANCELLED) {
+                await this.timeoutQueue.remove(`timeout-${slotId}`);
+            }
             return slot;
         } catch {
             throw new InternalServerErrorException({
@@ -195,7 +223,16 @@ export class SlotsService {
     async forceEndMeeting(roomName: string) {
         try {
             await this.roomService.deleteRoom(roomName);
-        } catch (err) {
+        } catch (err: any) {
+            const isRoomNotFound = err?.code === 'not_found' || err?.status === 404;
+
+            if (isRoomNotFound) {
+                console.warn(`Room ${roomName} was never opened, closing slot directly`);
+                await this.updateSlotStatus(roomName, SlotStatus.CANCELLED);
+            } else {
+                console.error(`Failed to delete room ${roomName}: ${err?.message}`);
+                throw err;
+            }
             console.warn(`Room ${roomName} already closed: ${err instanceof Error && err.message}`);
         }
     }
