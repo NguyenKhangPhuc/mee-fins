@@ -1,5 +1,5 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { INTERNAL_SERVER_ERROR, NOT_EXISTED_SLOT_ERROR, NOT_EXISTED_USER_ERROR } from 'src/constants/error-code';
+import { Injectable, InternalServerErrorException, NotFoundException, BadRequestException } from '@nestjs/common';
+import { INTERNAL_SERVER_ERROR, NOT_EXISTED_SLOT_ERROR, NOT_EXISTED_USER_ERROR, SLOT_OVERLAP_ERROR } from 'src/constants/error-code';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SlotCreationDto } from './dto/slot-creation.dto';
 import { SlotDeletionDto } from './dto/slot-deletion.dto';
@@ -56,6 +56,25 @@ export class SlotsService {
 
     async createSlot(body: SlotCreationDto) {
         try {
+            const overlappedSlot = await this.prisma.slot.findFirst({
+                where: {
+                    OR: [
+                        { ownerId: body.ownerId },
+                        { exchangeUserId: body.ownerId }
+                    ],
+                    status: { not: SlotStatus.CANCELLED },
+                    startTime: { lt: body.endTime },
+                    endTime: { gt: body.startTime }
+                }
+            });
+
+            if (overlappedSlot) {
+                throw new BadRequestException({
+                    message: 'Slot time overlaps with an existing slot',
+                    code: SLOT_OVERLAP_ERROR,
+                });
+            }
+
             const slot = await this.prisma.slot.create({
                 data: body
             })
@@ -63,6 +82,9 @@ export class SlotsService {
 
             return slot;
         } catch (error) {
+            if (error instanceof BadRequestException) {
+                throw error;
+            }
             throw new InternalServerErrorException({
                 message: 'Failed to create a new slot',
                 code: INTERNAL_SERVER_ERROR,
