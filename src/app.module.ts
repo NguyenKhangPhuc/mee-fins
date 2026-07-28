@@ -19,6 +19,8 @@ import { LivekitModule } from './livekit/livekit.module';
 import { AuthModule } from './auth/auth.module';
 import { BullModule } from '@nestjs/bullmq';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { VocabularyCollectionModule } from './vocabulary_collection/vocabulary_collection.module';
+import { VocabularyWordModule } from './vocabulary_word/vocabulary_word.module';
 @Module({
   imports: [AuthModule, UsersModule, PrismaModule, QueryModule, FileModule, ProfileModule, LanguagesModule, UserLanguagesModule, LivekitModule, SlotsModule,
 
@@ -34,6 +36,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         },
       }),
     }),
+
+    VocabularyCollectionModule,
+
+    VocabularyWordModule,
   ],
   controllers: [AppController],
   providers: [

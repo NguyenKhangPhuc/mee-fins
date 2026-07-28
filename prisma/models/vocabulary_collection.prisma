@@ -1,0 +1,17 @@
+model VocabularyCollection {
+    id          String   @id @default(uuid())
+    ownerId     String
+    name        String
+    description String?
+    languageId  String // ngôn ngữ của collection này (VD: collection tiếng Nhật riêng, tiếng Anh riêng)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    owner    Profile          @relation("UserCollections", fields: [ownerId], references: [id])
+    language Language         @relation("LanguageCollections", fields: [languageId], references: [id])
+    words    VocabularyWord[] @relation("CollectionWords")
+
+    @@index([ownerId])
+    @@map("vocabulary_collections")
+    @@schema("public")
+}

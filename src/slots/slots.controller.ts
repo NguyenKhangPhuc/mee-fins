@@ -22,7 +22,7 @@ export class SlotsController {
     @Get(':slotId')
     @UseGuards(JwtAuthGuard)
     async getSlotBySlotId(@CurrentUser() user: SafeUser, @Param() params: SingleSlotDto) {
-        return this.slotsService.isSlotParticipatedByUser(params.slotId, user.id);
+        return this.slotsService.getSingleSlotBySlotAndUserId(params.slotId, user.id);
     }
 
     @Get('current')

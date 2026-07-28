@@ -1,0 +1,19 @@
+model VocabularyWord {
+    id           String  @id @default(uuid())
+    collectionId String
+    term         String // từ vựng
+    meaning      String // nghĩa
+    example      String? // câu ví dụ (optional)
+    note         String? // ghi chú cá nhân
+    slotId       String? // optional: link về buổi học đã học từ này (nếu muốn trace nguồn gốc)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    collection VocabularyCollection @relation("CollectionWords", fields: [collectionId], references: [id], onDelete: Cascade)
+    slot       Slot?                @relation("SlotWords", fields: [slotId], references: [id])
+
+    @@index([collectionId])
+    @@map("vocabulary_words")
+    @@schema("public")
+}

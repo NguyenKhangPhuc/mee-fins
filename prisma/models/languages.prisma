@@ -1,11 +1,12 @@
 model Language {
-    id            String         @id @default(uuid())
-    name          String         @unique
-    createdAt     DateTime       @default(now()) @map("created_at")
-    updatedAt     DateTime       @updatedAt @map("updated_at")
-    userLanguages UserLanguage[]
-    exchangeSlots Slot[]         @relation("ExchangeLanguage")
-    provideSlots  Slot[]         @relation("ProvideLanguage")
+    id                    String                 @id @default(uuid())
+    name                  String                 @unique
+    createdAt             DateTime               @default(now()) @map("created_at")
+    updatedAt             DateTime               @updatedAt @map("updated_at")
+    userLanguages         UserLanguage[]
+    exchangeSlots         Slot[]                 @relation("ExchangeLanguage")
+    provideSlots          Slot[]                 @relation("ProvideLanguage")
+    vocabularyCollections VocabularyCollection[] @relation("LanguageCollections")
 
     @@map("languages")
     @@schema("public")

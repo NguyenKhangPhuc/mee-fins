@@ -1,24 +1,25 @@
 model Profile {
-    id            String         @id
-    fullName      String?
-    email         String         @unique
-    avatarUrl     String?        @map("avatar_url")
-    avatarKey     String?        @map("avatar_key")
-    companyName   String?        @map("company_name")
-    age           Int?
-    programme     String?
-    university    String?
-    degree        String?
-    instagram     String?
-    facebook      String?
-    linkedIn      String?
-    description   String?
-    createdAt     DateTime       @default(now()) @map("created_at")
-    updatedAt     DateTime       @updatedAt @map("updated_at")
-    user          User           @relation(fields: [id], references: [id], onDelete: Cascade)
-    userlanguage  UserLanguage[]
-    provideSlots  Slot[]         @relation("SlotOwner")
-    exchangeSlots Slot[]         @relation("SlotExchangeUser")
+    id                    String                 @id
+    fullName              String?
+    email                 String                 @unique
+    avatarUrl             String?                @map("avatar_url")
+    avatarKey             String?                @map("avatar_key")
+    companyName           String?                @map("company_name")
+    age                   Int?
+    programme             String?
+    university            String?
+    degree                String?
+    instagram             String?
+    facebook              String?
+    linkedIn              String?
+    description           String?
+    createdAt             DateTime               @default(now()) @map("created_at")
+    updatedAt             DateTime               @updatedAt @map("updated_at")
+    user                  User                   @relation(fields: [id], references: [id], onDelete: Cascade)
+    userlanguage          UserLanguage[]
+    provideSlots          Slot[]                 @relation("SlotOwner")
+    exchangeSlots         Slot[]                 @relation("SlotExchangeUser")
+    vocabularyCollections VocabularyCollection[] @relation("UserCollections")
 
     @@map("profiles")
     @@schema("public")
