@@ -300,6 +300,7 @@ export type SlotWhereInput = {
   exchangeLanguage?: Prisma.XOR<Prisma.LanguageScalarRelationFilter, Prisma.LanguageWhereInput>
   owner?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   exchangeUser?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  vocabularyWords?: Prisma.VocabularyWordListRelationFilter
 }
 
 export type SlotOrderByWithRelationInput = {
@@ -322,6 +323,7 @@ export type SlotOrderByWithRelationInput = {
   exchangeLanguage?: Prisma.LanguageOrderByWithRelationInput
   owner?: Prisma.ProfileOrderByWithRelationInput
   exchangeUser?: Prisma.ProfileOrderByWithRelationInput
+  vocabularyWords?: Prisma.VocabularyWordOrderByRelationAggregateInput
 }
 
 export type SlotWhereUniqueInput = Prisma.AtLeast<{
@@ -347,6 +349,7 @@ export type SlotWhereUniqueInput = Prisma.AtLeast<{
   exchangeLanguage?: Prisma.XOR<Prisma.LanguageScalarRelationFilter, Prisma.LanguageWhereInput>
   owner?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   exchangeUser?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
+  vocabularyWords?: Prisma.VocabularyWordListRelationFilter
 }, "id">
 
 export type SlotOrderByWithAggregationInput = {
@@ -409,6 +412,7 @@ export type SlotCreateInput = {
   exchangeLanguage: Prisma.LanguageCreateNestedOneWithoutExchangeSlotsInput
   owner: Prisma.ProfileCreateNestedOneWithoutProvideSlotsInput
   exchangeUser?: Prisma.ProfileCreateNestedOneWithoutExchangeSlotsInput
+  vocabularyWords?: Prisma.VocabularyWordCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUncheckedCreateInput = {
@@ -427,6 +431,7 @@ export type SlotUncheckedCreateInput = {
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUpdateInput = {
@@ -445,6 +450,7 @@ export type SlotUpdateInput = {
   exchangeLanguage?: Prisma.LanguageUpdateOneRequiredWithoutExchangeSlotsNestedInput
   owner?: Prisma.ProfileUpdateOneRequiredWithoutProvideSlotsNestedInput
   exchangeUser?: Prisma.ProfileUpdateOneWithoutExchangeSlotsNestedInput
+  vocabularyWords?: Prisma.VocabularyWordUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateInput = {
@@ -463,6 +469,7 @@ export type SlotUncheckedUpdateInput = {
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotCreateManyInput = {
@@ -585,6 +592,11 @@ export type SlotMinOrderByAggregateInput = {
 
 export type SlotSumOrderByAggregateInput = {
   durationMinutes?: Prisma.SortOrder
+}
+
+export type SlotNullableScalarRelationFilter = {
+  is?: Prisma.SlotWhereInput | null
+  isNot?: Prisma.SlotWhereInput | null
 }
 
 export type SlotCreateNestedManyWithoutExchangeLanguageInput = {
@@ -767,6 +779,22 @@ export type EnumSlotStatusFieldUpdateOperationsInput = {
   set?: $Enums.SlotStatus
 }
 
+export type SlotCreateNestedOneWithoutVocabularyWordsInput = {
+  create?: Prisma.XOR<Prisma.SlotCreateWithoutVocabularyWordsInput, Prisma.SlotUncheckedCreateWithoutVocabularyWordsInput>
+  connectOrCreate?: Prisma.SlotCreateOrConnectWithoutVocabularyWordsInput
+  connect?: Prisma.SlotWhereUniqueInput
+}
+
+export type SlotUpdateOneWithoutVocabularyWordsNestedInput = {
+  create?: Prisma.XOR<Prisma.SlotCreateWithoutVocabularyWordsInput, Prisma.SlotUncheckedCreateWithoutVocabularyWordsInput>
+  connectOrCreate?: Prisma.SlotCreateOrConnectWithoutVocabularyWordsInput
+  upsert?: Prisma.SlotUpsertWithoutVocabularyWordsInput
+  disconnect?: Prisma.SlotWhereInput | boolean
+  delete?: Prisma.SlotWhereInput | boolean
+  connect?: Prisma.SlotWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SlotUpdateToOneWithWhereWithoutVocabularyWordsInput, Prisma.SlotUpdateWithoutVocabularyWordsInput>, Prisma.SlotUncheckedUpdateWithoutVocabularyWordsInput>
+}
+
 export type SlotCreateWithoutExchangeLanguageInput = {
   id?: string
   title: string
@@ -782,6 +810,7 @@ export type SlotCreateWithoutExchangeLanguageInput = {
   provideLanguage: Prisma.LanguageCreateNestedOneWithoutProvideSlotsInput
   owner: Prisma.ProfileCreateNestedOneWithoutProvideSlotsInput
   exchangeUser?: Prisma.ProfileCreateNestedOneWithoutExchangeSlotsInput
+  vocabularyWords?: Prisma.VocabularyWordCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUncheckedCreateWithoutExchangeLanguageInput = {
@@ -799,6 +828,7 @@ export type SlotUncheckedCreateWithoutExchangeLanguageInput = {
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedCreateNestedManyWithoutSlotInput
 }
 
 export type SlotCreateOrConnectWithoutExchangeLanguageInput = {
@@ -826,6 +856,7 @@ export type SlotCreateWithoutProvideLanguageInput = {
   exchangeLanguage: Prisma.LanguageCreateNestedOneWithoutExchangeSlotsInput
   owner: Prisma.ProfileCreateNestedOneWithoutProvideSlotsInput
   exchangeUser?: Prisma.ProfileCreateNestedOneWithoutExchangeSlotsInput
+  vocabularyWords?: Prisma.VocabularyWordCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUncheckedCreateWithoutProvideLanguageInput = {
@@ -843,6 +874,7 @@ export type SlotUncheckedCreateWithoutProvideLanguageInput = {
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedCreateNestedManyWithoutSlotInput
 }
 
 export type SlotCreateOrConnectWithoutProvideLanguageInput = {
@@ -923,6 +955,7 @@ export type SlotCreateWithoutOwnerInput = {
   provideLanguage: Prisma.LanguageCreateNestedOneWithoutProvideSlotsInput
   exchangeLanguage: Prisma.LanguageCreateNestedOneWithoutExchangeSlotsInput
   exchangeUser?: Prisma.ProfileCreateNestedOneWithoutExchangeSlotsInput
+  vocabularyWords?: Prisma.VocabularyWordCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUncheckedCreateWithoutOwnerInput = {
@@ -940,6 +973,7 @@ export type SlotUncheckedCreateWithoutOwnerInput = {
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedCreateNestedManyWithoutSlotInput
 }
 
 export type SlotCreateOrConnectWithoutOwnerInput = {
@@ -967,6 +1001,7 @@ export type SlotCreateWithoutExchangeUserInput = {
   provideLanguage: Prisma.LanguageCreateNestedOneWithoutProvideSlotsInput
   exchangeLanguage: Prisma.LanguageCreateNestedOneWithoutExchangeSlotsInput
   owner: Prisma.ProfileCreateNestedOneWithoutProvideSlotsInput
+  vocabularyWords?: Prisma.VocabularyWordCreateNestedManyWithoutSlotInput
 }
 
 export type SlotUncheckedCreateWithoutExchangeUserInput = {
@@ -984,6 +1019,7 @@ export type SlotUncheckedCreateWithoutExchangeUserInput = {
   videoExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedCreateNestedManyWithoutSlotInput
 }
 
 export type SlotCreateOrConnectWithoutExchangeUserInput = {
@@ -1026,6 +1062,94 @@ export type SlotUpdateWithWhereUniqueWithoutExchangeUserInput = {
 export type SlotUpdateManyWithWhereWithoutExchangeUserInput = {
   where: Prisma.SlotScalarWhereInput
   data: Prisma.XOR<Prisma.SlotUpdateManyMutationInput, Prisma.SlotUncheckedUpdateManyWithoutExchangeUserInput>
+}
+
+export type SlotCreateWithoutVocabularyWordsInput = {
+  id?: string
+  title: string
+  startTime: Date | string
+  endTime: Date | string
+  durationMinutes: number
+  status?: $Enums.SlotStatus
+  bookedAt?: Date | string | null
+  videoRecordUrl?: string | null
+  videoExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provideLanguage: Prisma.LanguageCreateNestedOneWithoutProvideSlotsInput
+  exchangeLanguage: Prisma.LanguageCreateNestedOneWithoutExchangeSlotsInput
+  owner: Prisma.ProfileCreateNestedOneWithoutProvideSlotsInput
+  exchangeUser?: Prisma.ProfileCreateNestedOneWithoutExchangeSlotsInput
+}
+
+export type SlotUncheckedCreateWithoutVocabularyWordsInput = {
+  id?: string
+  title: string
+  startTime: Date | string
+  endTime: Date | string
+  durationMinutes: number
+  status?: $Enums.SlotStatus
+  provideLanguageId: string
+  exchangeLanguageId: string
+  ownerId: string
+  exchangeUserId?: string | null
+  bookedAt?: Date | string | null
+  videoRecordUrl?: string | null
+  videoExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type SlotCreateOrConnectWithoutVocabularyWordsInput = {
+  where: Prisma.SlotWhereUniqueInput
+  create: Prisma.XOR<Prisma.SlotCreateWithoutVocabularyWordsInput, Prisma.SlotUncheckedCreateWithoutVocabularyWordsInput>
+}
+
+export type SlotUpsertWithoutVocabularyWordsInput = {
+  update: Prisma.XOR<Prisma.SlotUpdateWithoutVocabularyWordsInput, Prisma.SlotUncheckedUpdateWithoutVocabularyWordsInput>
+  create: Prisma.XOR<Prisma.SlotCreateWithoutVocabularyWordsInput, Prisma.SlotUncheckedCreateWithoutVocabularyWordsInput>
+  where?: Prisma.SlotWhereInput
+}
+
+export type SlotUpdateToOneWithWhereWithoutVocabularyWordsInput = {
+  where?: Prisma.SlotWhereInput
+  data: Prisma.XOR<Prisma.SlotUpdateWithoutVocabularyWordsInput, Prisma.SlotUncheckedUpdateWithoutVocabularyWordsInput>
+}
+
+export type SlotUpdateWithoutVocabularyWordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
+  bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provideLanguage?: Prisma.LanguageUpdateOneRequiredWithoutProvideSlotsNestedInput
+  exchangeLanguage?: Prisma.LanguageUpdateOneRequiredWithoutExchangeSlotsNestedInput
+  owner?: Prisma.ProfileUpdateOneRequiredWithoutProvideSlotsNestedInput
+  exchangeUser?: Prisma.ProfileUpdateOneWithoutExchangeSlotsNestedInput
+}
+
+export type SlotUncheckedUpdateWithoutVocabularyWordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationMinutes?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumSlotStatusFieldUpdateOperationsInput | $Enums.SlotStatus
+  provideLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
+  exchangeLanguageId?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string
+  exchangeUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bookedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  videoRecordUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SlotCreateManyExchangeLanguageInput = {
@@ -1077,6 +1201,7 @@ export type SlotUpdateWithoutExchangeLanguageInput = {
   provideLanguage?: Prisma.LanguageUpdateOneRequiredWithoutProvideSlotsNestedInput
   owner?: Prisma.ProfileUpdateOneRequiredWithoutProvideSlotsNestedInput
   exchangeUser?: Prisma.ProfileUpdateOneWithoutExchangeSlotsNestedInput
+  vocabularyWords?: Prisma.VocabularyWordUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateWithoutExchangeLanguageInput = {
@@ -1094,6 +1219,7 @@ export type SlotUncheckedUpdateWithoutExchangeLanguageInput = {
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateManyWithoutExchangeLanguageInput = {
@@ -1128,6 +1254,7 @@ export type SlotUpdateWithoutProvideLanguageInput = {
   exchangeLanguage?: Prisma.LanguageUpdateOneRequiredWithoutExchangeSlotsNestedInput
   owner?: Prisma.ProfileUpdateOneRequiredWithoutProvideSlotsNestedInput
   exchangeUser?: Prisma.ProfileUpdateOneWithoutExchangeSlotsNestedInput
+  vocabularyWords?: Prisma.VocabularyWordUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateWithoutProvideLanguageInput = {
@@ -1145,6 +1272,7 @@ export type SlotUncheckedUpdateWithoutProvideLanguageInput = {
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateManyWithoutProvideLanguageInput = {
@@ -1213,6 +1341,7 @@ export type SlotUpdateWithoutOwnerInput = {
   provideLanguage?: Prisma.LanguageUpdateOneRequiredWithoutProvideSlotsNestedInput
   exchangeLanguage?: Prisma.LanguageUpdateOneRequiredWithoutExchangeSlotsNestedInput
   exchangeUser?: Prisma.ProfileUpdateOneWithoutExchangeSlotsNestedInput
+  vocabularyWords?: Prisma.VocabularyWordUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateWithoutOwnerInput = {
@@ -1230,6 +1359,7 @@ export type SlotUncheckedUpdateWithoutOwnerInput = {
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateManyWithoutOwnerInput = {
@@ -1264,6 +1394,7 @@ export type SlotUpdateWithoutExchangeUserInput = {
   provideLanguage?: Prisma.LanguageUpdateOneRequiredWithoutProvideSlotsNestedInput
   exchangeLanguage?: Prisma.LanguageUpdateOneRequiredWithoutExchangeSlotsNestedInput
   owner?: Prisma.ProfileUpdateOneRequiredWithoutProvideSlotsNestedInput
+  vocabularyWords?: Prisma.VocabularyWordUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateWithoutExchangeUserInput = {
@@ -1281,6 +1412,7 @@ export type SlotUncheckedUpdateWithoutExchangeUserInput = {
   videoExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  vocabularyWords?: Prisma.VocabularyWordUncheckedUpdateManyWithoutSlotNestedInput
 }
 
 export type SlotUncheckedUpdateManyWithoutExchangeUserInput = {
@@ -1300,6 +1432,35 @@ export type SlotUncheckedUpdateManyWithoutExchangeUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type SlotCountOutputType
+ */
+
+export type SlotCountOutputType = {
+  vocabularyWords: number
+}
+
+export type SlotCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  vocabularyWords?: boolean | SlotCountOutputTypeCountVocabularyWordsArgs
+}
+
+/**
+ * SlotCountOutputType without action
+ */
+export type SlotCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SlotCountOutputType
+   */
+  select?: Prisma.SlotCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SlotCountOutputType without action
+ */
+export type SlotCountOutputTypeCountVocabularyWordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyWordWhereInput
+}
 
 
 export type SlotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1322,6 +1483,8 @@ export type SlotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   exchangeLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   exchangeUser?: boolean | Prisma.Slot$exchangeUserArgs<ExtArgs>
+  vocabularyWords?: boolean | Prisma.Slot$vocabularyWordsArgs<ExtArgs>
+  _count?: boolean | Prisma.SlotCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["slot"]>
 
 export type SlotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1392,6 +1555,8 @@ export type SlotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   exchangeLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
   owner?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   exchangeUser?: boolean | Prisma.Slot$exchangeUserArgs<ExtArgs>
+  vocabularyWords?: boolean | Prisma.Slot$vocabularyWordsArgs<ExtArgs>
+  _count?: boolean | Prisma.SlotCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SlotIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provideLanguage?: boolean | Prisma.LanguageDefaultArgs<ExtArgs>
@@ -1413,6 +1578,7 @@ export type $SlotPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     exchangeLanguage: Prisma.$LanguagePayload<ExtArgs>
     owner: Prisma.$ProfilePayload<ExtArgs>
     exchangeUser: Prisma.$ProfilePayload<ExtArgs> | null
+    vocabularyWords: Prisma.$VocabularyWordPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1828,6 +1994,7 @@ export interface Prisma__SlotClient<T, Null = never, ExtArgs extends runtime.Typ
   exchangeLanguage<T extends Prisma.LanguageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LanguageDefaultArgs<ExtArgs>>): Prisma.Prisma__LanguageClient<runtime.Types.Result.GetResult<Prisma.$LanguagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   owner<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   exchangeUser<T extends Prisma.Slot$exchangeUserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Slot$exchangeUserArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  vocabularyWords<T extends Prisma.Slot$vocabularyWordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Slot$vocabularyWordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyWordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2289,6 +2456,30 @@ export type Slot$exchangeUserArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.ProfileInclude<ExtArgs> | null
   where?: Prisma.ProfileWhereInput
+}
+
+/**
+ * Slot.vocabularyWords
+ */
+export type Slot$vocabularyWordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyWord
+   */
+  select?: Prisma.VocabularyWordSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyWord
+   */
+  omit?: Prisma.VocabularyWordOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyWordInclude<ExtArgs> | null
+  where?: Prisma.VocabularyWordWhereInput
+  orderBy?: Prisma.VocabularyWordOrderByWithRelationInput | Prisma.VocabularyWordOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyWordWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyWordScalarFieldEnum | Prisma.VocabularyWordScalarFieldEnum[]
 }
 
 /**

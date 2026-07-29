@@ -57,7 +57,9 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Session: 'Session',
   Slot: 'Slot',
-  UserLanguage: 'UserLanguage'
+  UserLanguage: 'UserLanguage',
+  VocabularyCollection: 'VocabularyCollection',
+  VocabularyWord: 'VocabularyWord'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -176,6 +178,34 @@ export const UserLanguageScalarFieldEnum = {
 } as const
 
 export type UserLanguageScalarFieldEnum = (typeof UserLanguageScalarFieldEnum)[keyof typeof UserLanguageScalarFieldEnum]
+
+
+export const VocabularyCollectionScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  description: 'description',
+  languageId: 'languageId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VocabularyCollectionScalarFieldEnum = (typeof VocabularyCollectionScalarFieldEnum)[keyof typeof VocabularyCollectionScalarFieldEnum]
+
+
+export const VocabularyWordScalarFieldEnum = {
+  id: 'id',
+  collectionId: 'collectionId',
+  term: 'term',
+  meaning: 'meaning',
+  example: 'example',
+  note: 'note',
+  slotId: 'slotId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VocabularyWordScalarFieldEnum = (typeof VocabularyWordScalarFieldEnum)[keyof typeof VocabularyWordScalarFieldEnum]
 
 
 export const SortOrder = {

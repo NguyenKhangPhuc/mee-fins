@@ -177,6 +177,7 @@ export type LanguageWhereInput = {
   userLanguages?: Prisma.UserLanguageListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
+  vocabularyCollections?: Prisma.VocabularyCollectionListRelationFilter
 }
 
 export type LanguageOrderByWithRelationInput = {
@@ -187,6 +188,7 @@ export type LanguageOrderByWithRelationInput = {
   userLanguages?: Prisma.UserLanguageOrderByRelationAggregateInput
   exchangeSlots?: Prisma.SlotOrderByRelationAggregateInput
   provideSlots?: Prisma.SlotOrderByRelationAggregateInput
+  vocabularyCollections?: Prisma.VocabularyCollectionOrderByRelationAggregateInput
 }
 
 export type LanguageWhereUniqueInput = Prisma.AtLeast<{
@@ -200,6 +202,7 @@ export type LanguageWhereUniqueInput = Prisma.AtLeast<{
   userLanguages?: Prisma.UserLanguageListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
+  vocabularyCollections?: Prisma.VocabularyCollectionListRelationFilter
 }, "id" | "name">
 
 export type LanguageOrderByWithAggregationInput = {
@@ -230,6 +233,7 @@ export type LanguageCreateInput = {
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageUncheckedCreateInput = {
@@ -240,6 +244,7 @@ export type LanguageUncheckedCreateInput = {
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageUpdateInput = {
@@ -250,6 +255,7 @@ export type LanguageUpdateInput = {
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageUncheckedUpdateInput = {
@@ -260,6 +266,7 @@ export type LanguageUncheckedUpdateInput = {
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageCreateManyInput = {
@@ -359,6 +366,20 @@ export type LanguageUpdateOneRequiredWithoutUserLanguagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LanguageUpdateToOneWithWhereWithoutUserLanguagesInput, Prisma.LanguageUpdateWithoutUserLanguagesInput>, Prisma.LanguageUncheckedUpdateWithoutUserLanguagesInput>
 }
 
+export type LanguageCreateNestedOneWithoutVocabularyCollectionsInput = {
+  create?: Prisma.XOR<Prisma.LanguageCreateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedCreateWithoutVocabularyCollectionsInput>
+  connectOrCreate?: Prisma.LanguageCreateOrConnectWithoutVocabularyCollectionsInput
+  connect?: Prisma.LanguageWhereUniqueInput
+}
+
+export type LanguageUpdateOneRequiredWithoutVocabularyCollectionsNestedInput = {
+  create?: Prisma.XOR<Prisma.LanguageCreateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedCreateWithoutVocabularyCollectionsInput>
+  connectOrCreate?: Prisma.LanguageCreateOrConnectWithoutVocabularyCollectionsInput
+  upsert?: Prisma.LanguageUpsertWithoutVocabularyCollectionsInput
+  connect?: Prisma.LanguageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LanguageUpdateToOneWithWhereWithoutVocabularyCollectionsInput, Prisma.LanguageUpdateWithoutVocabularyCollectionsInput>, Prisma.LanguageUncheckedUpdateWithoutVocabularyCollectionsInput>
+}
+
 export type LanguageCreateWithoutProvideSlotsInput = {
   id?: string
   name: string
@@ -366,6 +387,7 @@ export type LanguageCreateWithoutProvideSlotsInput = {
   updatedAt?: Date | string
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageUncheckedCreateWithoutProvideSlotsInput = {
@@ -375,6 +397,7 @@ export type LanguageUncheckedCreateWithoutProvideSlotsInput = {
   updatedAt?: Date | string
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageCreateOrConnectWithoutProvideSlotsInput = {
@@ -389,6 +412,7 @@ export type LanguageCreateWithoutExchangeSlotsInput = {
   updatedAt?: Date | string
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageUncheckedCreateWithoutExchangeSlotsInput = {
@@ -398,6 +422,7 @@ export type LanguageUncheckedCreateWithoutExchangeSlotsInput = {
   updatedAt?: Date | string
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageCreateOrConnectWithoutExchangeSlotsInput = {
@@ -423,6 +448,7 @@ export type LanguageUpdateWithoutProvideSlotsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageUncheckedUpdateWithoutProvideSlotsInput = {
@@ -432,6 +458,7 @@ export type LanguageUncheckedUpdateWithoutProvideSlotsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageUpsertWithoutExchangeSlotsInput = {
@@ -452,6 +479,7 @@ export type LanguageUpdateWithoutExchangeSlotsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageUncheckedUpdateWithoutExchangeSlotsInput = {
@@ -461,6 +489,7 @@ export type LanguageUncheckedUpdateWithoutExchangeSlotsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageCreateWithoutUserLanguagesInput = {
@@ -470,6 +499,7 @@ export type LanguageCreateWithoutUserLanguagesInput = {
   updatedAt?: Date | string
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageUncheckedCreateWithoutUserLanguagesInput = {
@@ -479,6 +509,7 @@ export type LanguageUncheckedCreateWithoutUserLanguagesInput = {
   updatedAt?: Date | string
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
 }
 
 export type LanguageCreateOrConnectWithoutUserLanguagesInput = {
@@ -504,6 +535,7 @@ export type LanguageUpdateWithoutUserLanguagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
 }
 
 export type LanguageUncheckedUpdateWithoutUserLanguagesInput = {
@@ -511,6 +543,63 @@ export type LanguageUncheckedUpdateWithoutUserLanguagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
+  provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
+}
+
+export type LanguageCreateWithoutVocabularyCollectionsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
+  exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
+  provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
+}
+
+export type LanguageUncheckedCreateWithoutVocabularyCollectionsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
+  exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
+  provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
+}
+
+export type LanguageCreateOrConnectWithoutVocabularyCollectionsInput = {
+  where: Prisma.LanguageWhereUniqueInput
+  create: Prisma.XOR<Prisma.LanguageCreateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedCreateWithoutVocabularyCollectionsInput>
+}
+
+export type LanguageUpsertWithoutVocabularyCollectionsInput = {
+  update: Prisma.XOR<Prisma.LanguageUpdateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedUpdateWithoutVocabularyCollectionsInput>
+  create: Prisma.XOR<Prisma.LanguageCreateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedCreateWithoutVocabularyCollectionsInput>
+  where?: Prisma.LanguageWhereInput
+}
+
+export type LanguageUpdateToOneWithWhereWithoutVocabularyCollectionsInput = {
+  where?: Prisma.LanguageWhereInput
+  data: Prisma.XOR<Prisma.LanguageUpdateWithoutVocabularyCollectionsInput, Prisma.LanguageUncheckedUpdateWithoutVocabularyCollectionsInput>
+}
+
+export type LanguageUpdateWithoutVocabularyCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
+  exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
+  provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
+}
+
+export type LanguageUncheckedUpdateWithoutVocabularyCollectionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
 }
@@ -524,12 +613,14 @@ export type LanguageCountOutputType = {
   userLanguages: number
   exchangeSlots: number
   provideSlots: number
+  vocabularyCollections: number
 }
 
 export type LanguageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userLanguages?: boolean | LanguageCountOutputTypeCountUserLanguagesArgs
   exchangeSlots?: boolean | LanguageCountOutputTypeCountExchangeSlotsArgs
   provideSlots?: boolean | LanguageCountOutputTypeCountProvideSlotsArgs
+  vocabularyCollections?: boolean | LanguageCountOutputTypeCountVocabularyCollectionsArgs
 }
 
 /**
@@ -563,6 +654,13 @@ export type LanguageCountOutputTypeCountProvideSlotsArgs<ExtArgs extends runtime
   where?: Prisma.SlotWhereInput
 }
 
+/**
+ * LanguageCountOutputType without action
+ */
+export type LanguageCountOutputTypeCountVocabularyCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VocabularyCollectionWhereInput
+}
+
 
 export type LanguageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -572,6 +670,7 @@ export type LanguageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   userLanguages?: boolean | Prisma.Language$userLanguagesArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Language$exchangeSlotsArgs<ExtArgs>
   provideSlots?: boolean | Prisma.Language$provideSlotsArgs<ExtArgs>
+  vocabularyCollections?: boolean | Prisma.Language$vocabularyCollectionsArgs<ExtArgs>
   _count?: boolean | Prisma.LanguageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["language"]>
 
@@ -601,6 +700,7 @@ export type LanguageInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   userLanguages?: boolean | Prisma.Language$userLanguagesArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Language$exchangeSlotsArgs<ExtArgs>
   provideSlots?: boolean | Prisma.Language$provideSlotsArgs<ExtArgs>
+  vocabularyCollections?: boolean | Prisma.Language$vocabularyCollectionsArgs<ExtArgs>
   _count?: boolean | Prisma.LanguageCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LanguageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -612,6 +712,7 @@ export type $LanguagePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     userLanguages: Prisma.$UserLanguagePayload<ExtArgs>[]
     exchangeSlots: Prisma.$SlotPayload<ExtArgs>[]
     provideSlots: Prisma.$SlotPayload<ExtArgs>[]
+    vocabularyCollections: Prisma.$VocabularyCollectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1015,6 +1116,7 @@ export interface Prisma__LanguageClient<T, Null = never, ExtArgs extends runtime
   userLanguages<T extends Prisma.Language$userLanguagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Language$userLanguagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserLanguagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   exchangeSlots<T extends Prisma.Language$exchangeSlotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Language$exchangeSlotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   provideSlots<T extends Prisma.Language$provideSlotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Language$provideSlotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vocabularyCollections<T extends Prisma.Language$vocabularyCollectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Language$vocabularyCollectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyCollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1510,6 +1612,30 @@ export type Language$provideSlotsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.SlotScalarFieldEnum | Prisma.SlotScalarFieldEnum[]
+}
+
+/**
+ * Language.vocabularyCollections
+ */
+export type Language$vocabularyCollectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VocabularyCollection
+   */
+  select?: Prisma.VocabularyCollectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VocabularyCollection
+   */
+  omit?: Prisma.VocabularyCollectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VocabularyCollectionInclude<ExtArgs> | null
+  where?: Prisma.VocabularyCollectionWhereInput
+  orderBy?: Prisma.VocabularyCollectionOrderByWithRelationInput | Prisma.VocabularyCollectionOrderByWithRelationInput[]
+  cursor?: Prisma.VocabularyCollectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VocabularyCollectionScalarFieldEnum | Prisma.VocabularyCollectionScalarFieldEnum[]
 }
 
 /**

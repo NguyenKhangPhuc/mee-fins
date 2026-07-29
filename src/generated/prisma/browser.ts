@@ -52,3 +52,13 @@ export type Slot = Prisma.SlotModel
  * 
  */
 export type UserLanguage = Prisma.UserLanguageModel
+/**
+ * Model VocabularyCollection
+ * 
+ */
+export type VocabularyCollection = Prisma.VocabularyCollectionModel
+/**
+ * Model VocabularyWord
+ * 
+ */
+export type VocabularyWord = Prisma.VocabularyWordModel
