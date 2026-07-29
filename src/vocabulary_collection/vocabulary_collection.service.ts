@@ -68,4 +68,16 @@ export class VocabularyCollectionService {
             throw new InternalServerErrorException({ message: "Fail to get single collection information" })
         }
     }
+
+    async isCollectionOwnedByUser(collectionId: string, userId: string) {
+        try {
+            const result = await this.prismaService.vocabularyCollection.findUnique({
+                where: { id: collectionId, ownerId: userId }
+            })
+            return !!result;
+        } catch (error) {
+            throw new InternalServerErrorException({ message: "Fail to check collection ownership" })
+
+        }
+    }
 }
