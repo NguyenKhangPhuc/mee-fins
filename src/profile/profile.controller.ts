@@ -1,10 +1,11 @@
-import { Body, Controller, Post, UseGuards, UseInterceptors, UploadedFile, Get } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, UseInterceptors, UploadedFile, Get, Query } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import * as safeUser from 'src/types/safe-user';
 import { ProfileUpdationDto } from './dto/profile-updation.dto';
 import { ProfileService } from './profile.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { PaginationDto } from 'src/helpers/pagination/dto/pagination.dto';
 
 @Controller('profile')
 export class ProfileController {
@@ -40,8 +41,8 @@ export class ProfileController {
 
     @Get('languages-slots')
     @UseGuards(JwtAuthGuard)
-    async getUserLanguagesAndSlots(@CurrentUser() user: safeUser.SafeUser) {
-        return await this.profileService.getUserProfileWithLanguageAndSlots(user.id);
+    async getUserLanguagesAndSlots(@CurrentUser() user: safeUser.SafeUser, @Query() query: PaginationDto) {
+        return await this.profileService.getUserProfileWithLanguageAndSlots(user.id, query);
     }
 
     @Get('user-languages-slots')
