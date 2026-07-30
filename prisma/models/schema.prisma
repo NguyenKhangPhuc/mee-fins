@@ -36,7 +36,7 @@ enum SlotStatus {
 }
 
 model User {
-  id             String         @id @default(uuid())
+  id             String         @id @default(uuid()) @db.Uuid
   displayName    String?        @map("display_name")
   email          String         @unique
   passwordHash   String?        @map("password_hash")
@@ -53,14 +53,14 @@ model User {
 }
 
 model RefreshToken {
-  id        String   @id @default(uuid())
-  jti       String   @unique
-  userId    String   @map("user_id")
+  id        String   @id @default(uuid()) @db.Uuid
+  jti       String   @unique @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   isRevoked Boolean  @default(false) @map("is_revoked")
   updatedAt DateTime @default(now()) @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
-  sessionId String   @map("session_id")
+  sessionId String   @map("session_id") @db.Uuid
   session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
   @@map("refresh_tokens")
@@ -68,8 +68,8 @@ model RefreshToken {
 }
 
 model Session {
-  id            String         @id @default(uuid())
-  userId        String         @map("user_id")
+  id            String         @id @default(uuid()) @db.Uuid
+  userId        String         @map("user_id") @db.Uuid
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userAgent     String?        @map("user_agent")
   ipAddress     String?        @map("ip_address")

@@ -1,14 +1,14 @@
 model VocabularyWord {
-    id           String  @id @default(uuid())
-    collectionId String
+    id           String  @id @default(uuid()) @db.Uuid
+    collectionId String  @map("collection_id") @db.Uuid
     term         String // từ vựng
     meaning      String // nghĩa
     example      String? // câu ví dụ (optional)
     note         String? // ghi chú cá nhân
-    slotId       String? // optional: link về buổi học đã học từ này (nếu muốn trace nguồn gốc)
+    slotId       String? @map("slot_id") @db.Uuid // optional: link về buổi học đã học từ này (nếu muốn trace nguồn gốc)
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 
     collection VocabularyCollection @relation("CollectionWords", fields: [collectionId], references: [id], onDelete: Cascade)
     slot       Slot?                @relation("SlotWords", fields: [slotId], references: [id])

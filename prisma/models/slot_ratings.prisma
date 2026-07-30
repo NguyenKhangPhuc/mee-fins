@@ -1,8 +1,8 @@
 model SlotRating {
-    id          String   @id @default(uuid())
-    slotId      String   @map("slot_id")
-    raterId     String   @map("rater_id")
-    ratedUserId String   @map("rated_user_id")
+    id          String   @id @default(uuid()) @db.Uuid
+    slotId      String   @map("slot_id") @db.Uuid
+    raterId     String   @map("rater_id") @db.Uuid
+    ratedUserId String   @map("rated_user_id") @db.Uuid
     rating      Int // 1-5 sao
     feedback    String?
     createdAt   DateTime @default(now()) @map("created_at")

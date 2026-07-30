@@ -1,11 +1,11 @@
 model VocabularyCollection {
-    id          String   @id @default(uuid())
-    ownerId     String
+    id          String   @id @default(uuid()) @db.Uuid
+    ownerId     String   @map("owner_id") @db.Uuid
     name        String
     description String?
-    languageId  String // ngôn ngữ của collection này (VD: collection tiếng Nhật riêng, tiếng Anh riêng)
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+    languageId  String   @map("language_id") @db.Uuid // ngôn ngữ của collection này (VD: collection tiếng Nhật riêng, tiếng Anh riêng)
+    createdAt   DateTime @default(now()) @map("created_at")
+    updatedAt   DateTime @updatedAt @map("updated_at")
 
     owner    Profile          @relation("UserCollections", fields: [ownerId], references: [id])
     language Language         @relation("LanguageCollections", fields: [languageId], references: [id])

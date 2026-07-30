@@ -157,28 +157,28 @@ export class ProfileService {
           COALESCE(s.open_slots_count, 0)::int as open_slots_count,
           (0.7 * COALESCE(r.rating_avg, 0) + 0.3 * COALESCE(s.open_slots_count, 0)) as score
         FROM profiles p
-        JOIN users u ON u.id = p.user_id
         LEFT JOIN (
           SELECT rated_user_id, AVG(rating) as rating_avg, COUNT(*) as rating_count
           FROM slot_ratings
           GROUP BY rated_user_id
           HAVING COUNT(*) > 2
-        ) r ON r.rated_user_id = u.id
+        ) r ON r.rated_user_id = p.id
         LEFT JOIN (
           SELECT owner_id as user_id, COUNT(*) as open_slots_count
           FROM slots
           WHERE status = ${SlotStatus.OPEN}
             AND start_time >= ${today}
           GROUP BY owner_id
-        ) s ON s.user_id = u.id
+        ) s ON s.user_id = p.id
         WHERE p.id != ${currentUserId}
         ORDER BY score DESC
         LIMIT ${limit} OFFSET ${skip}
       `;
-      const total = await this.prismaService.profile.count();
+      const total = await this.prismaService.profile.count() - 1;
 
       return paginate(result, total, page, limit);
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException({
         message: 'Fail to get user language and slots',
         code: INTERNAL_SERVER_ERROR,
