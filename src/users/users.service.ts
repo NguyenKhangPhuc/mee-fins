@@ -12,13 +12,14 @@ import {
 import { User, Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileService } from 'src/profile/profile.service';
+import { SafeUser } from 'src/types/safe-user';
 
 @Injectable()
 export class UsersService {
   constructor(
     private prisma: PrismaService,
     private profileService: ProfileService,
-  ) {}
+  ) { }
   async findOne(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<User | null> {
@@ -77,14 +78,23 @@ export class UsersService {
       return result;
     }
     try {
-      const user = await this.prisma.user.create({
-        data: {
-          email,
-          displayName,
-          confirmationAt: new Date(),
-        },
+      const result = await this.prisma.$transaction(async (tx) => {
+        const createdUser = await tx.user.create({
+          data: {
+            email,
+            displayName,
+            confirmationAt: new Date(),
+          }
+        });
+        const { passwordHash: _passwordHash, ...result } = createdUser;
+        const profile: Prisma.ProfileUncheckedCreateInput = {
+          id: createdUser.id,
+          fullName: createdUser.displayName,
+          email: createdUser.email,
+        };
+        await this.profileService.createProfile({ tx, profile });
+        return result;
       });
-      const { passwordHash: _passwordHash, ...result } = user;
       return result;
     } catch (error) {
       if (

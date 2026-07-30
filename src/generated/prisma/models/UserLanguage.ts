@@ -178,8 +178,8 @@ export type UserLanguageWhereInput = {
   OR?: Prisma.UserLanguageWhereInput[]
   NOT?: Prisma.UserLanguageWhereInput | Prisma.UserLanguageWhereInput[]
   id?: Prisma.StringFilter<"UserLanguage"> | string
-  userId?: Prisma.StringFilter<"UserLanguage"> | string
-  languageId?: Prisma.StringFilter<"UserLanguage"> | string
+  userId?: Prisma.UuidFilter<"UserLanguage"> | string
+  languageId?: Prisma.UuidFilter<"UserLanguage"> | string
   proficiency?: Prisma.StringFilter<"UserLanguage"> | string
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
   user?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
@@ -202,8 +202,8 @@ export type UserLanguageWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UserLanguageWhereInput | Prisma.UserLanguageWhereInput[]
   OR?: Prisma.UserLanguageWhereInput[]
   NOT?: Prisma.UserLanguageWhereInput | Prisma.UserLanguageWhereInput[]
-  userId?: Prisma.StringFilter<"UserLanguage"> | string
-  languageId?: Prisma.StringFilter<"UserLanguage"> | string
+  userId?: Prisma.UuidFilter<"UserLanguage"> | string
+  languageId?: Prisma.UuidFilter<"UserLanguage"> | string
   proficiency?: Prisma.StringFilter<"UserLanguage"> | string
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
   user?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
@@ -226,8 +226,8 @@ export type UserLanguageScalarWhereWithAggregatesInput = {
   OR?: Prisma.UserLanguageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UserLanguageScalarWhereWithAggregatesInput | Prisma.UserLanguageScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
-  languageId?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
+  userId?: Prisma.UuidWithAggregatesFilter<"UserLanguage"> | string
+  languageId?: Prisma.UuidWithAggregatesFilter<"UserLanguage"> | string
   proficiency?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserLanguage"> | Date | string
 }
@@ -454,8 +454,8 @@ export type UserLanguageScalarWhereInput = {
   OR?: Prisma.UserLanguageScalarWhereInput[]
   NOT?: Prisma.UserLanguageScalarWhereInput | Prisma.UserLanguageScalarWhereInput[]
   id?: Prisma.StringFilter<"UserLanguage"> | string
-  userId?: Prisma.StringFilter<"UserLanguage"> | string
-  languageId?: Prisma.StringFilter<"UserLanguage"> | string
+  userId?: Prisma.UuidFilter<"UserLanguage"> | string
+  languageId?: Prisma.UuidFilter<"UserLanguage"> | string
   proficiency?: Prisma.StringFilter<"UserLanguage"> | string
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
 }

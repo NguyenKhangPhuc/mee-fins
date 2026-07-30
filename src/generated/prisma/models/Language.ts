@@ -170,7 +170,7 @@ export type LanguageWhereInput = {
   AND?: Prisma.LanguageWhereInput | Prisma.LanguageWhereInput[]
   OR?: Prisma.LanguageWhereInput[]
   NOT?: Prisma.LanguageWhereInput | Prisma.LanguageWhereInput[]
-  id?: Prisma.StringFilter<"Language"> | string
+  id?: Prisma.UuidFilter<"Language"> | string
   name?: Prisma.StringFilter<"Language"> | string
   createdAt?: Prisma.DateTimeFilter<"Language"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Language"> | Date | string
@@ -219,7 +219,7 @@ export type LanguageScalarWhereWithAggregatesInput = {
   AND?: Prisma.LanguageScalarWhereWithAggregatesInput | Prisma.LanguageScalarWhereWithAggregatesInput[]
   OR?: Prisma.LanguageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.LanguageScalarWhereWithAggregatesInput | Prisma.LanguageScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Language"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"Language"> | string
   name?: Prisma.StringWithAggregatesFilter<"Language"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Language"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Language"> | Date | string

@@ -205,13 +205,13 @@ export type VocabularyWordWhereInput = {
   AND?: Prisma.VocabularyWordWhereInput | Prisma.VocabularyWordWhereInput[]
   OR?: Prisma.VocabularyWordWhereInput[]
   NOT?: Prisma.VocabularyWordWhereInput | Prisma.VocabularyWordWhereInput[]
-  id?: Prisma.StringFilter<"VocabularyWord"> | string
-  collectionId?: Prisma.StringFilter<"VocabularyWord"> | string
+  id?: Prisma.UuidFilter<"VocabularyWord"> | string
+  collectionId?: Prisma.UuidFilter<"VocabularyWord"> | string
   term?: Prisma.StringFilter<"VocabularyWord"> | string
   meaning?: Prisma.StringFilter<"VocabularyWord"> | string
   example?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
   note?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
-  slotId?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
+  slotId?: Prisma.UuidNullableFilter<"VocabularyWord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
   collection?: Prisma.XOR<Prisma.VocabularyCollectionScalarRelationFilter, Prisma.VocabularyCollectionWhereInput>
@@ -237,12 +237,12 @@ export type VocabularyWordWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.VocabularyWordWhereInput | Prisma.VocabularyWordWhereInput[]
   OR?: Prisma.VocabularyWordWhereInput[]
   NOT?: Prisma.VocabularyWordWhereInput | Prisma.VocabularyWordWhereInput[]
-  collectionId?: Prisma.StringFilter<"VocabularyWord"> | string
+  collectionId?: Prisma.UuidFilter<"VocabularyWord"> | string
   term?: Prisma.StringFilter<"VocabularyWord"> | string
   meaning?: Prisma.StringFilter<"VocabularyWord"> | string
   example?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
   note?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
-  slotId?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
+  slotId?: Prisma.UuidNullableFilter<"VocabularyWord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
   collection?: Prisma.XOR<Prisma.VocabularyCollectionScalarRelationFilter, Prisma.VocabularyCollectionWhereInput>
@@ -268,13 +268,13 @@ export type VocabularyWordScalarWhereWithAggregatesInput = {
   AND?: Prisma.VocabularyWordScalarWhereWithAggregatesInput | Prisma.VocabularyWordScalarWhereWithAggregatesInput[]
   OR?: Prisma.VocabularyWordScalarWhereWithAggregatesInput[]
   NOT?: Prisma.VocabularyWordScalarWhereWithAggregatesInput | Prisma.VocabularyWordScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"VocabularyWord"> | string
-  collectionId?: Prisma.StringWithAggregatesFilter<"VocabularyWord"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"VocabularyWord"> | string
+  collectionId?: Prisma.UuidWithAggregatesFilter<"VocabularyWord"> | string
   term?: Prisma.StringWithAggregatesFilter<"VocabularyWord"> | string
   meaning?: Prisma.StringWithAggregatesFilter<"VocabularyWord"> | string
   example?: Prisma.StringNullableWithAggregatesFilter<"VocabularyWord"> | string | null
   note?: Prisma.StringNullableWithAggregatesFilter<"VocabularyWord"> | string | null
-  slotId?: Prisma.StringNullableWithAggregatesFilter<"VocabularyWord"> | string | null
+  slotId?: Prisma.UuidNullableWithAggregatesFilter<"VocabularyWord"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"VocabularyWord"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"VocabularyWord"> | Date | string
 }
@@ -543,13 +543,13 @@ export type VocabularyWordScalarWhereInput = {
   AND?: Prisma.VocabularyWordScalarWhereInput | Prisma.VocabularyWordScalarWhereInput[]
   OR?: Prisma.VocabularyWordScalarWhereInput[]
   NOT?: Prisma.VocabularyWordScalarWhereInput | Prisma.VocabularyWordScalarWhereInput[]
-  id?: Prisma.StringFilter<"VocabularyWord"> | string
-  collectionId?: Prisma.StringFilter<"VocabularyWord"> | string
+  id?: Prisma.UuidFilter<"VocabularyWord"> | string
+  collectionId?: Prisma.UuidFilter<"VocabularyWord"> | string
   term?: Prisma.StringFilter<"VocabularyWord"> | string
   meaning?: Prisma.StringFilter<"VocabularyWord"> | string
   example?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
   note?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
-  slotId?: Prisma.StringNullableFilter<"VocabularyWord"> | string | null
+  slotId?: Prisma.UuidNullableFilter<"VocabularyWord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyWord"> | Date | string
 }

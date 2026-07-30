@@ -5,7 +5,7 @@ export function paginate<T>(data: T[],
     page: number,
     limit: number,): PaginationResponse<T> {
     const totalPages = Math.ceil(total / limit);
-
+    console.log("this is total page", totalPages, total, limit)
     return {
         data,
         meta: {

@@ -191,13 +191,13 @@ export type RefreshTokenWhereInput = {
   AND?: Prisma.RefreshTokenWhereInput | Prisma.RefreshTokenWhereInput[]
   OR?: Prisma.RefreshTokenWhereInput[]
   NOT?: Prisma.RefreshTokenWhereInput | Prisma.RefreshTokenWhereInput[]
-  id?: Prisma.StringFilter<"RefreshToken"> | string
-  jti?: Prisma.StringFilter<"RefreshToken"> | string
-  userId?: Prisma.StringFilter<"RefreshToken"> | string
+  id?: Prisma.UuidFilter<"RefreshToken"> | string
+  jti?: Prisma.UuidFilter<"RefreshToken"> | string
+  userId?: Prisma.UuidFilter<"RefreshToken"> | string
   isRevoked?: Prisma.BoolFilter<"RefreshToken"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
-  sessionId?: Prisma.StringFilter<"RefreshToken"> | string
+  sessionId?: Prisma.UuidFilter<"RefreshToken"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   session?: Prisma.XOR<Prisma.SessionScalarRelationFilter, Prisma.SessionWhereInput>
 }
@@ -220,11 +220,11 @@ export type RefreshTokenWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RefreshTokenWhereInput | Prisma.RefreshTokenWhereInput[]
   OR?: Prisma.RefreshTokenWhereInput[]
   NOT?: Prisma.RefreshTokenWhereInput | Prisma.RefreshTokenWhereInput[]
-  userId?: Prisma.StringFilter<"RefreshToken"> | string
+  userId?: Prisma.UuidFilter<"RefreshToken"> | string
   isRevoked?: Prisma.BoolFilter<"RefreshToken"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
-  sessionId?: Prisma.StringFilter<"RefreshToken"> | string
+  sessionId?: Prisma.UuidFilter<"RefreshToken"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   session?: Prisma.XOR<Prisma.SessionScalarRelationFilter, Prisma.SessionWhereInput>
 }, "id" | "jti">
@@ -246,13 +246,13 @@ export type RefreshTokenScalarWhereWithAggregatesInput = {
   AND?: Prisma.RefreshTokenScalarWhereWithAggregatesInput | Prisma.RefreshTokenScalarWhereWithAggregatesInput[]
   OR?: Prisma.RefreshTokenScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RefreshTokenScalarWhereWithAggregatesInput | Prisma.RefreshTokenScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"RefreshToken"> | string
-  jti?: Prisma.StringWithAggregatesFilter<"RefreshToken"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"RefreshToken"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"RefreshToken"> | string
+  jti?: Prisma.UuidWithAggregatesFilter<"RefreshToken"> | string
+  userId?: Prisma.UuidWithAggregatesFilter<"RefreshToken"> | string
   isRevoked?: Prisma.BoolWithAggregatesFilter<"RefreshToken"> | boolean
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
-  sessionId?: Prisma.StringWithAggregatesFilter<"RefreshToken"> | string
+  sessionId?: Prisma.UuidWithAggregatesFilter<"RefreshToken"> | string
 }
 
 export type RefreshTokenCreateInput = {
@@ -499,13 +499,13 @@ export type RefreshTokenScalarWhereInput = {
   AND?: Prisma.RefreshTokenScalarWhereInput | Prisma.RefreshTokenScalarWhereInput[]
   OR?: Prisma.RefreshTokenScalarWhereInput[]
   NOT?: Prisma.RefreshTokenScalarWhereInput | Prisma.RefreshTokenScalarWhereInput[]
-  id?: Prisma.StringFilter<"RefreshToken"> | string
-  jti?: Prisma.StringFilter<"RefreshToken"> | string
-  userId?: Prisma.StringFilter<"RefreshToken"> | string
+  id?: Prisma.UuidFilter<"RefreshToken"> | string
+  jti?: Prisma.UuidFilter<"RefreshToken"> | string
+  userId?: Prisma.UuidFilter<"RefreshToken"> | string
   isRevoked?: Prisma.BoolFilter<"RefreshToken"> | boolean
   updatedAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"RefreshToken"> | Date | string
-  sessionId?: Prisma.StringFilter<"RefreshToken"> | string
+  sessionId?: Prisma.UuidFilter<"RefreshToken"> | string
 }
 
 export type RefreshTokenCreateWithoutSessionInput = {

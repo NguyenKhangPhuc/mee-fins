@@ -288,7 +288,7 @@ export type ProfileWhereInput = {
   AND?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
   OR?: Prisma.ProfileWhereInput[]
   NOT?: Prisma.ProfileWhereInput | Prisma.ProfileWhereInput[]
-  id?: Prisma.StringFilter<"Profile"> | string
+  id?: Prisma.UuidFilter<"Profile"> | string
   fullName?: Prisma.StringNullableFilter<"Profile"> | string | null
   email?: Prisma.StringFilter<"Profile"> | string
   avatarUrl?: Prisma.StringNullableFilter<"Profile"> | string | null
@@ -396,7 +396,7 @@ export type ProfileScalarWhereWithAggregatesInput = {
   AND?: Prisma.ProfileScalarWhereWithAggregatesInput | Prisma.ProfileScalarWhereWithAggregatesInput[]
   OR?: Prisma.ProfileScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProfileScalarWhereWithAggregatesInput | Prisma.ProfileScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Profile"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"Profile"> | string
   fullName?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   email?: Prisma.StringWithAggregatesFilter<"Profile"> | string
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null

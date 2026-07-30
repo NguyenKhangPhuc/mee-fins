@@ -191,11 +191,11 @@ export type VocabularyCollectionWhereInput = {
   AND?: Prisma.VocabularyCollectionWhereInput | Prisma.VocabularyCollectionWhereInput[]
   OR?: Prisma.VocabularyCollectionWhereInput[]
   NOT?: Prisma.VocabularyCollectionWhereInput | Prisma.VocabularyCollectionWhereInput[]
-  id?: Prisma.StringFilter<"VocabularyCollection"> | string
-  ownerId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  id?: Prisma.UuidFilter<"VocabularyCollection"> | string
+  ownerId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   name?: Prisma.StringFilter<"VocabularyCollection"> | string
   description?: Prisma.StringNullableFilter<"VocabularyCollection"> | string | null
-  languageId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  languageId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   createdAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
   owner?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
@@ -221,10 +221,10 @@ export type VocabularyCollectionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.VocabularyCollectionWhereInput | Prisma.VocabularyCollectionWhereInput[]
   OR?: Prisma.VocabularyCollectionWhereInput[]
   NOT?: Prisma.VocabularyCollectionWhereInput | Prisma.VocabularyCollectionWhereInput[]
-  ownerId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  ownerId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   name?: Prisma.StringFilter<"VocabularyCollection"> | string
   description?: Prisma.StringNullableFilter<"VocabularyCollection"> | string | null
-  languageId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  languageId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   createdAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
   owner?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
@@ -249,11 +249,11 @@ export type VocabularyCollectionScalarWhereWithAggregatesInput = {
   AND?: Prisma.VocabularyCollectionScalarWhereWithAggregatesInput | Prisma.VocabularyCollectionScalarWhereWithAggregatesInput[]
   OR?: Prisma.VocabularyCollectionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.VocabularyCollectionScalarWhereWithAggregatesInput | Prisma.VocabularyCollectionScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"VocabularyCollection"> | string
-  ownerId?: Prisma.StringWithAggregatesFilter<"VocabularyCollection"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"VocabularyCollection"> | string
+  ownerId?: Prisma.UuidWithAggregatesFilter<"VocabularyCollection"> | string
   name?: Prisma.StringWithAggregatesFilter<"VocabularyCollection"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"VocabularyCollection"> | string | null
-  languageId?: Prisma.StringWithAggregatesFilter<"VocabularyCollection"> | string
+  languageId?: Prisma.UuidWithAggregatesFilter<"VocabularyCollection"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"VocabularyCollection"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"VocabularyCollection"> | Date | string
 }
@@ -523,11 +523,11 @@ export type VocabularyCollectionScalarWhereInput = {
   AND?: Prisma.VocabularyCollectionScalarWhereInput | Prisma.VocabularyCollectionScalarWhereInput[]
   OR?: Prisma.VocabularyCollectionScalarWhereInput[]
   NOT?: Prisma.VocabularyCollectionScalarWhereInput | Prisma.VocabularyCollectionScalarWhereInput[]
-  id?: Prisma.StringFilter<"VocabularyCollection"> | string
-  ownerId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  id?: Prisma.UuidFilter<"VocabularyCollection"> | string
+  ownerId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   name?: Prisma.StringFilter<"VocabularyCollection"> | string
   description?: Prisma.StringNullableFilter<"VocabularyCollection"> | string | null
-  languageId?: Prisma.StringFilter<"VocabularyCollection"> | string
+  languageId?: Prisma.UuidFilter<"VocabularyCollection"> | string
   createdAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"VocabularyCollection"> | Date | string
 }

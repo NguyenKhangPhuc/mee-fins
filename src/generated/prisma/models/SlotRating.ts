@@ -225,10 +225,10 @@ export type SlotRatingWhereInput = {
   AND?: Prisma.SlotRatingWhereInput | Prisma.SlotRatingWhereInput[]
   OR?: Prisma.SlotRatingWhereInput[]
   NOT?: Prisma.SlotRatingWhereInput | Prisma.SlotRatingWhereInput[]
-  id?: Prisma.StringFilter<"SlotRating"> | string
-  slotId?: Prisma.StringFilter<"SlotRating"> | string
-  raterId?: Prisma.StringFilter<"SlotRating"> | string
-  ratedUserId?: Prisma.StringFilter<"SlotRating"> | string
+  id?: Prisma.UuidFilter<"SlotRating"> | string
+  slotId?: Prisma.UuidFilter<"SlotRating"> | string
+  raterId?: Prisma.UuidFilter<"SlotRating"> | string
+  ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string
@@ -256,9 +256,9 @@ export type SlotRatingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SlotRatingWhereInput | Prisma.SlotRatingWhereInput[]
   OR?: Prisma.SlotRatingWhereInput[]
   NOT?: Prisma.SlotRatingWhereInput | Prisma.SlotRatingWhereInput[]
-  slotId?: Prisma.StringFilter<"SlotRating"> | string
-  raterId?: Prisma.StringFilter<"SlotRating"> | string
-  ratedUserId?: Prisma.StringFilter<"SlotRating"> | string
+  slotId?: Prisma.UuidFilter<"SlotRating"> | string
+  raterId?: Prisma.UuidFilter<"SlotRating"> | string
+  ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string
@@ -286,10 +286,10 @@ export type SlotRatingScalarWhereWithAggregatesInput = {
   AND?: Prisma.SlotRatingScalarWhereWithAggregatesInput | Prisma.SlotRatingScalarWhereWithAggregatesInput[]
   OR?: Prisma.SlotRatingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SlotRatingScalarWhereWithAggregatesInput | Prisma.SlotRatingScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"SlotRating"> | string
-  slotId?: Prisma.StringWithAggregatesFilter<"SlotRating"> | string
-  raterId?: Prisma.StringWithAggregatesFilter<"SlotRating"> | string
-  ratedUserId?: Prisma.StringWithAggregatesFilter<"SlotRating"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
+  slotId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
+  raterId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
+  ratedUserId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
   rating?: Prisma.IntWithAggregatesFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableWithAggregatesFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SlotRating"> | Date | string
@@ -618,10 +618,10 @@ export type SlotRatingScalarWhereInput = {
   AND?: Prisma.SlotRatingScalarWhereInput | Prisma.SlotRatingScalarWhereInput[]
   OR?: Prisma.SlotRatingScalarWhereInput[]
   NOT?: Prisma.SlotRatingScalarWhereInput | Prisma.SlotRatingScalarWhereInput[]
-  id?: Prisma.StringFilter<"SlotRating"> | string
-  slotId?: Prisma.StringFilter<"SlotRating"> | string
-  raterId?: Prisma.StringFilter<"SlotRating"> | string
-  ratedUserId?: Prisma.StringFilter<"SlotRating"> | string
+  id?: Prisma.UuidFilter<"SlotRating"> | string
+  slotId?: Prisma.UuidFilter<"SlotRating"> | string
+  raterId?: Prisma.UuidFilter<"SlotRating"> | string
+  ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string

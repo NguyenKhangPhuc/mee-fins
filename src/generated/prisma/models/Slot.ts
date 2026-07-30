@@ -281,16 +281,16 @@ export type SlotWhereInput = {
   AND?: Prisma.SlotWhereInput | Prisma.SlotWhereInput[]
   OR?: Prisma.SlotWhereInput[]
   NOT?: Prisma.SlotWhereInput | Prisma.SlotWhereInput[]
-  id?: Prisma.StringFilter<"Slot"> | string
+  id?: Prisma.UuidFilter<"Slot"> | string
   title?: Prisma.StringFilter<"Slot"> | string
   startTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
-  provideLanguageId?: Prisma.StringFilter<"Slot"> | string
-  exchangeLanguageId?: Prisma.StringFilter<"Slot"> | string
-  ownerId?: Prisma.StringFilter<"Slot"> | string
-  exchangeUserId?: Prisma.StringNullableFilter<"Slot"> | string | null
+  provideLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  ownerId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeUserId?: Prisma.UuidNullableFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
   videoRecordUrl?: Prisma.StringNullableFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
@@ -338,10 +338,10 @@ export type SlotWhereUniqueInput = Prisma.AtLeast<{
   endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
-  provideLanguageId?: Prisma.StringFilter<"Slot"> | string
-  exchangeLanguageId?: Prisma.StringFilter<"Slot"> | string
-  ownerId?: Prisma.StringFilter<"Slot"> | string
-  exchangeUserId?: Prisma.StringNullableFilter<"Slot"> | string | null
+  provideLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  ownerId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeUserId?: Prisma.UuidNullableFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
   videoRecordUrl?: Prisma.StringNullableFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
@@ -382,16 +382,16 @@ export type SlotScalarWhereWithAggregatesInput = {
   AND?: Prisma.SlotScalarWhereWithAggregatesInput | Prisma.SlotScalarWhereWithAggregatesInput[]
   OR?: Prisma.SlotScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SlotScalarWhereWithAggregatesInput | Prisma.SlotScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Slot"> | string
+  id?: Prisma.UuidWithAggregatesFilter<"Slot"> | string
   title?: Prisma.StringWithAggregatesFilter<"Slot"> | string
   startTime?: Prisma.DateTimeWithAggregatesFilter<"Slot"> | Date | string
   endTime?: Prisma.DateTimeWithAggregatesFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntWithAggregatesFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusWithAggregatesFilter<"Slot"> | $Enums.SlotStatus
-  provideLanguageId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
-  exchangeLanguageId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
-  ownerId?: Prisma.StringWithAggregatesFilter<"Slot"> | string
-  exchangeUserId?: Prisma.StringNullableWithAggregatesFilter<"Slot"> | string | null
+  provideLanguageId?: Prisma.UuidWithAggregatesFilter<"Slot"> | string
+  exchangeLanguageId?: Prisma.UuidWithAggregatesFilter<"Slot"> | string
+  ownerId?: Prisma.UuidWithAggregatesFilter<"Slot"> | string
+  exchangeUserId?: Prisma.UuidNullableWithAggregatesFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Slot"> | Date | string | null
   videoRecordUrl?: Prisma.StringNullableWithAggregatesFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Slot"> | Date | string | null
@@ -937,16 +937,16 @@ export type SlotScalarWhereInput = {
   AND?: Prisma.SlotScalarWhereInput | Prisma.SlotScalarWhereInput[]
   OR?: Prisma.SlotScalarWhereInput[]
   NOT?: Prisma.SlotScalarWhereInput | Prisma.SlotScalarWhereInput[]
-  id?: Prisma.StringFilter<"Slot"> | string
+  id?: Prisma.UuidFilter<"Slot"> | string
   title?: Prisma.StringFilter<"Slot"> | string
   startTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   endTime?: Prisma.DateTimeFilter<"Slot"> | Date | string
   durationMinutes?: Prisma.IntFilter<"Slot"> | number
   status?: Prisma.EnumSlotStatusFilter<"Slot"> | $Enums.SlotStatus
-  provideLanguageId?: Prisma.StringFilter<"Slot"> | string
-  exchangeLanguageId?: Prisma.StringFilter<"Slot"> | string
-  ownerId?: Prisma.StringFilter<"Slot"> | string
-  exchangeUserId?: Prisma.StringNullableFilter<"Slot"> | string | null
+  provideLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeLanguageId?: Prisma.UuidFilter<"Slot"> | string
+  ownerId?: Prisma.UuidFilter<"Slot"> | string
+  exchangeUserId?: Prisma.UuidNullableFilter<"Slot"> | string | null
   bookedAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null
   videoRecordUrl?: Prisma.StringNullableFilter<"Slot"> | string | null
   videoExpiresAt?: Prisma.DateTimeNullableFilter<"Slot"> | Date | string | null

@@ -16,6 +16,7 @@ import { PaginationDto } from 'src/helpers/pagination/dto/pagination.dto';
 import { getPaginationParams } from 'src/helpers/pagination/parsing-pagination-query';
 import { ProfileWithScore } from 'src/types/profile';
 import { paginate } from 'src/helpers/pagination/parseing-pagination-result';
+import { getProfileRawQuery } from 'src/helpers/pagination/pagination-profile-query';
 
 @Injectable()
 export class ProfileService {
@@ -148,32 +149,7 @@ export class ProfileService {
     try {
       const today = new Date();
       const { limit, page, skip } = getPaginationParams(query)
-
-      const result = await this.prismaService.$queryRaw<ProfileWithScore[]>`
-        SELECT
-          p.*,
-          COALESCE(r.rating_avg, 0)::float as rating_avg,
-          COALESCE(r.rating_count, 0)::int as rating_count,
-          COALESCE(s.open_slots_count, 0)::int as open_slots_count,
-          (0.7 * COALESCE(r.rating_avg, 0) + 0.3 * COALESCE(s.open_slots_count, 0)) as score
-        FROM profiles p
-        LEFT JOIN (
-          SELECT rated_user_id, AVG(rating) as rating_avg, COUNT(*) as rating_count
-          FROM slot_ratings
-          GROUP BY rated_user_id
-          HAVING COUNT(*) > 2
-        ) r ON r.rated_user_id = p.id
-        LEFT JOIN (
-          SELECT owner_id as user_id, COUNT(*) as open_slots_count
-          FROM slots
-          WHERE status = ${SlotStatus.OPEN}
-            AND start_time >= ${today}
-          GROUP BY owner_id
-        ) s ON s.user_id = p.id
-        WHERE p.id != ${currentUserId}
-        ORDER BY score DESC
-        LIMIT ${limit} OFFSET ${skip}
-      `;
+      const result = await this.prismaService.$queryRaw<ProfileWithScore[]>(getProfileRawQuery(today, currentUserId, limit, skip))
       const total = await this.prismaService.profile.count() - 1;
 
       return paginate(result, total, page, limit);
@@ -190,6 +166,7 @@ export class ProfileService {
   async getUserProfileWithLanguageAndSlotsById(currentUserId: string) {
     try {
       const today = new Date();
+      console.log(currentUserId)
       today.setHours(0, 0, 0, 0);
       const result = await this.prismaService.profile.findFirst({
         where: {
@@ -213,8 +190,10 @@ export class ProfileService {
           }
         },
       });
+      console.log("This is the profile ", result)
       return result;
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException({
         message: 'Fail to get user language and slots',
         code: INTERNAL_SERVER_ERROR,
