@@ -20,6 +20,8 @@ model Profile {
     provideSlots          Slot[]                 @relation("SlotOwner")
     exchangeSlots         Slot[]                 @relation("SlotExchangeUser")
     vocabularyCollections VocabularyCollection[] @relation("UserCollections")
+    ratingsGiven          SlotRating[]           @relation("RaterRatings")
+    ratingsReceived       SlotRating[]           @relation("RatedUserRatings")
 
     @@map("profiles")
     @@schema("public")

@@ -21,6 +21,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { VocabularyCollectionModule } from './vocabulary_collection/vocabulary_collection.module';
 import { VocabularyWordModule } from './vocabulary_word/vocabulary_word.module';
+import { SlotRatingModule } from './slot_rating/slot_rating.module';
 @Module({
   imports: [AuthModule, UsersModule, PrismaModule, QueryModule, FileModule, ProfileModule, LanguagesModule, UserLanguagesModule, LivekitModule, SlotsModule,
 
@@ -40,6 +41,8 @@ import { VocabularyWordModule } from './vocabulary_word/vocabulary_word.module';
     VocabularyCollectionModule,
 
     VocabularyWordModule,
+
+    SlotRatingModule,
   ],
   controllers: [AppController],
   providers: [

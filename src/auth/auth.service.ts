@@ -20,7 +20,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private readonly prismaService: PrismaService,
-  ) {}
+  ) { }
 
   async validateUser(
     username: string,
@@ -44,6 +44,7 @@ export class AuthService {
       username: user.email,
       id: user.id,
       displayName: user.displayName,
+      role: user.role
     };
     const token = await this.jwtService.signAsync(payload, {
       secret: jwtSecret,

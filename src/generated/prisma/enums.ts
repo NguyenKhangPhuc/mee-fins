@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const USER_ROLE = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+} as const
+
+export type USER_ROLE = (typeof USER_ROLE)[keyof typeof USER_ROLE]
+
+
 export const SlotStatus = {
   OPEN: 'OPEN',
   BOOKED: 'BOOKED',

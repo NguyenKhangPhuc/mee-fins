@@ -223,6 +223,8 @@ export class SlotsService {
     async forceEndMeeting(roomName: string) {
         try {
             await this.roomService.deleteRoom(roomName);
+            await this.timeoutQueue.remove(`timeout-${roomName}`);
+
         } catch (err: any) {
             const isRoomNotFound = err?.code === 'not_found' || err?.status === 404;
 

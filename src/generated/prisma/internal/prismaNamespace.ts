@@ -390,6 +390,7 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Session: 'Session',
   Slot: 'Slot',
+  SlotRating: 'SlotRating',
   UserLanguage: 'UserLanguage',
   VocabularyCollection: 'VocabularyCollection',
   VocabularyWord: 'VocabularyWord'
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "language" | "profile" | "user" | "refreshToken" | "session" | "slot" | "userLanguage" | "vocabularyCollection" | "vocabularyWord"
+    modelProps: "language" | "profile" | "user" | "refreshToken" | "session" | "slot" | "slotRating" | "userLanguage" | "vocabularyCollection" | "vocabularyWord"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -856,6 +857,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SlotRating: {
+      payload: Prisma.$SlotRatingPayload<ExtArgs>
+      fields: Prisma.SlotRatingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SlotRatingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SlotRatingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        findFirst: {
+          args: Prisma.SlotRatingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SlotRatingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        findMany: {
+          args: Prisma.SlotRatingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>[]
+        }
+        create: {
+          args: Prisma.SlotRatingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        createMany: {
+          args: Prisma.SlotRatingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SlotRatingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>[]
+        }
+        delete: {
+          args: Prisma.SlotRatingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        update: {
+          args: Prisma.SlotRatingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        deleteMany: {
+          args: Prisma.SlotRatingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SlotRatingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SlotRatingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>[]
+        }
+        upsert: {
+          args: Prisma.SlotRatingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SlotRatingPayload>
+        }
+        aggregate: {
+          args: Prisma.SlotRatingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSlotRating>
+        }
+        groupBy: {
+          args: Prisma.SlotRatingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlotRatingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SlotRatingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SlotRatingCountAggregateOutputType> | number
+        }
+      }
+    }
     UserLanguage: {
       payload: Prisma.$UserLanguagePayload<ExtArgs>
       fields: Prisma.UserLanguageFieldRefs
@@ -1156,7 +1231,8 @@ export const UserScalarFieldEnum = {
   passwordHash: 'passwordHash',
   confirmationAt: 'confirmationAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1206,6 +1282,19 @@ export const SlotScalarFieldEnum = {
 } as const
 
 export type SlotScalarFieldEnum = (typeof SlotScalarFieldEnum)[keyof typeof SlotScalarFieldEnum]
+
+
+export const SlotRatingScalarFieldEnum = {
+  id: 'id',
+  slotId: 'slotId',
+  raterId: 'raterId',
+  ratedUserId: 'ratedUserId',
+  rating: 'rating',
+  feedback: 'feedback',
+  createdAt: 'createdAt'
+} as const
+
+export type SlotRatingScalarFieldEnum = (typeof SlotRatingScalarFieldEnum)[keyof typeof SlotRatingScalarFieldEnum]
 
 
 export const UserLanguageScalarFieldEnum = {
@@ -1316,6 +1405,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'USER_ROLE'
+ */
+export type EnumUSER_ROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'USER_ROLE'>
+    
+
+
+/**
+ * Reference to a field of type 'USER_ROLE[]'
+ */
+export type ListEnumUSER_ROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'USER_ROLE[]'>
     
 
 
@@ -1469,6 +1572,7 @@ export type GlobalOmitConfig = {
   refreshToken?: Prisma.RefreshTokenOmit
   session?: Prisma.SessionOmit
   slot?: Prisma.SlotOmit
+  slotRating?: Prisma.SlotRatingOmit
   userLanguage?: Prisma.UserLanguageOmit
   vocabularyCollection?: Prisma.VocabularyCollectionOmit
   vocabularyWord?: Prisma.VocabularyWordOmit

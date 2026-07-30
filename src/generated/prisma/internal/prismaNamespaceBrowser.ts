@@ -57,6 +57,7 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Session: 'Session',
   Slot: 'Slot',
+  SlotRating: 'SlotRating',
   UserLanguage: 'UserLanguage',
   VocabularyCollection: 'VocabularyCollection',
   VocabularyWord: 'VocabularyWord'
@@ -117,7 +118,8 @@ export const UserScalarFieldEnum = {
   passwordHash: 'passwordHash',
   confirmationAt: 'confirmationAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -167,6 +169,19 @@ export const SlotScalarFieldEnum = {
 } as const
 
 export type SlotScalarFieldEnum = (typeof SlotScalarFieldEnum)[keyof typeof SlotScalarFieldEnum]
+
+
+export const SlotRatingScalarFieldEnum = {
+  id: 'id',
+  slotId: 'slotId',
+  raterId: 'raterId',
+  ratedUserId: 'ratedUserId',
+  rating: 'rating',
+  feedback: 'feedback',
+  createdAt: 'createdAt'
+} as const
+
+export type SlotRatingScalarFieldEnum = (typeof SlotRatingScalarFieldEnum)[keyof typeof SlotRatingScalarFieldEnum]
 
 
 export const UserLanguageScalarFieldEnum = {

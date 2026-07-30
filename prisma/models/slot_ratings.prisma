@@ -1,0 +1,19 @@
+model SlotRating {
+    id          String   @id @default(uuid())
+    slotId      String   @map("slot_id")
+    raterId     String   @map("rater_id")
+    ratedUserId String   @map("rated_user_id")
+    rating      Int // 1-5 sao
+    feedback    String?
+    createdAt   DateTime @default(now()) @map("created_at")
+
+    slot      Slot    @relation("SlotRating", fields: [slotId], references: [id])
+    rater     Profile @relation("RaterRatings", fields: [raterId], references: [id])
+    ratedUser Profile @relation("RatedUserRatings", fields: [ratedUserId], references: [id])
+
+    @@unique([slotId, raterId, ratedUserId], name: "unique_rating_per_slot_per_pair")
+    @@index([ratedUserId])
+    @@index([raterId])
+    @@map("slot_ratings")
+    @@schema("public")
+}

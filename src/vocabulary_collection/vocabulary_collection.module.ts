@@ -4,6 +4,7 @@ import { VocabularyCollectionController } from './vocabulary_collection.controll
 
 @Module({
   providers: [VocabularyCollectionService],
-  controllers: [VocabularyCollectionController]
+  controllers: [VocabularyCollectionController],
+  exports: [VocabularyCollectionService]
 })
-export class VocabularyCollectionModule {}
+export class VocabularyCollectionModule { }

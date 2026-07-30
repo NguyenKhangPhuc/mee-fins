@@ -48,6 +48,11 @@ export type Session = Prisma.SessionModel
  */
 export type Slot = Prisma.SlotModel
 /**
+ * Model SlotRating
+ * 
+ */
+export type SlotRating = Prisma.SlotRatingModel
+/**
  * Model UserLanguage
  * 
  */

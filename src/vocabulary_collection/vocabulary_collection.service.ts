@@ -61,7 +61,7 @@ export class VocabularyCollectionService {
         try {
             const result = await this.prismaService.vocabularyCollection.findUnique({
                 where: { id: body.id, ownerId: userId },
-                include: { language: true }
+                include: { language: true, words: true }
             })
             return result
         } catch {
@@ -78,6 +78,15 @@ export class VocabularyCollectionService {
         } catch (error) {
             throw new InternalServerErrorException({ message: "Fail to check collection ownership" })
 
+        }
+    }
+
+    async getAllCollectionsByUserId(userId: string) {
+        try {
+            const result = await this.prismaService.vocabularyCollection.findMany({ where: { ownerId: userId }, include: { language: true, words: true } })
+            return result;
+        } catch (error) {
+            throw new InternalServerErrorException({ message: "Fail to get all user collections", code: INTERNAL_SERVER_ERROR })
         }
     }
 }

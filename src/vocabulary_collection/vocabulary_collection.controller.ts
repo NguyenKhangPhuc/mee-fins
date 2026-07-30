@@ -12,12 +12,20 @@ import { CollectionUpdationDto } from './dto/collection-updation.dto';
 export class VocabularyCollectionController {
     constructor(private readonly collectionService: VocabularyCollectionService) { }
 
+    @Get('user')
+    @UseGuards(JwtAuthGuard)
+    async getAllCollectionByUserId(@CurrentUser() user: SafeUser) {
+        const result = await this.collectionService.getAllCollectionsByUserId(user.id)
+        return result;
+    }
+
     @Get(':id')
     @UseGuards(JwtAuthGuard)
     async getSingleCollectionWithWords(@CurrentUser() user: SafeUser, @Param() params: CollectionIdQueryDto) {
         const result = await this.collectionService.getSingleCollectionWithWords(params, user.id)
         return result
     }
+
 
     @Post('create')
     @UseGuards(JwtAuthGuard)

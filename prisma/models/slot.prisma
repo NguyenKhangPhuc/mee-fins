@@ -25,6 +25,7 @@ model Slot {
     createdAt       DateTime         @default(now())
     updatedAt       DateTime         @updatedAt
     vocabularyWords VocabularyWord[] @relation("SlotWords")
+    slotRatings     SlotRating[]     @relation("SlotRating")
 
     @@index([startTime, status])
     @@map("slots")

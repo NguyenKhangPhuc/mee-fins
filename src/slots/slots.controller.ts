@@ -19,18 +19,20 @@ export class SlotsController {
         return this.slotsService.getAllSlotsByUserId(params.userId);
     }
 
-    @Get(':slotId')
-    @UseGuards(JwtAuthGuard)
-    async getSlotBySlotId(@CurrentUser() user: SafeUser, @Param() params: SingleSlotDto) {
-        return this.slotsService.getSingleSlotBySlotAndUserId(params.slotId, user.id);
-    }
-
     @Get('current')
     @UseGuards(JwtAuthGuard)
     async getCurrentDBTime() {
         const dbNow = await this.slotsService.getDbNow();
         return { serverNow: dbNow.getTime() }
     }
+
+
+    @Get(':slotId')
+    @UseGuards(JwtAuthGuard)
+    async getSlotBySlotId(@CurrentUser() user: SafeUser, @Param() params: SingleSlotDto) {
+        return this.slotsService.getSingleSlotBySlotAndUserId(params.slotId, user.id);
+    }
+
 
     @Post('create')
     @UseGuards(JwtAuthGuard)

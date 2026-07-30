@@ -309,6 +309,8 @@ export type ProfileWhereInput = {
   provideSlots?: Prisma.SlotListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   vocabularyCollections?: Prisma.VocabularyCollectionListRelationFilter
+  ratingsGiven?: Prisma.SlotRatingListRelationFilter
+  ratingsReceived?: Prisma.SlotRatingListRelationFilter
 }
 
 export type ProfileOrderByWithRelationInput = {
@@ -333,6 +335,8 @@ export type ProfileOrderByWithRelationInput = {
   provideSlots?: Prisma.SlotOrderByRelationAggregateInput
   exchangeSlots?: Prisma.SlotOrderByRelationAggregateInput
   vocabularyCollections?: Prisma.VocabularyCollectionOrderByRelationAggregateInput
+  ratingsGiven?: Prisma.SlotRatingOrderByRelationAggregateInput
+  ratingsReceived?: Prisma.SlotRatingOrderByRelationAggregateInput
 }
 
 export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -360,6 +364,8 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   provideSlots?: Prisma.SlotListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   vocabularyCollections?: Prisma.VocabularyCollectionListRelationFilter
+  ratingsGiven?: Prisma.SlotRatingListRelationFilter
+  ratingsReceived?: Prisma.SlotRatingListRelationFilter
 }, "id" | "email">
 
 export type ProfileOrderByWithAggregationInput = {
@@ -429,6 +435,8 @@ export type ProfileCreateInput = {
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateInput = {
@@ -452,6 +460,8 @@ export type ProfileUncheckedCreateInput = {
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUpdateInput = {
@@ -475,6 +485,8 @@ export type ProfileUpdateInput = {
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateInput = {
@@ -498,6 +510,8 @@ export type ProfileUncheckedUpdateInput = {
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileCreateManyInput = {
@@ -705,6 +719,34 @@ export type ProfileUpdateOneWithoutExchangeSlotsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutExchangeSlotsInput, Prisma.ProfileUpdateWithoutExchangeSlotsInput>, Prisma.ProfileUncheckedUpdateWithoutExchangeSlotsInput>
 }
 
+export type ProfileCreateNestedOneWithoutRatingsGivenInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsGivenInput, Prisma.ProfileUncheckedCreateWithoutRatingsGivenInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutRatingsGivenInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileCreateNestedOneWithoutRatingsReceivedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedCreateWithoutRatingsReceivedInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutRatingsReceivedInput
+  connect?: Prisma.ProfileWhereUniqueInput
+}
+
+export type ProfileUpdateOneRequiredWithoutRatingsGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsGivenInput, Prisma.ProfileUncheckedCreateWithoutRatingsGivenInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutRatingsGivenInput
+  upsert?: Prisma.ProfileUpsertWithoutRatingsGivenInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutRatingsGivenInput, Prisma.ProfileUpdateWithoutRatingsGivenInput>, Prisma.ProfileUncheckedUpdateWithoutRatingsGivenInput>
+}
+
+export type ProfileUpdateOneRequiredWithoutRatingsReceivedNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedCreateWithoutRatingsReceivedInput>
+  connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutRatingsReceivedInput
+  upsert?: Prisma.ProfileUpsertWithoutRatingsReceivedInput
+  connect?: Prisma.ProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfileUpdateToOneWithWhereWithoutRatingsReceivedInput, Prisma.ProfileUpdateWithoutRatingsReceivedInput>, Prisma.ProfileUncheckedUpdateWithoutRatingsReceivedInput>
+}
+
 export type ProfileCreateNestedOneWithoutUserlanguageInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutUserlanguageInput, Prisma.ProfileUncheckedCreateWithoutUserlanguageInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutUserlanguageInput
@@ -753,6 +795,8 @@ export type ProfileCreateWithoutUserInput = {
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateWithoutUserInput = {
@@ -775,6 +819,8 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileCreateOrConnectWithoutUserInput = {
@@ -813,6 +859,8 @@ export type ProfileUpdateWithoutUserInput = {
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutUserInput = {
@@ -835,6 +883,8 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileCreateWithoutProvideSlotsInput = {
@@ -857,6 +907,8 @@ export type ProfileCreateWithoutProvideSlotsInput = {
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateWithoutProvideSlotsInput = {
@@ -879,6 +931,8 @@ export type ProfileUncheckedCreateWithoutProvideSlotsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileCreateOrConnectWithoutProvideSlotsInput = {
@@ -906,6 +960,8 @@ export type ProfileCreateWithoutExchangeSlotsInput = {
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateWithoutExchangeSlotsInput = {
@@ -928,6 +984,8 @@ export type ProfileUncheckedCreateWithoutExchangeSlotsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileCreateOrConnectWithoutExchangeSlotsInput = {
@@ -966,6 +1024,8 @@ export type ProfileUpdateWithoutProvideSlotsInput = {
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutProvideSlotsInput = {
@@ -988,6 +1048,8 @@ export type ProfileUncheckedUpdateWithoutProvideSlotsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUpsertWithoutExchangeSlotsInput = {
@@ -1021,6 +1083,8 @@ export type ProfileUpdateWithoutExchangeSlotsInput = {
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutExchangeSlotsInput = {
@@ -1043,6 +1107,232 @@ export type ProfileUncheckedUpdateWithoutExchangeSlotsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
+}
+
+export type ProfileCreateWithoutRatingsGivenInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  companyName?: string | null
+  age?: number | null
+  programme?: string | null
+  university?: string | null
+  degree?: string | null
+  instagram?: string | null
+  facebook?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
+  provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
+  exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
+}
+
+export type ProfileUncheckedCreateWithoutRatingsGivenInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  companyName?: string | null
+  age?: number | null
+  programme?: string | null
+  university?: string | null
+  degree?: string | null
+  instagram?: string | null
+  facebook?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
+  provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
+  exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
+}
+
+export type ProfileCreateOrConnectWithoutRatingsGivenInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsGivenInput, Prisma.ProfileUncheckedCreateWithoutRatingsGivenInput>
+}
+
+export type ProfileCreateWithoutRatingsReceivedInput = {
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  companyName?: string | null
+  age?: number | null
+  programme?: string | null
+  university?: string | null
+  degree?: string | null
+  instagram?: string | null
+  facebook?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutProfileInput
+  userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
+  provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
+  exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
+  vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+}
+
+export type ProfileUncheckedCreateWithoutRatingsReceivedInput = {
+  id: string
+  fullName?: string | null
+  email: string
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  companyName?: string | null
+  age?: number | null
+  programme?: string | null
+  university?: string | null
+  degree?: string | null
+  instagram?: string | null
+  facebook?: string | null
+  linkedIn?: string | null
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
+  provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
+  exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+}
+
+export type ProfileCreateOrConnectWithoutRatingsReceivedInput = {
+  where: Prisma.ProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedCreateWithoutRatingsReceivedInput>
+}
+
+export type ProfileUpsertWithoutRatingsGivenInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutRatingsGivenInput, Prisma.ProfileUncheckedUpdateWithoutRatingsGivenInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsGivenInput, Prisma.ProfileUncheckedCreateWithoutRatingsGivenInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutRatingsGivenInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutRatingsGivenInput, Prisma.ProfileUncheckedUpdateWithoutRatingsGivenInput>
+}
+
+export type ProfileUpdateWithoutRatingsGivenInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  programme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
+  provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
+  exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutRatingsGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  programme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
+  provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
+  exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
+}
+
+export type ProfileUpsertWithoutRatingsReceivedInput = {
+  update: Prisma.XOR<Prisma.ProfileUpdateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedUpdateWithoutRatingsReceivedInput>
+  create: Prisma.XOR<Prisma.ProfileCreateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedCreateWithoutRatingsReceivedInput>
+  where?: Prisma.ProfileWhereInput
+}
+
+export type ProfileUpdateToOneWithWhereWithoutRatingsReceivedInput = {
+  where?: Prisma.ProfileWhereInput
+  data: Prisma.XOR<Prisma.ProfileUpdateWithoutRatingsReceivedInput, Prisma.ProfileUncheckedUpdateWithoutRatingsReceivedInput>
+}
+
+export type ProfileUpdateWithoutRatingsReceivedInput = {
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  programme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
+  userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
+  provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
+  exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+}
+
+export type ProfileUncheckedUpdateWithoutRatingsReceivedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  programme?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagram?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebook?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  linkedIn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
+  provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
+  exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
+  vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
 }
 
 export type ProfileCreateWithoutUserlanguageInput = {
@@ -1065,6 +1355,8 @@ export type ProfileCreateWithoutUserlanguageInput = {
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateWithoutUserlanguageInput = {
@@ -1087,6 +1379,8 @@ export type ProfileUncheckedCreateWithoutUserlanguageInput = {
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileCreateOrConnectWithoutUserlanguageInput = {
@@ -1125,6 +1419,8 @@ export type ProfileUpdateWithoutUserlanguageInput = {
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutUserlanguageInput = {
@@ -1147,6 +1443,8 @@ export type ProfileUncheckedUpdateWithoutUserlanguageInput = {
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileCreateWithoutVocabularyCollectionsInput = {
@@ -1169,6 +1467,8 @@ export type ProfileCreateWithoutVocabularyCollectionsInput = {
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
+  ratingsGiven?: Prisma.SlotRatingCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileUncheckedCreateWithoutVocabularyCollectionsInput = {
@@ -1191,6 +1491,8 @@ export type ProfileUncheckedCreateWithoutVocabularyCollectionsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRaterInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedCreateNestedManyWithoutRatedUserInput
 }
 
 export type ProfileCreateOrConnectWithoutVocabularyCollectionsInput = {
@@ -1229,6 +1531,8 @@ export type ProfileUpdateWithoutVocabularyCollectionsInput = {
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
+  ratingsGiven?: Prisma.SlotRatingUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUpdateManyWithoutRatedUserNestedInput
 }
 
 export type ProfileUncheckedUpdateWithoutVocabularyCollectionsInput = {
@@ -1251,6 +1555,8 @@ export type ProfileUncheckedUpdateWithoutVocabularyCollectionsInput = {
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
+  ratingsGiven?: Prisma.SlotRatingUncheckedUpdateManyWithoutRaterNestedInput
+  ratingsReceived?: Prisma.SlotRatingUncheckedUpdateManyWithoutRatedUserNestedInput
 }
 
 
@@ -1263,6 +1569,8 @@ export type ProfileCountOutputType = {
   provideSlots: number
   exchangeSlots: number
   vocabularyCollections: number
+  ratingsGiven: number
+  ratingsReceived: number
 }
 
 export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1270,6 +1578,8 @@ export type ProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extension
   provideSlots?: boolean | ProfileCountOutputTypeCountProvideSlotsArgs
   exchangeSlots?: boolean | ProfileCountOutputTypeCountExchangeSlotsArgs
   vocabularyCollections?: boolean | ProfileCountOutputTypeCountVocabularyCollectionsArgs
+  ratingsGiven?: boolean | ProfileCountOutputTypeCountRatingsGivenArgs
+  ratingsReceived?: boolean | ProfileCountOutputTypeCountRatingsReceivedArgs
 }
 
 /**
@@ -1310,6 +1620,20 @@ export type ProfileCountOutputTypeCountVocabularyCollectionsArgs<ExtArgs extends
   where?: Prisma.VocabularyCollectionWhereInput
 }
 
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountRatingsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SlotRatingWhereInput
+}
+
+/**
+ * ProfileCountOutputType without action
+ */
+export type ProfileCountOutputTypeCountRatingsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SlotRatingWhereInput
+}
+
 
 export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1333,6 +1657,8 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   provideSlots?: boolean | Prisma.Profile$provideSlotsArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Profile$exchangeSlotsArgs<ExtArgs>
   vocabularyCollections?: boolean | Prisma.Profile$vocabularyCollectionsArgs<ExtArgs>
+  ratingsGiven?: boolean | Prisma.Profile$ratingsGivenArgs<ExtArgs>
+  ratingsReceived?: boolean | Prisma.Profile$ratingsReceivedArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1402,6 +1728,8 @@ export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   provideSlots?: boolean | Prisma.Profile$provideSlotsArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Profile$exchangeSlotsArgs<ExtArgs>
   vocabularyCollections?: boolean | Prisma.Profile$vocabularyCollectionsArgs<ExtArgs>
+  ratingsGiven?: boolean | Prisma.Profile$ratingsGivenArgs<ExtArgs>
+  ratingsReceived?: boolean | Prisma.Profile$ratingsReceivedArgs<ExtArgs>
   _count?: boolean | Prisma.ProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1419,6 +1747,8 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     provideSlots: Prisma.$SlotPayload<ExtArgs>[]
     exchangeSlots: Prisma.$SlotPayload<ExtArgs>[]
     vocabularyCollections: Prisma.$VocabularyCollectionPayload<ExtArgs>[]
+    ratingsGiven: Prisma.$SlotRatingPayload<ExtArgs>[]
+    ratingsReceived: Prisma.$SlotRatingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1836,6 +2166,8 @@ export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends runtime.
   provideSlots<T extends Prisma.Profile$provideSlotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$provideSlotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   exchangeSlots<T extends Prisma.Profile$exchangeSlotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$exchangeSlotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   vocabularyCollections<T extends Prisma.Profile$vocabularyCollectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$vocabularyCollectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VocabularyCollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ratingsGiven<T extends Prisma.Profile$ratingsGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$ratingsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ratingsReceived<T extends Prisma.Profile$ratingsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profile$ratingsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SlotRatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2375,6 +2707,54 @@ export type Profile$vocabularyCollectionsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.VocabularyCollectionScalarFieldEnum | Prisma.VocabularyCollectionScalarFieldEnum[]
+}
+
+/**
+ * Profile.ratingsGiven
+ */
+export type Profile$ratingsGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SlotRating
+   */
+  select?: Prisma.SlotRatingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SlotRating
+   */
+  omit?: Prisma.SlotRatingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SlotRatingInclude<ExtArgs> | null
+  where?: Prisma.SlotRatingWhereInput
+  orderBy?: Prisma.SlotRatingOrderByWithRelationInput | Prisma.SlotRatingOrderByWithRelationInput[]
+  cursor?: Prisma.SlotRatingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SlotRatingScalarFieldEnum | Prisma.SlotRatingScalarFieldEnum[]
+}
+
+/**
+ * Profile.ratingsReceived
+ */
+export type Profile$ratingsReceivedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SlotRating
+   */
+  select?: Prisma.SlotRatingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SlotRating
+   */
+  omit?: Prisma.SlotRatingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SlotRatingInclude<ExtArgs> | null
+  where?: Prisma.SlotRatingWhereInput
+  orderBy?: Prisma.SlotRatingOrderByWithRelationInput | Prisma.SlotRatingOrderByWithRelationInput[]
+  cursor?: Prisma.SlotRatingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SlotRatingScalarFieldEnum | Prisma.SlotRatingScalarFieldEnum[]
 }
 
 /**
