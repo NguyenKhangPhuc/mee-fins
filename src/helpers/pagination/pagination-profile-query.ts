@@ -2,7 +2,7 @@ import { Prisma } from "src/generated/prisma/client";
 import { SlotStatus } from "src/generated/prisma/enums";
 
 export const getProfileRawQuery = (today: Date, currentUserId: string, limit: number, skip: number | string): Prisma.Sql => {
-    return Prisma.sql`
+  return Prisma.sql`
   SELECT
     p.id,
     p."fullName",
@@ -40,6 +40,7 @@ export const getProfileRawQuery = (today: Date, currentUserId: string, limit: nu
           'ratedUserId', rated_user_id,
           'rating', rating,
           'feedback', feedback,
+          'displayName', display_name,
           'createdAt', created_at
         )
       ) as ratings_received

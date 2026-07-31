@@ -7,7 +7,8 @@ export const RatingUpdationSchema = z.object({
     raterId: z.uuid({ message: "Invalid user id" }),
     ratedUserId: z.uuid({ message: "Invalid rated user id" }),
     rating: z.number().int({ message: "Invalid rating 1-5" }).min(1, { message: "Min rating is 1" }).max(5, { message: "Max rating is 5" }),
-    feedback: z.string({ message: "Feed back is required" })
+    feedback: z.string({ message: "Feed back is required" }),
+    displayName: z.string({ message: "Display name is required" })
 })
 
 export class RatingUpdationDto extends createZodDto(RatingUpdationSchema) { }

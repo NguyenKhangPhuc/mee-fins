@@ -39,6 +39,7 @@ export type SlotRatingMinAggregateOutputType = {
   slotId: string | null
   raterId: string | null
   ratedUserId: string | null
+  displayName: string | null
   rating: number | null
   feedback: string | null
   createdAt: Date | null
@@ -49,6 +50,7 @@ export type SlotRatingMaxAggregateOutputType = {
   slotId: string | null
   raterId: string | null
   ratedUserId: string | null
+  displayName: string | null
   rating: number | null
   feedback: string | null
   createdAt: Date | null
@@ -59,6 +61,7 @@ export type SlotRatingCountAggregateOutputType = {
   slotId: number
   raterId: number
   ratedUserId: number
+  displayName: number
   rating: number
   feedback: number
   createdAt: number
@@ -79,6 +82,7 @@ export type SlotRatingMinAggregateInputType = {
   slotId?: true
   raterId?: true
   ratedUserId?: true
+  displayName?: true
   rating?: true
   feedback?: true
   createdAt?: true
@@ -89,6 +93,7 @@ export type SlotRatingMaxAggregateInputType = {
   slotId?: true
   raterId?: true
   ratedUserId?: true
+  displayName?: true
   rating?: true
   feedback?: true
   createdAt?: true
@@ -99,6 +104,7 @@ export type SlotRatingCountAggregateInputType = {
   slotId?: true
   raterId?: true
   ratedUserId?: true
+  displayName?: true
   rating?: true
   feedback?: true
   createdAt?: true
@@ -196,6 +202,7 @@ export type SlotRatingGroupByOutputType = {
   slotId: string
   raterId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback: string | null
   createdAt: Date
@@ -229,6 +236,7 @@ export type SlotRatingWhereInput = {
   slotId?: Prisma.UuidFilter<"SlotRating"> | string
   raterId?: Prisma.UuidFilter<"SlotRating"> | string
   ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
+  displayName?: Prisma.StringFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string
@@ -242,6 +250,7 @@ export type SlotRatingOrderByWithRelationInput = {
   slotId?: Prisma.SortOrder
   raterId?: Prisma.SortOrder
   ratedUserId?: Prisma.SortOrder
+  displayName?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   feedback?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -259,6 +268,7 @@ export type SlotRatingWhereUniqueInput = Prisma.AtLeast<{
   slotId?: Prisma.UuidFilter<"SlotRating"> | string
   raterId?: Prisma.UuidFilter<"SlotRating"> | string
   ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
+  displayName?: Prisma.StringFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string
@@ -272,6 +282,7 @@ export type SlotRatingOrderByWithAggregationInput = {
   slotId?: Prisma.SortOrder
   raterId?: Prisma.SortOrder
   ratedUserId?: Prisma.SortOrder
+  displayName?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   feedback?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -290,6 +301,7 @@ export type SlotRatingScalarWhereWithAggregatesInput = {
   slotId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
   raterId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
   ratedUserId?: Prisma.UuidWithAggregatesFilter<"SlotRating"> | string
+  displayName?: Prisma.StringWithAggregatesFilter<"SlotRating"> | string
   rating?: Prisma.IntWithAggregatesFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableWithAggregatesFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"SlotRating"> | Date | string
@@ -297,6 +309,7 @@ export type SlotRatingScalarWhereWithAggregatesInput = {
 
 export type SlotRatingCreateInput = {
   id?: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -310,6 +323,7 @@ export type SlotRatingUncheckedCreateInput = {
   slotId: string
   raterId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -317,6 +331,7 @@ export type SlotRatingUncheckedCreateInput = {
 
 export type SlotRatingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -330,6 +345,7 @@ export type SlotRatingUncheckedUpdateInput = {
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -340,6 +356,7 @@ export type SlotRatingCreateManyInput = {
   slotId: string
   raterId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -347,6 +364,7 @@ export type SlotRatingCreateManyInput = {
 
 export type SlotRatingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -357,6 +375,7 @@ export type SlotRatingUncheckedUpdateManyInput = {
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -383,6 +402,7 @@ export type SlotRatingCountOrderByAggregateInput = {
   slotId?: Prisma.SortOrder
   raterId?: Prisma.SortOrder
   ratedUserId?: Prisma.SortOrder
+  displayName?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   feedback?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -397,6 +417,7 @@ export type SlotRatingMaxOrderByAggregateInput = {
   slotId?: Prisma.SortOrder
   raterId?: Prisma.SortOrder
   ratedUserId?: Prisma.SortOrder
+  displayName?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   feedback?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -407,6 +428,7 @@ export type SlotRatingMinOrderByAggregateInput = {
   slotId?: Prisma.SortOrder
   raterId?: Prisma.SortOrder
   ratedUserId?: Prisma.SortOrder
+  displayName?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   feedback?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -544,6 +566,7 @@ export type SlotRatingUncheckedUpdateManyWithoutSlotNestedInput = {
 
 export type SlotRatingCreateWithoutRaterInput = {
   id?: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -555,6 +578,7 @@ export type SlotRatingUncheckedCreateWithoutRaterInput = {
   id?: string
   slotId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -572,6 +596,7 @@ export type SlotRatingCreateManyRaterInputEnvelope = {
 
 export type SlotRatingCreateWithoutRatedUserInput = {
   id?: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -583,6 +608,7 @@ export type SlotRatingUncheckedCreateWithoutRatedUserInput = {
   id?: string
   slotId: string
   raterId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -622,6 +648,7 @@ export type SlotRatingScalarWhereInput = {
   slotId?: Prisma.UuidFilter<"SlotRating"> | string
   raterId?: Prisma.UuidFilter<"SlotRating"> | string
   ratedUserId?: Prisma.UuidFilter<"SlotRating"> | string
+  displayName?: Prisma.StringFilter<"SlotRating"> | string
   rating?: Prisma.IntFilter<"SlotRating"> | number
   feedback?: Prisma.StringNullableFilter<"SlotRating"> | string | null
   createdAt?: Prisma.DateTimeFilter<"SlotRating"> | Date | string
@@ -645,6 +672,7 @@ export type SlotRatingUpdateManyWithWhereWithoutRatedUserInput = {
 
 export type SlotRatingCreateWithoutSlotInput = {
   id?: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -656,6 +684,7 @@ export type SlotRatingUncheckedCreateWithoutSlotInput = {
   id?: string
   raterId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -691,6 +720,7 @@ export type SlotRatingCreateManyRaterInput = {
   id?: string
   slotId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -700,6 +730,7 @@ export type SlotRatingCreateManyRatedUserInput = {
   id?: string
   slotId: string
   raterId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -707,6 +738,7 @@ export type SlotRatingCreateManyRatedUserInput = {
 
 export type SlotRatingUpdateWithoutRaterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -718,6 +750,7 @@ export type SlotRatingUncheckedUpdateWithoutRaterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -727,6 +760,7 @@ export type SlotRatingUncheckedUpdateManyWithoutRaterInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -734,6 +768,7 @@ export type SlotRatingUncheckedUpdateManyWithoutRaterInput = {
 
 export type SlotRatingUpdateWithoutRatedUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -745,6 +780,7 @@ export type SlotRatingUncheckedUpdateWithoutRatedUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -754,6 +790,7 @@ export type SlotRatingUncheckedUpdateManyWithoutRatedUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   slotId?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -763,6 +800,7 @@ export type SlotRatingCreateManySlotInput = {
   id?: string
   raterId: string
   ratedUserId: string
+  displayName: string
   rating: number
   feedback?: string | null
   createdAt?: Date | string
@@ -770,6 +808,7 @@ export type SlotRatingCreateManySlotInput = {
 
 export type SlotRatingUpdateWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -781,6 +820,7 @@ export type SlotRatingUncheckedUpdateWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -790,6 +830,7 @@ export type SlotRatingUncheckedUpdateManyWithoutSlotInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   raterId?: Prisma.StringFieldUpdateOperationsInput | string
   ratedUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   feedback?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -802,6 +843,7 @@ export type SlotRatingSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   slotId?: boolean
   raterId?: boolean
   ratedUserId?: boolean
+  displayName?: boolean
   rating?: boolean
   feedback?: boolean
   createdAt?: boolean
@@ -815,6 +857,7 @@ export type SlotRatingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   slotId?: boolean
   raterId?: boolean
   ratedUserId?: boolean
+  displayName?: boolean
   rating?: boolean
   feedback?: boolean
   createdAt?: boolean
@@ -828,6 +871,7 @@ export type SlotRatingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   slotId?: boolean
   raterId?: boolean
   ratedUserId?: boolean
+  displayName?: boolean
   rating?: boolean
   feedback?: boolean
   createdAt?: boolean
@@ -841,12 +885,13 @@ export type SlotRatingSelectScalar = {
   slotId?: boolean
   raterId?: boolean
   ratedUserId?: boolean
+  displayName?: boolean
   rating?: boolean
   feedback?: boolean
   createdAt?: boolean
 }
 
-export type SlotRatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slotId" | "raterId" | "ratedUserId" | "rating" | "feedback" | "createdAt", ExtArgs["result"]["slotRating"]>
+export type SlotRatingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slotId" | "raterId" | "ratedUserId" | "displayName" | "rating" | "feedback" | "createdAt", ExtArgs["result"]["slotRating"]>
 export type SlotRatingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   slot?: boolean | Prisma.SlotDefaultArgs<ExtArgs>
   rater?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
@@ -875,6 +920,7 @@ export type $SlotRatingPayload<ExtArgs extends runtime.Types.Extensions.Internal
     slotId: string
     raterId: string
     ratedUserId: string
+    displayName: string
     rating: number
     feedback: string | null
     createdAt: Date
@@ -1308,6 +1354,7 @@ export interface SlotRatingFieldRefs {
   readonly slotId: Prisma.FieldRef<"SlotRating", 'String'>
   readonly raterId: Prisma.FieldRef<"SlotRating", 'String'>
   readonly ratedUserId: Prisma.FieldRef<"SlotRating", 'String'>
+  readonly displayName: Prisma.FieldRef<"SlotRating", 'String'>
   readonly rating: Prisma.FieldRef<"SlotRating", 'Int'>
   readonly feedback: Prisma.FieldRef<"SlotRating", 'String'>
   readonly createdAt: Prisma.FieldRef<"SlotRating", 'DateTime'>

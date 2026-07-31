@@ -1289,6 +1289,7 @@ export const SlotRatingScalarFieldEnum = {
   slotId: 'slotId',
   raterId: 'raterId',
   ratedUserId: 'ratedUserId',
+  displayName: 'displayName',
   rating: 'rating',
   feedback: 'feedback',
   createdAt: 'createdAt'
