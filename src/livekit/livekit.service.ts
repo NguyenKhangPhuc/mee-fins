@@ -5,6 +5,7 @@ import { SlotsService } from 'src/slots/slots.service';
 import { SLOT_ALREADY_ENDED, SLOT_NOT_PARTICIPATED_ERROR, SLOT_NOT_STARTED } from 'src/constants/error-code';
 import { TokenCreationDto } from './dto/token-creation.dto';
 import { ConfigService } from '@nestjs/config';
+import { SlotStatus } from 'src/generated/prisma/enums';
 @Injectable()
 export class LivekitService {
     private roomService: RoomServiceClient;
@@ -22,7 +23,7 @@ export class LivekitService {
 
 
     async generateToken(body: TokenCreationDto, userId: string): Promise<string> {
-        const slot = await this.slotService.isSlotParticipatedByUser(body.slotId, userId);
+        const slot = await this.slotService.isSlotParticipatedByUser(body.slotId, userId, SlotStatus.BOOKED);
         if (!slot) {
             throw new UnauthorizedException({
                 message: 'You are not authorized to access this slot',

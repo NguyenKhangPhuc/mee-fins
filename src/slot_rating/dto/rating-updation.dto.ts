@@ -1,7 +1,8 @@
 import { createZodDto } from "nestjs-zod";
 import z from "zod";
 
-export const RatingCreationSchema = z.object({
+export const RatingUpdationSchema = z.object({
+    id: z.uuid({ message: "Invalid rating id" }),
     slotId: z.uuid({ message: "Invalid slot id" }),
     raterId: z.uuid({ message: "Invalid user id" }),
     ratedUserId: z.uuid({ message: "Invalid rated user id" }),
@@ -9,4 +10,4 @@ export const RatingCreationSchema = z.object({
     feedback: z.string({ message: "Feed back is required" })
 })
 
-export class RatingCreationDto extends createZodDto(RatingCreationSchema) { }
+export class RatingUpdationDto extends createZodDto(RatingUpdationSchema) { }

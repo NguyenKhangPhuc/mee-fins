@@ -10,6 +10,11 @@ import { RoomServiceClient } from 'livekit-server-sdk';
 import { livekitApiKey, livekitApiSecret, livekitUrl } from 'src/utils/config';
 import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
+import { PaginationDto } from 'src/helpers/pagination/dto/pagination.dto';
+import { SlotPaginationDto } from './dto/slot-pagination.dto';
+import { getPaginationParams } from 'src/helpers/pagination/parsing-pagination-query';
+import { paginate } from 'src/helpers/pagination/parseing-pagination-result';
+import { SlotCreateInput } from 'src/generated/prisma/models';
 
 @Injectable()
 export class SlotsService {
@@ -26,20 +31,44 @@ export class SlotsService {
         );
     }
 
-    async getAllSlotsByUserId(userId: string) {
+    async getAllSlotsByUserId(userId: string, query: SlotPaginationDto) {
+        const { page, limit, skip } = getPaginationParams(query)
+        const { status, order } = query;
+
         try {
-            const slots = await this.prisma.slot.findMany({
-                where: {
-                    OR: [
-                        { ownerId: userId },
-                        { exchangeUserId: userId }
-                    ]
-                },
-                orderBy: {
-                    startTime: 'asc'
-                }
-            })
-            return slots;
+            const [slots, total] = await this.prisma.$transaction([
+                this.prisma.slot.findMany({
+                    where: {
+                        OR: [
+                            { ownerId: userId },
+                            { exchangeUserId: userId },
+                        ],
+                        ...(status && { status }),
+                    },
+                    include: {
+                        slotRatings: true,
+                        owner: true,
+                        exchangeUser: true,
+                        provideLanguage: true,
+                        exchangeLanguage: true
+                    },
+                    orderBy: {
+                        startTime: order ?? 'asc',
+                    },
+                    skip,
+                    take: limit,
+                }),
+                this.prisma.slot.count({
+                    where: {
+                        OR: [
+                            { ownerId: userId },
+                            { exchangeUserId: userId },
+                        ],
+                        ...(status && { status }),
+                    },
+                }),
+            ]);
+            return paginate(slots, total, page, limit)
         } catch {
 
             throw new InternalServerErrorException({
@@ -130,7 +159,7 @@ export class SlotsService {
         }
     }
 
-    async isSlotParticipatedByUser(slotId: string, userId: string) {
+    async isSlotParticipatedByUser(slotId: string, userId: string, status: SlotStatus) {
         try {
             const slot = await this.prisma.slot.findFirst({
                 where: {
@@ -139,7 +168,7 @@ export class SlotsService {
                         { ownerId: userId },
                         { exchangeUserId: userId }
                     ],
-                    status: SlotStatus.BOOKED
+                    status
                 }
             })
             return slot;
@@ -178,13 +207,14 @@ export class SlotsService {
 
     async updateSlotStatus(slotId: string, status: SlotStatus) {
         try {
+            if (status == SlotStatus.CANCELLED || status == SlotStatus.COMPLETED) {
+                await this.timeoutQueue.remove(`timeout-${slotId}`);
+            }
             const slot = await this.prisma.slot.update({
                 where: { id: slotId },
                 data: { status }
             })
-            if (status == SlotStatus.CANCELLED) {
-                await this.timeoutQueue.remove(`timeout-${slotId}`);
-            }
+
             return slot;
         } catch {
             throw new InternalServerErrorException({
@@ -220,6 +250,21 @@ export class SlotsService {
             });
         }
     }
+
+
+    async checkSlotStatus(slotId: string, status: SlotStatus) {
+        try {
+            const result = await this.prisma.slot.findUnique({
+                where: { id: slotId, status: status }
+            })
+            return !!result;
+        } catch {
+            throw new InternalServerErrorException({
+                message: 'Fail to find slot with status',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
     async forceEndMeeting(roomName: string) {
         try {
             await this.roomService.deleteRoom(roomName);
@@ -227,13 +272,15 @@ export class SlotsService {
 
         } catch (err: any) {
             const isRoomNotFound = err?.code === 'not_found' || err?.status === 404;
-
-            if (isRoomNotFound) {
-                console.warn(`Room ${roomName} was never opened, closing slot directly`);
-                await this.updateSlotStatus(roomName, SlotStatus.CANCELLED);
-            } else {
-                console.error(`Failed to delete room ${roomName}: ${err?.message}`);
-                throw err;
+            const isRoomCompleted = await this.checkSlotStatus(roomName, SlotStatus.COMPLETED);
+            if (!isRoomCompleted) {
+                if (isRoomNotFound) {
+                    console.warn(`Room ${roomName} was never opened, closing slot directly`);
+                    await this.updateSlotStatus(roomName, SlotStatus.CANCELLED);
+                } else {
+                    console.error(`Failed to delete room ${roomName}: ${err?.message}`);
+                    throw err;
+                }
             }
             console.warn(`Room ${roomName} already closed: ${err instanceof Error && err.message}`);
         }
