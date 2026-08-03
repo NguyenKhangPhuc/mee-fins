@@ -12,10 +12,16 @@ import { SingleSlotDto } from './dto/slot-get-single';
 import { PaginationDto } from 'src/helpers/pagination/dto/pagination.dto';
 import { SlotPaginationDto } from './dto/slot-pagination.dto';
 import { SlotStatus } from 'src/generated/prisma/enums';
+import { EmailService } from 'src/email/email.service';
+import getSlotBookedEmailTemplate from 'src/helpers/email/slot-booked-template';
+import { formatToUserTimezone } from 'src/helpers/timezone-formatter';
 
 @Controller('slots')
 export class SlotsController {
-    constructor(private readonly slotsService: SlotsService) { }
+    constructor(
+        private readonly slotsService: SlotsService,
+        private readonly emailService: EmailService,
+    ) { }
     @Get('user')
     @UseGuards(JwtAuthGuard)
     async getAllSlotsByUserId(@CurrentUser() user: SafeUser, @Query() query: SlotPaginationDto) {
@@ -65,6 +71,23 @@ export class SlotsController {
     @Post('book')
     @UseGuards(JwtAuthGuard)
     async bookUserSlot(@Body() body: SlotExchangeUpdationDto) {
-        return this.slotsService.updateSlotExchangeUser(body);
+        const slot = await this.slotsService.updateSlotExchangeUser(body);
+        if (slot && slot.owner?.email) {
+            await this.emailService.send(
+                slot.owner.email,
+                'MeeFins - Your slot has been booked!',
+                getSlotBookedEmailTemplate({
+                    slotTitle: slot.title,
+                    ownerName: slot.owner.fullName ?? '---',
+                    exchangeUserName: slot.exchangeUser?.fullName ?? '---',
+                    provideLang: slot.provideLanguage.name,
+                    exchangeLang: slot.exchangeLanguage.name,
+                    duration: slot.durationMinutes,
+                    startTime: formatToUserTimezone(slot.startTime, slot.owner.timezone),
+                    endTime: formatToUserTimezone(slot.endTime, slot.owner.timezone)
+                })
+            );
+        }
+        return slot;
     }
 }

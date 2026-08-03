@@ -51,6 +51,7 @@ export type ProfileMinAggregateOutputType = {
   description: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  timezone: string | null
 }
 
 export type ProfileMaxAggregateOutputType = {
@@ -70,6 +71,7 @@ export type ProfileMaxAggregateOutputType = {
   description: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  timezone: string | null
 }
 
 export type ProfileCountAggregateOutputType = {
@@ -89,6 +91,7 @@ export type ProfileCountAggregateOutputType = {
   description: number
   createdAt: number
   updatedAt: number
+  timezone: number
   _all: number
 }
 
@@ -118,6 +121,7 @@ export type ProfileMinAggregateInputType = {
   description?: true
   createdAt?: true
   updatedAt?: true
+  timezone?: true
 }
 
 export type ProfileMaxAggregateInputType = {
@@ -137,6 +141,7 @@ export type ProfileMaxAggregateInputType = {
   description?: true
   createdAt?: true
   updatedAt?: true
+  timezone?: true
 }
 
 export type ProfileCountAggregateInputType = {
@@ -156,6 +161,7 @@ export type ProfileCountAggregateInputType = {
   description?: true
   createdAt?: true
   updatedAt?: true
+  timezone?: true
   _all?: true
 }
 
@@ -262,6 +268,7 @@ export type ProfileGroupByOutputType = {
   description: string | null
   createdAt: Date
   updatedAt: Date
+  timezone: string
   _count: ProfileCountAggregateOutputType | null
   _avg: ProfileAvgAggregateOutputType | null
   _sum: ProfileSumAggregateOutputType | null
@@ -304,6 +311,7 @@ export type ProfileWhereInput = {
   description?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
+  timezone?: Prisma.StringFilter<"Profile"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   userlanguage?: Prisma.UserLanguageListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
@@ -330,6 +338,7 @@ export type ProfileOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   userlanguage?: Prisma.UserLanguageOrderByRelationAggregateInput
   provideSlots?: Prisma.SlotOrderByRelationAggregateInput
@@ -359,6 +368,7 @@ export type ProfileWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Profile"> | Date | string
+  timezone?: Prisma.StringFilter<"Profile"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   userlanguage?: Prisma.UserLanguageListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
@@ -385,6 +395,7 @@ export type ProfileOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   _count?: Prisma.ProfileCountOrderByAggregateInput
   _avg?: Prisma.ProfileAvgOrderByAggregateInput
   _max?: Prisma.ProfileMaxOrderByAggregateInput
@@ -412,6 +423,7 @@ export type ProfileScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Profile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Profile"> | Date | string
+  timezone?: Prisma.StringWithAggregatesFilter<"Profile"> | string
 }
 
 export type ProfileCreateInput = {
@@ -430,6 +442,7 @@ export type ProfileCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
@@ -456,6 +469,7 @@ export type ProfileUncheckedCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
@@ -480,6 +494,7 @@ export type ProfileUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
@@ -506,6 +521,7 @@ export type ProfileUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
@@ -531,6 +547,7 @@ export type ProfileCreateManyInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
 }
 
 export type ProfileUpdateManyMutationInput = {
@@ -549,6 +566,7 @@ export type ProfileUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileUncheckedUpdateManyInput = {
@@ -568,6 +586,7 @@ export type ProfileUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProfileCountOrderByAggregateInput = {
@@ -587,6 +606,7 @@ export type ProfileCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
 }
 
 export type ProfileAvgOrderByAggregateInput = {
@@ -610,6 +630,7 @@ export type ProfileMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
 }
 
 export type ProfileMinOrderByAggregateInput = {
@@ -629,6 +650,7 @@ export type ProfileMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
 }
 
 export type ProfileSumOrderByAggregateInput = {
@@ -791,6 +813,7 @@ export type ProfileCreateWithoutUserInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
@@ -815,6 +838,7 @@ export type ProfileUncheckedCreateWithoutUserInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
@@ -855,6 +879,7 @@ export type ProfileUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
@@ -879,6 +904,7 @@ export type ProfileUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
@@ -903,6 +929,7 @@ export type ProfileCreateWithoutProvideSlotsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
@@ -928,6 +955,7 @@ export type ProfileUncheckedCreateWithoutProvideSlotsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
@@ -956,6 +984,7 @@ export type ProfileCreateWithoutExchangeSlotsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
@@ -981,6 +1010,7 @@ export type ProfileUncheckedCreateWithoutExchangeSlotsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
@@ -1020,6 +1050,7 @@ export type ProfileUpdateWithoutProvideSlotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
@@ -1045,6 +1076,7 @@ export type ProfileUncheckedUpdateWithoutProvideSlotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1079,6 +1111,7 @@ export type ProfileUpdateWithoutExchangeSlotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
@@ -1104,6 +1137,7 @@ export type ProfileUncheckedUpdateWithoutExchangeSlotsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1127,6 +1161,7 @@ export type ProfileCreateWithoutRatingsGivenInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
@@ -1152,6 +1187,7 @@ export type ProfileUncheckedCreateWithoutRatingsGivenInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
@@ -1180,6 +1216,7 @@ export type ProfileCreateWithoutRatingsReceivedInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
@@ -1205,6 +1242,7 @@ export type ProfileUncheckedCreateWithoutRatingsReceivedInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
@@ -1244,6 +1282,7 @@ export type ProfileUpdateWithoutRatingsGivenInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
@@ -1269,6 +1308,7 @@ export type ProfileUncheckedUpdateWithoutRatingsGivenInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
@@ -1303,6 +1343,7 @@ export type ProfileUpdateWithoutRatingsReceivedInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
@@ -1328,6 +1369,7 @@ export type ProfileUncheckedUpdateWithoutRatingsReceivedInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
@@ -1351,6 +1393,7 @@ export type ProfileCreateWithoutUserlanguageInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeUserInput
@@ -1376,6 +1419,7 @@ export type ProfileUncheckedCreateWithoutUserlanguageInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutOwnerInput
@@ -1415,6 +1459,7 @@ export type ProfileUpdateWithoutUserlanguageInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeUserNestedInput
@@ -1440,6 +1485,7 @@ export type ProfileUncheckedUpdateWithoutUserlanguageInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutOwnerNestedInput
@@ -1463,6 +1509,7 @@ export type ProfileCreateWithoutVocabularyCollectionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   user: Prisma.UserCreateNestedOneWithoutProfileInput
   userlanguage?: Prisma.UserLanguageCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutOwnerInput
@@ -1488,6 +1535,7 @@ export type ProfileUncheckedCreateWithoutVocabularyCollectionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  timezone?: string
   userlanguage?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutUserInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutOwnerInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeUserInput
@@ -1527,6 +1575,7 @@ export type ProfileUpdateWithoutVocabularyCollectionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutProfileNestedInput
   userlanguage?: Prisma.UserLanguageUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutOwnerNestedInput
@@ -1552,6 +1601,7 @@ export type ProfileUncheckedUpdateWithoutVocabularyCollectionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
   userlanguage?: Prisma.UserLanguageUncheckedUpdateManyWithoutUserNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutOwnerNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeUserNestedInput
@@ -1652,6 +1702,7 @@ export type ProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  timezone?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   userlanguage?: boolean | Prisma.Profile$userlanguageArgs<ExtArgs>
   provideSlots?: boolean | Prisma.Profile$provideSlotsArgs<ExtArgs>
@@ -1679,6 +1730,7 @@ export type ProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  timezone?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1699,6 +1751,7 @@ export type ProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  timezone?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profile"]>
 
@@ -1719,9 +1772,10 @@ export type ProfileSelectScalar = {
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  timezone?: boolean
 }
 
-export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fullName" | "email" | "avatarUrl" | "avatarKey" | "companyName" | "age" | "programme" | "university" | "degree" | "instagram" | "facebook" | "linkedIn" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["profile"]>
+export type ProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fullName" | "email" | "avatarUrl" | "avatarKey" | "companyName" | "age" | "programme" | "university" | "degree" | "instagram" | "facebook" | "linkedIn" | "description" | "createdAt" | "updatedAt" | "timezone", ExtArgs["result"]["profile"]>
 export type ProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   userlanguage?: boolean | Prisma.Profile$userlanguageArgs<ExtArgs>
@@ -1767,6 +1821,7 @@ export type $ProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     description: string | null
     createdAt: Date
     updatedAt: Date
+    timezone: string
   }, ExtArgs["result"]["profile"]>
   composites: {}
 }
@@ -2213,6 +2268,7 @@ export interface ProfileFieldRefs {
   readonly description: Prisma.FieldRef<"Profile", 'String'>
   readonly createdAt: Prisma.FieldRef<"Profile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Profile", 'DateTime'>
+  readonly timezone: Prisma.FieldRef<"Profile", 'String'>
 }
     
 

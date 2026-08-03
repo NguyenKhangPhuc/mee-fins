@@ -15,6 +15,7 @@ model Profile {
     description           String?
     createdAt             DateTime               @default(now()) @map("created_at")
     updatedAt             DateTime               @updatedAt @map("updated_at")
+    timezone              String                 @default("UTC")
     user                  User                   @relation(fields: [id], references: [id], onDelete: Cascade)
     userlanguage          UserLanguage[]
     provideSlots          Slot[]                 @relation("SlotOwner")

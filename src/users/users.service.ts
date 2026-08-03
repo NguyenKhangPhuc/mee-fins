@@ -37,7 +37,7 @@ export class UsersService {
     return result;
   }
 
-  async createUser({ user }: { user: Prisma.UserUncheckedCreateInput }) {
+  async createUser({ user, timezone }: { user: Prisma.UserUncheckedCreateInput, timezone: string }) {
     try {
       const { verificationCode } = await this.prisma.$transaction(async (tx) => {
         const createdUser = await tx.user.create({ data: user });
@@ -45,6 +45,7 @@ export class UsersService {
           id: createdUser.id,
           fullName: user.displayName,
           email: user.email,
+          timezone,
         };
         await this.profileService.createProfile({ tx, profile });
         const code: Prisma.VerificationCodeUncheckedCreateInput = {

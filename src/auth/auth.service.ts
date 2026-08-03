@@ -19,6 +19,7 @@ import { EmailService } from 'src/email/email.service';
 import getSignUpEmailTemplate from 'src/helpers/email/sign-up-template';
 import { VerificationCodeService } from 'src/verification_code/verification_code.service';
 import { PasswordUpdationDto } from './dtos/password-updation.dto';
+import { SignUpDto } from './dtos/signup.dto';
 
 @Injectable()
 export class AuthService {
@@ -108,18 +109,15 @@ export class AuthService {
     displayName,
     email,
     password,
-  }: {
-    displayName: string;
-    email: string;
-    password: string;
-  }) {
+    timezone
+  }: SignUpDto) {
     const hashPassword = await bcrypt.hash(password, saltOrRounds);
     const newuser: Prisma.UserUncheckedCreateInput = {
       displayName,
       email: email.toLowerCase(),
       passwordHash: hashPassword,
     };
-    const verificationCode = await this.usersService.createUser({ user: newuser });
+    const verificationCode = await this.usersService.createUser({ user: newuser, timezone });
     await this.emailService.send(email, "MeeFins - Sign up verification code", getSignUpEmailTemplate(displayName, verificationCode.code))
   }
 

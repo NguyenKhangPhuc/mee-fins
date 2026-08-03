@@ -232,6 +232,12 @@ export class SlotsService {
                     status: 'OPEN',
                     ownerId: { not: body.exchangeUserId },
                 },
+                include: {
+                    provideLanguage: true,
+                    exchangeLanguage: true,
+                    owner: true,
+                    exchangeUser: true,
+                },
                 data: { status: SlotStatus.BOOKED, exchangeUserId: body.exchangeUserId }
             })
             return slot

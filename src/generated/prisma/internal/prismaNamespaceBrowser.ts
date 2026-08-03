@@ -106,7 +106,8 @@ export const ProfileScalarFieldEnum = {
   linkedIn: 'linkedIn',
   description: 'description',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  timezone: 'timezone'
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
