@@ -156,6 +156,7 @@ export const VerificationCodeScalarFieldEnum = {
   userId: 'userId',
   code: 'code',
   isVerified: 'isVerified',
+  type: 'type',
   expiredAt: 'expiredAt',
   createdAt: 'createdAt',
   isVerifiedAt: 'isVerifiedAt'

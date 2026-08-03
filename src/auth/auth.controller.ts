@@ -20,6 +20,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-tokens-auth.guard';
 import { GithubAuthGuard } from './guards/github-auth.guard';
 import { frontendUrl } from 'src/utils/config';
+import { PasswordUpdationDto } from './dtos/password-updation.dto';
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -117,5 +118,10 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   getUser(@CurrentUser() user: SafeUser) {
     return user;
+  }
+
+  @Post('update-password')
+  async updateUserPassword(@Body() body: PasswordUpdationDto) {
+    await this.authService.updatePassword(body)
   }
 }

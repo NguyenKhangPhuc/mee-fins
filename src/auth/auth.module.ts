@@ -10,6 +10,8 @@ import { JwtStrategy } from './strategy/jwt.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtRefreshStrategy } from './strategy/refresh-tokens.strategy';
 import { GithubStrategy } from './strategy/github.strategy';
+import { EmailModule } from 'src/email/email.module';
+import { VerificationCodeModule } from 'src/verification_code/verification_code.module';
 
 @Module({
   controllers: [AuthController],
@@ -26,7 +28,9 @@ import { GithubStrategy } from './strategy/github.strategy';
     RefreshTokenModule,
     SessionModule,
     JwtModule.register({}),
+    EmailModule,
+    VerificationCodeModule
   ],
   exports: [AuthService],
 })
-export class AuthModule {}
+export class AuthModule { }

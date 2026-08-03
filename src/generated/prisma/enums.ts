@@ -25,3 +25,11 @@ export const SlotStatus = {
 } as const
 
 export type SlotStatus = (typeof SlotStatus)[keyof typeof SlotStatus]
+
+
+export const CODE_TYPE = {
+  SIGN_UP: 'SIGN_UP',
+  FORGET_PASSWORD: 'FORGET_PASSWORD'
+} as const
+
+export type CODE_TYPE = (typeof CODE_TYPE)[keyof typeof CODE_TYPE]

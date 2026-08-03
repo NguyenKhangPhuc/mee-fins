@@ -1343,6 +1343,7 @@ export const VerificationCodeScalarFieldEnum = {
   userId: 'userId',
   code: 'code',
   isVerified: 'isVerified',
+  type: 'type',
   expiredAt: 'expiredAt',
   createdAt: 'createdAt',
   isVerifiedAt: 'isVerifiedAt'
@@ -1515,6 +1516,20 @@ export type ListEnumUSER_ROLEFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
+ * Reference to a field of type 'CODE_TYPE'
+ */
+export type EnumCODE_TYPEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CODE_TYPE'>
+    
+
+
+/**
+ * Reference to a field of type 'CODE_TYPE[]'
+ */
+export type ListEnumCODE_TYPEFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CODE_TYPE[]'>
     
 
 

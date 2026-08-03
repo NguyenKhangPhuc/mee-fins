@@ -219,6 +219,23 @@ export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
 }
 
+export type EnumCODE_TYPEFilter<$PrismaModel = never> = {
+  equals?: $Enums.CODE_TYPE | Prisma.EnumCODE_TYPEFieldRefInput<$PrismaModel>
+  in?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel> | $Enums.CODE_TYPE
+}
+
+export type EnumCODE_TYPEWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CODE_TYPE | Prisma.EnumCODE_TYPEFieldRefInput<$PrismaModel>
+  in?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCODE_TYPEWithAggregatesFilter<$PrismaModel> | $Enums.CODE_TYPE
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel>
+}
+
 export type IntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -504,6 +521,23 @@ export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumCODE_TYPEFilter<$PrismaModel = never> = {
+  equals?: $Enums.CODE_TYPE | Prisma.EnumCODE_TYPEFieldRefInput<$PrismaModel>
+  in?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel> | $Enums.CODE_TYPE
+}
+
+export type NestedEnumCODE_TYPEWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CODE_TYPE | Prisma.EnumCODE_TYPEFieldRefInput<$PrismaModel>
+  in?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CODE_TYPE[] | Prisma.ListEnumCODE_TYPEFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCODE_TYPEWithAggregatesFilter<$PrismaModel> | $Enums.CODE_TYPE
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCODE_TYPEFilter<$PrismaModel>
 }
 
 export type NestedEnumSlotStatusFilter<$PrismaModel = never> = {

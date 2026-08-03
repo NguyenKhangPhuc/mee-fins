@@ -10,12 +10,15 @@ import { saltOrRounds } from 'src/constants';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   EXPIRED_REFRESH_TOKEN,
+  INVALID_CREDENTIALS_ERROR,
   INVALID_REFRESH_TOKEN,
 } from 'src/constants/error-code';
 import { jwtRefreshSecret, jwtSecret } from 'src/utils/config';
 import { VerificationDto } from './dtos/verification.dto';
 import { EmailService } from 'src/email/email.service';
 import getSignUpEmailTemplate from 'src/helpers/email/sign-up-template';
+import { VerificationCodeService } from 'src/verification_code/verification_code.service';
+import { PasswordUpdationDto } from './dtos/password-updation.dto';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +26,9 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private readonly prismaService: PrismaService,
-    private readonly emailService: EmailService
+    private readonly emailService: EmailService,
+    private verificationCodeService: VerificationCodeService,
+
   ) { }
 
   async validateUser(
@@ -156,6 +161,19 @@ export class AuthService {
     });
   }
 
+  async updatePassword(body: PasswordUpdationDto) {
+    await this.verificationCodeService.verifyForgetPasswordCode(body)
+    const user = await this.validateUser(body.email, body.oldPassword)
+    if (!user) {
+      throw new UnauthorizedException({
+        message: 'Invalid old credentials',
+        code: INVALID_CREDENTIALS_ERROR,
+      });
+    }
+    const newHashPassword = await bcrypt.hash(body.newPassword, saltOrRounds);
+
+    await this.usersService.updatePassword(body.email, newHashPassword)
+  }
 
 
 }

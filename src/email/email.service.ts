@@ -18,6 +18,11 @@ export class EmailService {
             html,
         });
 
+        if (error) {
+            console.error(`Send email failed: ${JSON.stringify(error)}`);
+            throw error;
+        }
+
         return data;
     }
 }

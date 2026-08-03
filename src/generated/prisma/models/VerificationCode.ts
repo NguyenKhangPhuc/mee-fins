@@ -29,6 +29,7 @@ export type VerificationCodeMinAggregateOutputType = {
   userId: string | null
   code: string | null
   isVerified: boolean | null
+  type: $Enums.CODE_TYPE | null
   expiredAt: Date | null
   createdAt: Date | null
   isVerifiedAt: Date | null
@@ -39,6 +40,7 @@ export type VerificationCodeMaxAggregateOutputType = {
   userId: string | null
   code: string | null
   isVerified: boolean | null
+  type: $Enums.CODE_TYPE | null
   expiredAt: Date | null
   createdAt: Date | null
   isVerifiedAt: Date | null
@@ -49,6 +51,7 @@ export type VerificationCodeCountAggregateOutputType = {
   userId: number
   code: number
   isVerified: number
+  type: number
   expiredAt: number
   createdAt: number
   isVerifiedAt: number
@@ -61,6 +64,7 @@ export type VerificationCodeMinAggregateInputType = {
   userId?: true
   code?: true
   isVerified?: true
+  type?: true
   expiredAt?: true
   createdAt?: true
   isVerifiedAt?: true
@@ -71,6 +75,7 @@ export type VerificationCodeMaxAggregateInputType = {
   userId?: true
   code?: true
   isVerified?: true
+  type?: true
   expiredAt?: true
   createdAt?: true
   isVerifiedAt?: true
@@ -81,6 +86,7 @@ export type VerificationCodeCountAggregateInputType = {
   userId?: true
   code?: true
   isVerified?: true
+  type?: true
   expiredAt?: true
   createdAt?: true
   isVerifiedAt?: true
@@ -164,6 +170,7 @@ export type VerificationCodeGroupByOutputType = {
   userId: string
   code: string
   isVerified: boolean
+  type: $Enums.CODE_TYPE
   expiredAt: Date
   createdAt: Date
   isVerifiedAt: Date | null
@@ -195,6 +202,7 @@ export type VerificationCodeWhereInput = {
   userId?: Prisma.UuidFilter<"VerificationCode"> | string
   code?: Prisma.StringFilter<"VerificationCode"> | string
   isVerified?: Prisma.BoolFilter<"VerificationCode"> | boolean
+  type?: Prisma.EnumCODE_TYPEFilter<"VerificationCode"> | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   isVerifiedAt?: Prisma.DateTimeNullableFilter<"VerificationCode"> | Date | string | null
@@ -206,6 +214,7 @@ export type VerificationCodeOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   expiredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -220,6 +229,7 @@ export type VerificationCodeWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.UuidFilter<"VerificationCode"> | string
   code?: Prisma.StringFilter<"VerificationCode"> | string
   isVerified?: Prisma.BoolFilter<"VerificationCode"> | boolean
+  type?: Prisma.EnumCODE_TYPEFilter<"VerificationCode"> | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   isVerifiedAt?: Prisma.DateTimeNullableFilter<"VerificationCode"> | Date | string | null
@@ -231,6 +241,7 @@ export type VerificationCodeOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   expiredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isVerifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -247,6 +258,7 @@ export type VerificationCodeScalarWhereWithAggregatesInput = {
   userId?: Prisma.UuidWithAggregatesFilter<"VerificationCode"> | string
   code?: Prisma.StringWithAggregatesFilter<"VerificationCode"> | string
   isVerified?: Prisma.BoolWithAggregatesFilter<"VerificationCode"> | boolean
+  type?: Prisma.EnumCODE_TYPEWithAggregatesFilter<"VerificationCode"> | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeWithAggregatesFilter<"VerificationCode"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"VerificationCode"> | Date | string
   isVerifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"VerificationCode"> | Date | string | null
@@ -256,6 +268,7 @@ export type VerificationCodeCreateInput = {
   id?: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -267,6 +280,7 @@ export type VerificationCodeUncheckedCreateInput = {
   userId: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -276,6 +290,7 @@ export type VerificationCodeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -287,6 +302,7 @@ export type VerificationCodeUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -297,6 +313,7 @@ export type VerificationCodeCreateManyInput = {
   userId: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -306,6 +323,7 @@ export type VerificationCodeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -316,6 +334,7 @@ export type VerificationCodeUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -336,6 +355,7 @@ export type VerificationCodeCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   expiredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isVerifiedAt?: Prisma.SortOrder
@@ -346,6 +366,7 @@ export type VerificationCodeMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   expiredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isVerifiedAt?: Prisma.SortOrder
@@ -356,6 +377,7 @@ export type VerificationCodeMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   code?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   expiredAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isVerifiedAt?: Prisma.SortOrder
@@ -403,10 +425,15 @@ export type VerificationCodeUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.VerificationCodeScalarWhereInput | Prisma.VerificationCodeScalarWhereInput[]
 }
 
+export type EnumCODE_TYPEFieldUpdateOperationsInput = {
+  set?: $Enums.CODE_TYPE
+}
+
 export type VerificationCodeCreateWithoutUserInput = {
   id?: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -416,6 +443,7 @@ export type VerificationCodeUncheckedCreateWithoutUserInput = {
   id?: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -455,6 +483,7 @@ export type VerificationCodeScalarWhereInput = {
   userId?: Prisma.UuidFilter<"VerificationCode"> | string
   code?: Prisma.StringFilter<"VerificationCode"> | string
   isVerified?: Prisma.BoolFilter<"VerificationCode"> | boolean
+  type?: Prisma.EnumCODE_TYPEFilter<"VerificationCode"> | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"VerificationCode"> | Date | string
   isVerifiedAt?: Prisma.DateTimeNullableFilter<"VerificationCode"> | Date | string | null
@@ -464,6 +493,7 @@ export type VerificationCodeCreateManyUserInput = {
   id?: string
   code: string
   isVerified: boolean
+  type?: $Enums.CODE_TYPE
   expiredAt: Date | string
   createdAt?: Date | string
   isVerifiedAt?: Date | string | null
@@ -473,6 +503,7 @@ export type VerificationCodeUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -482,6 +513,7 @@ export type VerificationCodeUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -491,6 +523,7 @@ export type VerificationCodeUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  type?: Prisma.EnumCODE_TYPEFieldUpdateOperationsInput | $Enums.CODE_TYPE
   expiredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -503,6 +536,7 @@ export type VerificationCodeSelect<ExtArgs extends runtime.Types.Extensions.Inte
   userId?: boolean
   code?: boolean
   isVerified?: boolean
+  type?: boolean
   expiredAt?: boolean
   createdAt?: boolean
   isVerifiedAt?: boolean
@@ -514,6 +548,7 @@ export type VerificationCodeSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   userId?: boolean
   code?: boolean
   isVerified?: boolean
+  type?: boolean
   expiredAt?: boolean
   createdAt?: boolean
   isVerifiedAt?: boolean
@@ -525,6 +560,7 @@ export type VerificationCodeSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   userId?: boolean
   code?: boolean
   isVerified?: boolean
+  type?: boolean
   expiredAt?: boolean
   createdAt?: boolean
   isVerifiedAt?: boolean
@@ -536,12 +572,13 @@ export type VerificationCodeSelectScalar = {
   userId?: boolean
   code?: boolean
   isVerified?: boolean
+  type?: boolean
   expiredAt?: boolean
   createdAt?: boolean
   isVerifiedAt?: boolean
 }
 
-export type VerificationCodeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "code" | "isVerified" | "expiredAt" | "createdAt" | "isVerifiedAt", ExtArgs["result"]["verificationCode"]>
+export type VerificationCodeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "code" | "isVerified" | "type" | "expiredAt" | "createdAt" | "isVerifiedAt", ExtArgs["result"]["verificationCode"]>
 export type VerificationCodeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -562,6 +599,7 @@ export type $VerificationCodePayload<ExtArgs extends runtime.Types.Extensions.In
     userId: string
     code: string
     isVerified: boolean
+    type: $Enums.CODE_TYPE
     expiredAt: Date
     createdAt: Date
     isVerifiedAt: Date | null
@@ -993,6 +1031,7 @@ export interface VerificationCodeFieldRefs {
   readonly userId: Prisma.FieldRef<"VerificationCode", 'String'>
   readonly code: Prisma.FieldRef<"VerificationCode", 'String'>
   readonly isVerified: Prisma.FieldRef<"VerificationCode", 'Boolean'>
+  readonly type: Prisma.FieldRef<"VerificationCode", 'CODE_TYPE'>
   readonly expiredAt: Prisma.FieldRef<"VerificationCode", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"VerificationCode", 'DateTime'>
   readonly isVerifiedAt: Prisma.FieldRef<"VerificationCode", 'DateTime'>

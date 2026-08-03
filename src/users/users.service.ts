@@ -14,6 +14,7 @@ import { generateCode } from 'src/helpers/email/generate-code';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { SafeUser } from 'src/types/safe-user';
+import { VerificationCodeService } from 'src/verification_code/verification_code.service';
 
 @Injectable()
 export class UsersService {
@@ -49,7 +50,7 @@ export class UsersService {
         const code: Prisma.VerificationCodeUncheckedCreateInput = {
           code: generateCode(),
           userId: createdUser.id,
-          expiredAt: new Date(Date.now() + 10 * 60 * 1000),
+          expiredAt: new Date(Date.now() + 1 * 60 * 1000),
           isVerified: false,
         }
         const verificationCode = await tx.verificationCode.create({ data: code })
@@ -121,6 +122,19 @@ export class UsersService {
         message: 'Failed to create user',
         code: INTERNAL_SERVER_ERROR,
       });
+    }
+  }
+
+  async updatePassword(email: string, newPassword: string) {
+    try {
+      await this.prisma.user.update({ where: { email }, data: { passwordHash: newPassword } })
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code == 'P2025') {
+          throw new NotFoundException({ message: "User not found", code: NOT_EXISTED_USER_ERROR })
+        }
+      }
+      throw new InternalServerErrorException({ message: "Failed to update user password", code: INTERNAL_SERVER_ERROR })
     }
   }
 }
