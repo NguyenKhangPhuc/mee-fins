@@ -22,6 +22,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { VocabularyCollectionModule } from './vocabulary_collection/vocabulary_collection.module';
 import { VocabularyWordModule } from './vocabulary_word/vocabulary_word.module';
 import { SlotRatingModule } from './slot_rating/slot_rating.module';
+import { EmailModule } from './email/email.module';
+import { VerificationCodeModule } from './verification_code/verification_code.module';
 @Module({
   imports: [AuthModule, UsersModule, PrismaModule, QueryModule, FileModule, ProfileModule, LanguagesModule, UserLanguagesModule, LivekitModule, SlotsModule,
 
@@ -43,6 +45,10 @@ import { SlotRatingModule } from './slot_rating/slot_rating.module';
     VocabularyWordModule,
 
     SlotRatingModule,
+
+    EmailModule,
+
+    VerificationCodeModule,
   ],
   controllers: [AppController],
   providers: [

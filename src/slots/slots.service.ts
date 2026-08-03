@@ -239,7 +239,7 @@ export class SlotsService {
             if (error instanceof Prisma.PrismaClientKnownRequestError) {
                 if (error.code === 'P2025') {
                     throw new NotFoundException({
-                        message: 'Slot not found',
+                        message: 'Slot is unavailable or you are not allowed to book this slot',
                         code: NOT_EXISTED_SLOT_ERROR,
                     });
                 }

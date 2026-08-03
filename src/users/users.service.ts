@@ -10,6 +10,7 @@ import {
   NOT_EXISTED_USER_ERROR,
 } from 'src/constants/error-code';
 import { User, Prisma } from 'src/generated/prisma/client';
+import { generateCode } from 'src/helpers/email/generate-code';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { SafeUser } from 'src/types/safe-user';
@@ -37,7 +38,7 @@ export class UsersService {
 
   async createUser({ user }: { user: Prisma.UserUncheckedCreateInput }) {
     try {
-      await this.prisma.$transaction(async (tx) => {
+      const { verificationCode } = await this.prisma.$transaction(async (tx) => {
         const createdUser = await tx.user.create({ data: user });
         const profile: Prisma.ProfileUncheckedCreateInput = {
           id: createdUser.id,
@@ -45,7 +46,16 @@ export class UsersService {
           email: user.email,
         };
         await this.profileService.createProfile({ tx, profile });
+        const code: Prisma.VerificationCodeUncheckedCreateInput = {
+          code: generateCode(),
+          userId: createdUser.id,
+          expiredAt: new Date(Date.now() + 10 * 60 * 1000),
+          isVerified: false,
+        }
+        const verificationCode = await tx.verificationCode.create({ data: code })
+        return { verificationCode }
       });
+      return verificationCode
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {

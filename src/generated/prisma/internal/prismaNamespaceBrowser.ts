@@ -56,6 +56,7 @@ export const ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
   Session: 'Session',
+  VerificationCode: 'VerificationCode',
   Slot: 'Slot',
   SlotRating: 'SlotRating',
   UserLanguage: 'UserLanguage',
@@ -148,6 +149,19 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const VerificationCodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  code: 'code',
+  isVerified: 'isVerified',
+  expiredAt: 'expiredAt',
+  createdAt: 'createdAt',
+  isVerifiedAt: 'isVerifiedAt'
+} as const
+
+export type VerificationCodeScalarFieldEnum = (typeof VerificationCodeScalarFieldEnum)[keyof typeof VerificationCodeScalarFieldEnum]
 
 
 export const SlotScalarFieldEnum = {

@@ -13,6 +13,9 @@ import {
   INVALID_REFRESH_TOKEN,
 } from 'src/constants/error-code';
 import { jwtRefreshSecret, jwtSecret } from 'src/utils/config';
+import { VerificationDto } from './dtos/verification.dto';
+import { EmailService } from 'src/email/email.service';
+import getSignUpEmailTemplate from 'src/helpers/email/sign-up-template';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +23,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private readonly prismaService: PrismaService,
+    private readonly emailService: EmailService
   ) { }
 
   async validateUser(
@@ -110,7 +114,8 @@ export class AuthService {
       email: email.toLowerCase(),
       passwordHash: hashPassword,
     };
-    await this.usersService.createUser({ user: newuser });
+    const verificationCode = await this.usersService.createUser({ user: newuser });
+    await this.emailService.send(email, "MeeFins - Sign up verification code", getSignUpEmailTemplate(displayName, verificationCode.code))
   }
 
   async login({
@@ -150,4 +155,7 @@ export class AuthService {
       return { refreshTokenResult };
     });
   }
+
+
+
 }

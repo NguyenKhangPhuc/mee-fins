@@ -21,3 +21,5 @@ export const livekitApiKey = process.env.LIVEKIT_API_KEY || 'devkey';
 export const livekitApiSecret = process.env.LIVEKIT_API_SECRET || 'secretsecretsecretsecretsecret32';
 export const livekitUrl = process.env.LIVEKIT_URL || 'http://localhost:7880';
 
+export const resendApiKey = process.env.RESEND_API_KEY;
+export const fromAddress = process.env.MAIL_FORM ?? "App Name <onboarding@resend.dev>";

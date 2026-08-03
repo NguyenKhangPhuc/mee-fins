@@ -43,6 +43,11 @@ export type RefreshToken = Prisma.RefreshTokenModel
  */
 export type Session = Prisma.SessionModel
 /**
+ * Model VerificationCode
+ * 
+ */
+export type VerificationCode = Prisma.VerificationCodeModel
+/**
  * Model Slot
  * 
  */
