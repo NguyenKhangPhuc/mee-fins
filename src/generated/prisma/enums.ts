@@ -17,6 +17,15 @@ export const USER_ROLE = {
 export type USER_ROLE = (typeof USER_ROLE)[keyof typeof USER_ROLE]
 
 
+export const PROFICIENCY = {
+  BEGINNER: 'BEGINNER',
+  INTERMEDIATE: 'INTERMEDIATE',
+  ADVANCED: 'ADVANCED'
+} as const
+
+export type PROFICIENCY = (typeof PROFICIENCY)[keyof typeof PROFICIENCY]
+
+
 export const SlotStatus = {
   OPEN: 'OPEN',
   BOOKED: 'BOOKED',

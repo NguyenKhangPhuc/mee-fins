@@ -1549,6 +1549,20 @@ export type ListEnumSlotStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'PROFICIENCY'
+ */
+export type EnumPROFICIENCYFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PROFICIENCY'>
+    
+
+
+/**
+ * Reference to a field of type 'PROFICIENCY[]'
+ */
+export type ListEnumPROFICIENCYFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PROFICIENCY[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>

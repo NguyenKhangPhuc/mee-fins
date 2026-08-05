@@ -15,6 +15,7 @@ import { SlotPaginationDto } from './dto/slot-pagination.dto';
 import { getPaginationParams } from 'src/helpers/pagination/parsing-pagination-query';
 import { paginate } from 'src/helpers/pagination/parseing-pagination-result';
 import { SlotCreateInput } from 'src/generated/prisma/models';
+import { UserLanguagesService } from 'src/user_languages/user_languages.service';
 
 @Injectable()
 export class SlotsService {
@@ -23,6 +24,7 @@ export class SlotsService {
     private readonly apiSecret = livekitApiSecret;
     private readonly url = livekitUrl;
     constructor(private readonly prisma: PrismaService, @InjectQueue('meeting-timeout') private timeoutQueue: Queue,
+        private readonly userLanguageService: UserLanguagesService
     ) {
         this.roomService = new RoomServiceClient(
             this.url,
@@ -225,12 +227,16 @@ export class SlotsService {
     }
 
     async updateSlotExchangeUser(body: SlotExchangeUpdationDto) {
+        const userLanguages = await this.userLanguageService.getUserAdvancedLevelLanguage(body.exchangeUserId)
         try {
+
+            const userLanguagesIds = userLanguages.map((lang) => lang.languageId)
             const slot = await this.prisma.slot.update({
                 where: {
                     id: body.slotId,
                     status: 'OPEN',
                     ownerId: { not: body.exchangeUserId },
+                    exchangeLanguageId: { in: userLanguagesIds }
                 },
                 include: {
                     provideLanguage: true,

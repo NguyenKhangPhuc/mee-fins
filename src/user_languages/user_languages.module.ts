@@ -4,6 +4,7 @@ import { UserLanguagesController } from './user_languages.controller';
 
 @Module({
   providers: [UserLanguagesService],
-  controllers: [UserLanguagesController]
+  controllers: [UserLanguagesController],
+  exports: [UserLanguagesService]
 })
-export class UserLanguagesModule {}
+export class UserLanguagesModule { }

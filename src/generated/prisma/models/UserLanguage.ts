@@ -28,7 +28,7 @@ export type UserLanguageMinAggregateOutputType = {
   id: string | null
   userId: string | null
   languageId: string | null
-  proficiency: string | null
+  proficiency: $Enums.PROFICIENCY | null
   createdAt: Date | null
 }
 
@@ -36,7 +36,7 @@ export type UserLanguageMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   languageId: string | null
-  proficiency: string | null
+  proficiency: $Enums.PROFICIENCY | null
   createdAt: Date | null
 }
 
@@ -151,7 +151,7 @@ export type UserLanguageGroupByOutputType = {
   id: string
   userId: string
   languageId: string
-  proficiency: string
+  proficiency: $Enums.PROFICIENCY
   createdAt: Date
   _count: UserLanguageCountAggregateOutputType | null
   _min: UserLanguageMinAggregateOutputType | null
@@ -180,7 +180,7 @@ export type UserLanguageWhereInput = {
   id?: Prisma.StringFilter<"UserLanguage"> | string
   userId?: Prisma.UuidFilter<"UserLanguage"> | string
   languageId?: Prisma.UuidFilter<"UserLanguage"> | string
-  proficiency?: Prisma.StringFilter<"UserLanguage"> | string
+  proficiency?: Prisma.EnumPROFICIENCYFilter<"UserLanguage"> | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
   user?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   language?: Prisma.XOR<Prisma.LanguageScalarRelationFilter, Prisma.LanguageWhereInput>
@@ -204,7 +204,7 @@ export type UserLanguageWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserLanguageWhereInput | Prisma.UserLanguageWhereInput[]
   userId?: Prisma.UuidFilter<"UserLanguage"> | string
   languageId?: Prisma.UuidFilter<"UserLanguage"> | string
-  proficiency?: Prisma.StringFilter<"UserLanguage"> | string
+  proficiency?: Prisma.EnumPROFICIENCYFilter<"UserLanguage"> | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
   user?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   language?: Prisma.XOR<Prisma.LanguageScalarRelationFilter, Prisma.LanguageWhereInput>
@@ -228,13 +228,13 @@ export type UserLanguageScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"UserLanguage"> | string
   languageId?: Prisma.UuidWithAggregatesFilter<"UserLanguage"> | string
-  proficiency?: Prisma.StringWithAggregatesFilter<"UserLanguage"> | string
+  proficiency?: Prisma.EnumPROFICIENCYWithAggregatesFilter<"UserLanguage"> | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"UserLanguage"> | Date | string
 }
 
 export type UserLanguageCreateInput = {
   id?: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
   user: Prisma.ProfileCreateNestedOneWithoutUserlanguageInput
   language: Prisma.LanguageCreateNestedOneWithoutUserLanguagesInput
@@ -244,13 +244,13 @@ export type UserLanguageUncheckedCreateInput = {
   id?: string
   userId: string
   languageId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
 export type UserLanguageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.ProfileUpdateOneRequiredWithoutUserlanguageNestedInput
   language?: Prisma.LanguageUpdateOneRequiredWithoutUserLanguagesNestedInput
@@ -260,7 +260,7 @@ export type UserLanguageUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   languageId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -268,13 +268,13 @@ export type UserLanguageCreateManyInput = {
   id?: string
   userId: string
   languageId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
 export type UserLanguageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -282,7 +282,7 @@ export type UserLanguageUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   languageId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -409,9 +409,13 @@ export type UserLanguageUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.UserLanguageScalarWhereInput | Prisma.UserLanguageScalarWhereInput[]
 }
 
+export type EnumPROFICIENCYFieldUpdateOperationsInput = {
+  set?: $Enums.PROFICIENCY
+}
+
 export type UserLanguageCreateWithoutLanguageInput = {
   id?: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
   user: Prisma.ProfileCreateNestedOneWithoutUserlanguageInput
 }
@@ -419,7 +423,7 @@ export type UserLanguageCreateWithoutLanguageInput = {
 export type UserLanguageUncheckedCreateWithoutLanguageInput = {
   id?: string
   userId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
@@ -456,13 +460,13 @@ export type UserLanguageScalarWhereInput = {
   id?: Prisma.StringFilter<"UserLanguage"> | string
   userId?: Prisma.UuidFilter<"UserLanguage"> | string
   languageId?: Prisma.UuidFilter<"UserLanguage"> | string
-  proficiency?: Prisma.StringFilter<"UserLanguage"> | string
+  proficiency?: Prisma.EnumPROFICIENCYFilter<"UserLanguage"> | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFilter<"UserLanguage"> | Date | string
 }
 
 export type UserLanguageCreateWithoutUserInput = {
   id?: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
   language: Prisma.LanguageCreateNestedOneWithoutUserLanguagesInput
 }
@@ -470,7 +474,7 @@ export type UserLanguageCreateWithoutUserInput = {
 export type UserLanguageUncheckedCreateWithoutUserInput = {
   id?: string
   languageId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
@@ -503,13 +507,13 @@ export type UserLanguageUpdateManyWithWhereWithoutUserInput = {
 export type UserLanguageCreateManyLanguageInput = {
   id?: string
   userId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
 export type UserLanguageUpdateWithoutLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.ProfileUpdateOneRequiredWithoutUserlanguageNestedInput
 }
@@ -517,27 +521,27 @@ export type UserLanguageUpdateWithoutLanguageInput = {
 export type UserLanguageUncheckedUpdateWithoutLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserLanguageUncheckedUpdateManyWithoutLanguageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserLanguageCreateManyUserInput = {
   id?: string
   languageId: string
-  proficiency: string
+  proficiency?: $Enums.PROFICIENCY
   createdAt?: Date | string
 }
 
 export type UserLanguageUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   language?: Prisma.LanguageUpdateOneRequiredWithoutUserLanguagesNestedInput
 }
@@ -545,14 +549,14 @@ export type UserLanguageUpdateWithoutUserInput = {
 export type UserLanguageUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   languageId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type UserLanguageUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   languageId?: Prisma.StringFieldUpdateOperationsInput | string
-  proficiency?: Prisma.StringFieldUpdateOperationsInput | string
+  proficiency?: Prisma.EnumPROFICIENCYFieldUpdateOperationsInput | $Enums.PROFICIENCY
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -620,7 +624,7 @@ export type $UserLanguagePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     userId: string
     languageId: string
-    proficiency: string
+    proficiency: $Enums.PROFICIENCY
     createdAt: Date
   }, ExtArgs["result"]["userLanguage"]>
   composites: {}
@@ -1050,7 +1054,7 @@ export interface UserLanguageFieldRefs {
   readonly id: Prisma.FieldRef<"UserLanguage", 'String'>
   readonly userId: Prisma.FieldRef<"UserLanguage", 'String'>
   readonly languageId: Prisma.FieldRef<"UserLanguage", 'String'>
-  readonly proficiency: Prisma.FieldRef<"UserLanguage", 'String'>
+  readonly proficiency: Prisma.FieldRef<"UserLanguage", 'PROFICIENCY'>
   readonly createdAt: Prisma.FieldRef<"UserLanguage", 'DateTime'>
 }
     

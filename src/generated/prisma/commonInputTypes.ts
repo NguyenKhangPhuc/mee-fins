@@ -307,6 +307,23 @@ export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
 }
 
+export type EnumPROFICIENCYFilter<$PrismaModel = never> = {
+  equals?: $Enums.PROFICIENCY | Prisma.EnumPROFICIENCYFieldRefInput<$PrismaModel>
+  in?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel> | $Enums.PROFICIENCY
+}
+
+export type EnumPROFICIENCYWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PROFICIENCY | Prisma.EnumPROFICIENCYFieldRefInput<$PrismaModel>
+  in?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPROFICIENCYWithAggregatesFilter<$PrismaModel> | $Enums.PROFICIENCY
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel>
+}
+
 export type NestedUuidFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -607,6 +624,23 @@ export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
   _min?: Prisma.NestedStringNullableFilter<$PrismaModel>
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumPROFICIENCYFilter<$PrismaModel = never> = {
+  equals?: $Enums.PROFICIENCY | Prisma.EnumPROFICIENCYFieldRefInput<$PrismaModel>
+  in?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel> | $Enums.PROFICIENCY
+}
+
+export type NestedEnumPROFICIENCYWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.PROFICIENCY | Prisma.EnumPROFICIENCYFieldRefInput<$PrismaModel>
+  in?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  notIn?: $Enums.PROFICIENCY[] | Prisma.ListEnumPROFICIENCYFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumPROFICIENCYWithAggregatesFilter<$PrismaModel> | $Enums.PROFICIENCY
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumPROFICIENCYFilter<$PrismaModel>
 }
 
 

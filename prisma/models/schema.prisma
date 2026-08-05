@@ -26,6 +26,14 @@ enum USER_ROLE {
   @@schema("public")
 }
 
+enum PROFICIENCY {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+
+  @@schema("public")
+}
+
 enum SlotStatus {
   OPEN
   BOOKED
