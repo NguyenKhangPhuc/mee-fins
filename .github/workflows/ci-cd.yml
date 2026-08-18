@@ -74,11 +74,12 @@ jobs:
             SSH_OPTS="$SSH_OPTS -J ${{ secrets.SSH_JUMP_USER }}@${{ secrets.SSH_JUMP_HOST }}"
           fi
 
-          # Define the target image using the unique commit SHA tag
+          # Define target image using unique commit SHA tag
           DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
 
-          # Create .env file locally on runner
-          cat << 'ENVFILE' > /tmp/.env
+          # Create .env file locally on runner including evaluated DOCKER_IMAGE tag
+          cat << EOF > /tmp/.env
+          DOCKER_IMAGE=${DOCKER_IMAGE}
           POSTGRES_USER=${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB=${{ secrets.POSTGRES_DB }}
@@ -92,6 +93,7 @@ jobs:
           LIVEKIT_API_SECRET=${{ secrets.LIVEKIT_API_SECRET }}
           LIVEKIT_URL=${{ secrets.LIVEKIT_URL }}
           LIVEKIT_EXTERNAL_IP=${{ secrets.SSH_HOST }}
+          LIVEKIT_WEBHOOK_URL=${{ secrets.LIVEKIT_WEBHOOK_URL }}
 
           PORT=${{ secrets.PORT }}
           NODE_ENV=${{ secrets.NODE_ENV }}
@@ -113,18 +115,17 @@ jobs:
 
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
-          ENVFILE
+          EOF
 
-          # Clean YAML indentation from local .env file
+          # Clean YAML indentation spaces from local .env file
           sed -i 's/^[ \t]*//' /tmp/.env
 
           # Copy .env file to remote server via SCP
           scp $SSH_OPTS /tmp/.env ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ubuntu/mee-fins/.env
 
-          # Execute standard remote deployment command via SSH
+          # Execute standard remote deployment commands via SSH
           ssh $SSH_OPTS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd /home/ubuntu/mee-fins && \
-            export DOCKER_IMAGE=$DOCKER_IMAGE && \
             docker compose pull && \
             docker compose down && \
             docker compose up -d

@@ -6,10 +6,14 @@ rtc:
   port_range_start: 50000
   port_range_end: 60000
   use_external_ip: true
+
+redis:
+  address: 127.0.0.1:6379
+
 room:
   empty_timeout: 300
   departure_timeout: 20
 
 webhook:
   urls:
-    - http://backend:3001/webhooks/livekit
+    - ${LIVEKIT_WEBHOOK_URL}
