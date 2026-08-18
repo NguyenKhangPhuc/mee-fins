@@ -25,7 +25,7 @@ ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholde
 
 # Generate Prisma client files and compile NestJS production bundle
 RUN npx prisma generate
-RUN npm run build
+RUN pnpm run build
 
 # Stage 2: Runtime stage
 FROM node:22-alpine AS runner
