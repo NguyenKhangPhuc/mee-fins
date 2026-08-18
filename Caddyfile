@@ -1,13 +1,13 @@
 # Caddy Configuration for meefins.com Production Setup
 
 # NestJS Backend API
-api.meefins.com {
+api.meefins.online {
     encode gzip zstd
     reverse_proxy backend:3001
 }
 
 # LiveKit WebRTC Signaling & HTTP Server
-livekit.meefins.com {
+livekit.meefins.online {
     encode gzip zstd
     reverse_proxy livekit:7880
 }
