@@ -16,7 +16,7 @@ RUN pnpm install --frozen-lockfile || pnpm install
 # Copy source code, generate Prisma client, and build NestJS production bundle
 COPY . .
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder_db"
-RUN pnpm exec prisma generate
+RUN npx prisma generate
 RUN pnpm run build
 
 # Stage 2: Runtime stage
