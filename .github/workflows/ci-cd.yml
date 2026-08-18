@@ -119,7 +119,7 @@ jobs:
           ENVFILE
 
           sed -i 's/^[ \t]*//' .env
-          export DOCKER_IMAGE="$DOCKER_IMAGE"
+          export DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
           git pull origin main
           docker compose pull
           docker compose down
