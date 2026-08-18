@@ -80,42 +80,42 @@ jobs:
           # SSH into target host, navigate to directory, generate full .env, pull and restart containers
           ssh $SSH_OPTS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd /home/ubuntu/mee-fins && \
-            cat << 'EOF' > .env
-POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-DATABASE_URL=${{ secrets.DATABASE_URL }}
+            sed -e 's/^[ \t]*//' << 'EOF' > .env
+            POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+            POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
 
-REDIS_HOST=${{ secrets.REDIS_HOST }}
-REDIS_PORT=${{ secrets.REDIS_PORT }}
-REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
+            REDIS_HOST=${{ secrets.REDIS_HOST }}
+            REDIS_PORT=${{ secrets.REDIS_PORT }}
+            REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}
 
-LIVEKIT_API_KEY=${{ secrets.LIVEKIT_API_KEY }}
-LIVEKIT_API_SECRET=${{ secrets.LIVEKIT_API_SECRET }}
-LIVEKIT_URL=${{ secrets.LIVEKIT_URL }}
-LIVEKIT_EXTERNAL_IP=${{ secrets.SSH_HOST }}
+            LIVEKIT_API_KEY=${{ secrets.LIVEKIT_API_KEY }}
+            LIVEKIT_API_SECRET=${{ secrets.LIVEKIT_API_SECRET }}
+            LIVEKIT_URL=${{ secrets.LIVEKIT_URL }}
+            LIVEKIT_EXTERNAL_IP=${{ secrets.SSH_HOST }}
 
-PORT=${{ secrets.PORT }}
-NODE_ENV=${{ secrets.NODE_ENV }}
+            PORT=${{ secrets.PORT }}
+            NODE_ENV=${{ secrets.NODE_ENV }}
 
-CLOUDFLARE_R2_ACCOUNT_ID=${{ secrets.CLOUDFLARE_R2_ACCOUNT_ID }}
-CLOUDFLARE_R2_BUCKET_NAME=${{ secrets.CLOUDFLARE_R2_BUCKET_NAME }}
-CLOUDFLARE_R2_PUBLIC_URL=${{ secrets.CLOUDFLARE_R2_PUBLIC_URL }}
-CLOUDFLARE_R2_SECRET_ACCESS_KEY=${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
-CLOUDFLARE_R2_ACCESS_KEY_ID=${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+            CLOUDFLARE_R2_ACCOUNT_ID=${{ secrets.CLOUDFLARE_R2_ACCOUNT_ID }}
+            CLOUDFLARE_R2_BUCKET_NAME=${{ secrets.CLOUDFLARE_R2_BUCKET_NAME }}
+            CLOUDFLARE_R2_PUBLIC_URL=${{ secrets.CLOUDFLARE_R2_PUBLIC_URL }}
+            CLOUDFLARE_R2_SECRET_ACCESS_KEY=${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+            CLOUDFLARE_R2_ACCESS_KEY_ID=${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
 
-FRONTEND_URL=${{ secrets.FRONTEND_URL }}
+            FRONTEND_URL=${{ secrets.FRONTEND_URL }}
 
-RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
-MAIL_FROM=\"${{ secrets.MAIL_FROM }}\"
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            MAIL_FROM=\"${{ secrets.MAIL_FROM }}\"
 
-GITHUB_CLIENT_ID=${{ secrets.CLIENT_GITHUB_ID }}
-GITHUB_CLIENT_SECRET=${{ secrets.CLIENT_GITHUB_SECRET }}
-GITHUB_CALLBACK_URL=${{ secrets.CALLBACK_URL_GITHUB }}
+            GITHUB_CLIENT_ID=${{ secrets.CLIENT_GITHUB_ID }}
+            GITHUB_CLIENT_SECRET=${{ secrets.CLIENT_GITHUB_SECRET }}
+            GITHUB_CALLBACK_URL=${{ secrets.CALLBACK_URL_GITHUB }}
 
-JWT_SECRET=${{ secrets.JWT_SECRET }}
-JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
-EOF
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
+            EOF
             export DOCKER_IMAGE=$DOCKER_IMAGE && \
             docker compose pull && \
             docker compose down && \
