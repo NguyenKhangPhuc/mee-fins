@@ -58,7 +58,7 @@ services:
     networks:
       - webnet
 
-  # 4. LiveKit WebRTC Server Service
+  # 4. LiveKit WebRTC Server Service (Using host networking to prevent docker-proxy 10,000 UDP port deadlock)
   livekit:
     image: livekit/livekit-server:v1.8.0
     container_name: meefins-livekit
@@ -71,12 +71,7 @@ services:
     command: --config /config/livekit.yaml
     volumes:
       - ./livekit.yaml:/config/livekit.yaml
-    ports:
-      - "7881:7881/tcp"
-      - "7881:7881/udp"
-      - "50000-60000:50000-60000/udp"
-    networks:
-      - webnet
+    network_mode: host
 
   # 5. Caddy Reverse Proxy & Automatic HTTPS Service
   caddy:
@@ -93,7 +88,6 @@ services:
       - caddy_config:/config
     depends_on:
       - backend
-      - livekit
     networks:
       - webnet
 
