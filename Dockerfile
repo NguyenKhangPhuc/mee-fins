@@ -3,8 +3,8 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Enable Corepack to use pnpm natively matching local environment
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable Corepack and use stable pnpm v9 for headless CI build compatibility
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
 # Copy package manifests and pnpm lockfile
 COPY package.json pnpm-lock.yaml ./
