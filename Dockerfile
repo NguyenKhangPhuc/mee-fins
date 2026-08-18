@@ -13,20 +13,19 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 COPY package.json pnpm-lock.yaml ./
 COPY prisma ./prisma/
 
-# Install dependencies using pnpm
+# Install all dependencies (including devDependencies needed for compilation)
 RUN pnpm install --frozen-lockfile || pnpm install
 
 # Copy source code
 COPY . .
 
-# Set environment variables and Node memory limit for build phase
-ENV NODE_ENV=production
+# Set Node memory limit and placeholder database URL for build phase
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder_db"
 
 # Generate Prisma client files and compile NestJS production bundle
 RUN npx prisma generate
-RUN pnpm run build
+RUN npx nest build
 
 # Stage 2: Runtime stage
 FROM node:22-alpine AS runner
@@ -34,9 +33,6 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-
-# Enable Corepack in runner stage for pnpm commands
-RUN corepack enable && corepack prepare pnpm@9 --activate
 
 # Security: Create non-root user and group
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
@@ -58,4 +54,4 @@ EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget --spider -q http://localhost:3001/health || exit 1
 
-CMD ["pnpm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod"]
