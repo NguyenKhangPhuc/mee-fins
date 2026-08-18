@@ -77,11 +77,8 @@ jobs:
           # Define the target image using the unique commit SHA tag
           DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
 
-          # Create deployment script locally with evaluated secrets and image tag
-          cat << DEPLOY_SCRIPT > /tmp/deploy.sh
-          cd /home/ubuntu/mee-fins
-
-          cat << 'ENVFILE' > .env
+          # Create .env file locally on runner
+          cat << 'ENVFILE' > /tmp/.env
           POSTGRES_USER=${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB=${{ secrets.POSTGRES_DB }}
@@ -118,16 +115,20 @@ jobs:
           JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}
           ENVFILE
 
-          sed -i 's/^[ \t]*//' .env
-          export DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
-          docker compose pull
-          docker compose down
-          docker compose up -d --no-build --wait --wait-timeout 120
-          DEPLOY_SCRIPT
+          # Clean YAML indentation from local .env file
+          sed -i 's/^[ \t]*//' /tmp/.env
 
-          # Remove YAML indentation spaces from deployment script before executing via SSH
-          sed -i 's/^[ \t]*//' /tmp/deploy.sh
-          ssh $SSH_OPTS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'bash -s' < /tmp/deploy.sh
+          # Copy .env file to remote server via SCP
+          scp $SSH_OPTS /tmp/.env ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ubuntu/mee-fins/.env
+
+          # Execute standard remote deployment command via SSH
+          ssh $SSH_OPTS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            cd /home/ubuntu/mee-fins && \
+            export DOCKER_IMAGE=$DOCKER_IMAGE && \
+            docker compose pull && \
+            docker compose down && \
+            docker compose up -d
+          "
 
   # ==========================================
   # STAGE 3: VERSIONING & RELEASE
