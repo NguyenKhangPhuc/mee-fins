@@ -21,7 +21,6 @@ COPY . .
 
 # Set environment variables and Node memory limit for build phase
 ENV NODE_ENV=production
-ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder_db"
 
 # Generate Prisma client files and compile NestJS production bundle
