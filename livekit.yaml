@@ -15,6 +15,6 @@ room:
   departure_timeout: 20
 
 webhook:
-  api_key: ${LIVEKIT_API_KEY}
+  api_key: "nguyenkhangphuc_livekit_key"
   urls:
     - ${LIVEKIT_WEBHOOK_URL}
