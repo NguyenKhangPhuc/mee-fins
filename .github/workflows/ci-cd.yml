@@ -120,6 +120,7 @@ jobs:
 
           sed -i 's/^[ \t]*//' .env
           export DOCKER_IMAGE="$DOCKER_IMAGE"
+          git pull origin main
           docker compose pull
           docker compose down
           docker compose up -d --no-build

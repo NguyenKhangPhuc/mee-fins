@@ -19,13 +19,14 @@ RUN pnpm install --frozen-lockfile || pnpm install
 # Copy source code
 COPY . .
 
-# Set environment variables for build phase
+# Set environment variables and Node memory limit for build phase
 ENV NODE_ENV=production
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder_db"
 
 # Generate Prisma client files and compile NestJS production bundle
 RUN npx prisma generate
-RUN pnpm run build
+RUN npm run build
 
 # Stage 2: Runtime stage
 FROM node:22-alpine AS runner
