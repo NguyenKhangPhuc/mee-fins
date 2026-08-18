@@ -1,24 +1,25 @@
 # Stage 1: Build stage
-FROM node:20.18-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies needed for native modules / Prisma
-COPY package*.json ./
+# Enable Corepack to use pnpm natively matching local environment
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package manifests and pnpm lockfile
+COPY package.json pnpm-lock.yaml ./
 COPY prisma ./prisma/
 
-RUN npm ci
+# Install dependencies using pnpm
+RUN pnpm install --frozen-lockfile || pnpm install
 
 # Copy source code, generate Prisma client, and build NestJS production bundle
 COPY . .
 RUN npx prisma generate
-RUN npm run build
-
-# Prune devDependencies to keep production node_modules minimal
-RUN npm prune --production
+RUN pnpm run build
 
 # Stage 2: Runtime stage
-FROM node:20.18-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
@@ -30,7 +31,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 # Copy built application assets and node_modules from builder stage
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/package.json ./
 COPY --from=builder /app/prisma ./prisma
 
 # Change ownership to non-root user
