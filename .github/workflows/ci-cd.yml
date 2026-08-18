@@ -77,8 +77,8 @@ jobs:
           # Define the target image using the unique commit SHA tag
           DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
 
-          # Create deployment script locally with proper YAML indentation
-          cat << 'DEPLOY_SCRIPT' > /tmp/deploy.sh
+          # Create deployment script locally with evaluated secrets and image tag
+          cat << DEPLOY_SCRIPT > /tmp/deploy.sh
           cd /home/ubuntu/mee-fins
 
           cat << 'ENVFILE' > .env
@@ -120,10 +120,9 @@ jobs:
 
           sed -i 's/^[ \t]*//' .env
           export DOCKER_IMAGE="${{ secrets.DOCKER_HUB_USERNAME }}/meefins-backend:sha-${{ github.sha }}"
-          git pull origin main
           docker compose pull
           docker compose down
-          docker compose up -d --no-build
+          docker compose up -d --no-build --wait --wait-timeout 120
           DEPLOY_SCRIPT
 
           # Remove YAML indentation spaces from deployment script before executing via SSH
