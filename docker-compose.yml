@@ -45,7 +45,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ${DOCKER_IMAGE:-meefins-backend:latest}
+    image: ${DOCKER_IMAGE:-nguyenkhangphuc/meefins-backend:latest}
     container_name: meefins-backend
     restart: unless-stopped
     env_file:
