@@ -8,7 +8,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import type { Request, Response } from 'express';
+import type { CookieOptions, Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import type { SafeUser } from 'src/types/safe-user';
@@ -19,7 +19,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-tokens-auth.guard';
 import { GithubAuthGuard } from './guards/github-auth.guard';
-import { frontendUrl } from 'src/utils/config';
+import { cookieDomain, frontendUrl } from 'src/utils/config';
 import { PasswordUpdationDto } from './dtos/password-updation.dto';
 @Controller('auth')
 export class AuthController {
@@ -44,18 +44,16 @@ export class AuthController {
       userAgent: req.headers['user-agent'],
     });
 
-    response.cookie('access_token', result.access_token, {
+    const cookieOptions: CookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
-    });
-    response.cookie('refresh_token', refreshTokenResult.refresh_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    });
+      ...(cookieDomain ? { domain: cookieDomain } : {}),
+    };
+
+    response.cookie('access_token', result.access_token, cookieOptions);
+    response.cookie('refresh_token', refreshTokenResult.refresh_token, cookieOptions);
 
     return { success: true };
   }
@@ -75,8 +73,13 @@ export class AuthController {
       await this.sessionService.removeSession({ id: payload.sessionId });
     }
 
-    res.clearCookie('access_token', { path: '/' });
-    res.clearCookie('refresh_token', { path: '/' });
+    const clearCookieOptions: CookieOptions = {
+      path: '/',
+      ...(cookieDomain ? { domain: cookieDomain } : {}),
+    };
+
+    res.clearCookie('access_token', clearCookieOptions);
+    res.clearCookie('refresh_token', clearCookieOptions);
     return { success: true };
   }
 
