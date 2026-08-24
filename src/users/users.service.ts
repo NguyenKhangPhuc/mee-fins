@@ -3,13 +3,15 @@ import {
   Injectable,
   InternalServerErrorException,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import {
   EXISTED_USER_ERROR,
   INTERNAL_SERVER_ERROR,
   NOT_EXISTED_USER_ERROR,
+  USER_NOT_ADMIN,
 } from 'src/constants/error-code';
-import { User, Prisma } from 'src/generated/prisma/client';
+import { User, Prisma, USER_ROLE } from 'src/generated/prisma/client';
 import { generateCode } from 'src/helpers/email/generate-code';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileService } from 'src/profile/profile.service';
@@ -35,6 +37,15 @@ export class UsersService {
       });
     }
     return result;
+  }
+
+  async findOneWithAdminRole(userId: string) {
+    try {
+      const result = await this.prisma.user.findUnique({ where: { id: userId, role: USER_ROLE.ADMIN } })
+      return result;
+    } catch {
+      throw new UnauthorizedException({ message: "User not admin", code: USER_NOT_ADMIN })
+    }
   }
 
   async createUser({ user, timezone }: { user: Prisma.UserUncheckedCreateInput, timezone: string }) {

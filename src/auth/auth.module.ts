@@ -7,6 +7,7 @@ import { UsersModule } from 'src/users/users.module';
 import { RefreshTokenModule } from './refresh-tokens/auth.refresh-tokens.module';
 import { SessionModule } from './sessions/auth.session.module';
 import { JwtStrategy } from './strategy/jwt.strategy';
+import { JwtStrategyAdmin } from './strategy/jwt-admin.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtRefreshStrategy } from './strategy/refresh-tokens.strategy';
 import { GithubStrategy } from './strategy/github.strategy';
@@ -19,6 +20,7 @@ import { VerificationCodeModule } from 'src/verification_code/verification_code.
     AuthService,
     LocalStrategy,
     JwtStrategy,
+    JwtStrategyAdmin,
     JwtRefreshStrategy,
     GithubStrategy,
   ],

@@ -4,6 +4,7 @@ import { LanguagesService } from './languages.service';
 import { LanguageQueryDto } from './dto/language-query.dto';
 import { LanguageCreationDto } from './dto/language-creation.dto';
 import { LanguageDeleteDto } from './dto/language-delete.dto';
+import { JwtAdminAuthGuard } from 'src/auth/guards/jwt-admin-auth.guard';
 
 @Controller('languages')
 export class LanguagesController {
@@ -16,14 +17,14 @@ export class LanguagesController {
     }
 
     @Post('create')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAdminAuthGuard)
     async createLanguage(@Body() body: LanguageCreationDto) {
         const language = await this.languagesService.createLanguage(body);
         return language;
     }
 
     @Delete('delete')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAdminAuthGuard)
     async deleteLanguage(@Body() body: LanguageDeleteDto) {
         const language = await this.languagesService.deleteLanguage(body);
         return language;
