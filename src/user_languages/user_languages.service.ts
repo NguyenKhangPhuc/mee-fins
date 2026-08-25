@@ -30,7 +30,8 @@ export class UserLanguagesService {
                 data: body
             })
             return userLanguage;
-        } catch {
+        } catch (error) {
+            console.log("this is the error when create user language", error)
             throw new InternalServerErrorException({
                 message: 'Failed to create a new user language',
                 code: INTERNAL_SERVER_ERROR,

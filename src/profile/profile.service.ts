@@ -190,7 +190,6 @@ export class ProfileService {
           }
         },
       });
-      console.log("This is the profile ", result)
       return result;
     } catch (error) {
       console.log(error)
