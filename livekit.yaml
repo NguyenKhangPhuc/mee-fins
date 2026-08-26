@@ -17,4 +17,4 @@ room:
 webhook:
   api_key: "nguyenkhangphuc_livekit_key"
   urls:
-    - ${LIVEKIT_WEBHOOK_URL}
+    - https://api.meefins.online/webhooks/livekit
