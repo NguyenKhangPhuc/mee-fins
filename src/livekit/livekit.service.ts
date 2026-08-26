@@ -44,6 +44,7 @@ export class LivekitService {
         }
         const at = new AccessToken(this.apiKey, this.apiSecret, {
             identity: userId,
+            ttl: '2h',
         });
         at.addGrant({
             roomJoin: true,
