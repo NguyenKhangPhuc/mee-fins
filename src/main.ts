@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.use(cookieParser());
   app.enableCors({
-    origin: ['https://meefins.online'],
+    origin: ['https://meefins.online', 'https://www.meefins.online'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
     allowedHeaders: 'Content-Type, Accept, Authorization, Cookie',
