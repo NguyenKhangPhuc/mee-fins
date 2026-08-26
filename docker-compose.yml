@@ -52,6 +52,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    ports:
+      - "127.0.0.1:3001:3001"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
@@ -62,44 +64,6 @@ services:
     networks:
       - webnet
 
-  # 4. LiveKit WebRTC Server Service (Using host networking to prevent docker-proxy 10,000 UDP port deadlock)
-  livekit:
-    image: livekit/livekit-server:v1.8.0
-    container_name: meefins-livekit
-    restart: unless-stopped
-    env_file:
-      - .env
-    environment:
-      LIVEKIT_KEYS: "${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}"
-      LIVEKIT_RTC_EXTERNAL_IP: "${LIVEKIT_EXTERNAL_IP}"
-      LIVEKIT_API_KEY: "${LIVEKIT_API_KEY}"
-      REDIS_HOST: "127.0.0.1:6379"
-      REDIS_PASSWORD: "${REDIS_PASSWORD}"
-    command: --config /config/livekit.yaml
-    volumes:
-      - ./livekit.yaml:/config/livekit.yaml
-    network_mode: host
-
-  # 5. Caddy Reverse Proxy & Automatic HTTPS Service
-  caddy:
-    image: caddy:2.8-alpine
-    container_name: meefins-caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    depends_on:
-      - backend
-    networks:
-      - webnet
-
 networks:
   webnet:
     driver: bridge
@@ -107,5 +71,3 @@ networks:
 volumes:
   pgdata:
   redis-data:
-  caddy_data:
-  caddy_config:
