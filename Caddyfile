@@ -8,6 +8,5 @@ api.meefins.online {
 
 # LiveKit WebRTC Signaling & HTTP Server
 livekit.meefins.online {
-    encode gzip zstd
     reverse_proxy host.docker.internal:7880
 }
