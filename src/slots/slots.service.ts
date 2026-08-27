@@ -107,8 +107,12 @@ export class SlotsService {
             }
 
             const slot = await this.prisma.slot.create({
-                data: body
-            })
+                data: body,
+                include: {
+                    provideLanguage: true,
+                    exchangeLanguage: true,
+                },
+            });
             await this.scheduleTimeoutJob(slot.id, slot.endTime);
 
             return slot;

@@ -202,6 +202,10 @@ export class ProfileService {
                 gte: today,
               },
             },
+            include: {
+              provideLanguage: true,
+              exchangeLanguage: true,
+            },
           },
           exchangeSlots: {
             where: {
@@ -209,9 +213,14 @@ export class ProfileService {
                 gte: today,
               },
             },
+            include: {
+              provideLanguage: true,
+              exchangeLanguage: true,
+            },
           }
         },
       });
+      console.log(result)
       return result;
     } catch (error) {
       throw new InternalServerErrorException({
