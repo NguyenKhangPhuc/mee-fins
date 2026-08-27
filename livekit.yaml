@@ -1,31 +1,22 @@
 port: 7880
 bind_addresses:
-  - ""
+    - ""
 rtc:
-  tcp_port: 7881
-  port_range_start: 50000
-  port_range_end: 60000
-  use_external_ip: true
-  stun_servers:
-    - stun.l.google.com:19302
-    - stun1.l.google.com:19302
-    - stun2.l.google.com:19302
-  ips:
-    excludes:
-      - 172.17.0.0/16
-      - 172.18.0.0/16
-
-turn:
-  enabled: false
-
+    tcp_port: 7881
+    port_range_start: 50000
+    port_range_end: 60000
+    use_external_ip: true
+    enable_loopback_candidate: false
 redis:
-  address: 127.0.0.1:6379
-
-room:
-  empty_timeout: 300
-  departure_timeout: 20
-
+    address: localhost:6379
+turn:
+    enabled: true
+    domain: turn.meefins.online
+    tls_port: 5349
+    udp_port: 3478
+    external_tls: true
 webhook:
-  api_key: "nguyenkhangphuc_livekit_key"
+  api_key: "APIwbVvA7EzpqiU"
   urls:
     - https://api.meefins.online/webhooks/livekit
+
