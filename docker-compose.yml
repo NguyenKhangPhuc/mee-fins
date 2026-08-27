@@ -69,7 +69,7 @@ services:
     env_file:
       - .env
     environment:
-      LIVEKIT_KEYS: "${LIVEKIT_API_KEY}:${LIVEKIT_API_SECRET}"
+      LIVEKIT_KEYS: "${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}"
       LIVEKIT_RTC_EXTERNAL_IP: "${LIVEKIT_EXTERNAL_IP}"
       LIVEKIT_API_KEY: "${LIVEKIT_API_KEY}"
       REDIS_HOST: "127.0.0.1:6379"

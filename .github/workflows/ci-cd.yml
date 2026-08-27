@@ -127,6 +127,7 @@ jobs:
           # Execute standard remote deployment commands via SSH
           ssh $SSH_OPTS ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd /home/ubuntu/mee-fins && \
+            git pull origin main && \
             docker compose pull && \
             docker compose down && \
             docker compose up -d
