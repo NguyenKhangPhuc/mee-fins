@@ -125,12 +125,10 @@ export class SlotsService {
     async scheduleTimeoutJob(slotId: string, endTime: Date) {
         const dbNow = await this.getDbNow();
         const delay = endTime.getTime() - dbNow.getTime();
-        console.log(`${endTime.getTime()} - ${dbNow.getTime()} = ${delay}`)
         if (delay <= 0) {
             console.warn(`Slot ${slotId} have negative endtime, ignore`);
             return;
         }
-        console.log('Send to bullMQ')
         await this.timeoutQueue.add(
             'end-meeting',
             { slotId }, // roomName = slotId, nên chỉ cần truyền slotId
@@ -306,6 +304,5 @@ export class SlotsService {
             await this.scheduleTimeoutJob(slot.id, slot.endTime);
         }
 
-        console.log(`Recovered ${activeSlots.length} pending timeout jobs`);
     }
 }

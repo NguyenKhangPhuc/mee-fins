@@ -20,10 +20,8 @@ export class LivekitWebhookController {
     @Post()
     async handleWebhook(@Req() req: Request, @Headers('authorization') authHeader: string) {
         // req.body phải là raw string, xem lưu ý bên dưới
-        console.log("WEBHOOK HIT !!!")
         const event = await this.receiver.receive(req.body, authHeader);
         const roomName = event.room?.name;
-        console.log("This is the event in webhooks", event)
         if (!roomName) {
             // Log lại để biết khi nào xảy ra case này, nhưng không throw lỗi
             console.warn(`room_finished event lack room.name, event: ${JSON.stringify(event)}`);
@@ -39,7 +37,6 @@ export class LivekitWebhookController {
                     return { ok: true };
                 }
 
-                console.log(`Participant ${identity} joined room ${roomName}`);
                 break;
             }
             case 'room_finished':

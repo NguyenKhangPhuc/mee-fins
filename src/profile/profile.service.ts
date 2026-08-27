@@ -178,7 +178,6 @@ export class ProfileService {
 
       return paginate(result, total, page, limit);
     } catch (error) {
-      console.log(error)
       throw new InternalServerErrorException({
         message: 'Fail to get user language and slots',
         code: INTERNAL_SERVER_ERROR,
@@ -190,7 +189,6 @@ export class ProfileService {
   async getUserProfileWithLanguageAndSlotsById(currentUserId: string) {
     try {
       const today = new Date();
-      console.log(currentUserId)
       today.setHours(0, 0, 0, 0);
       const result = await this.prismaService.profile.findFirst({
         where: {
@@ -216,7 +214,6 @@ export class ProfileService {
       });
       return result;
     } catch (error) {
-      console.log(error)
       throw new InternalServerErrorException({
         message: 'Fail to get user language and slots',
         code: INTERNAL_SERVER_ERROR,

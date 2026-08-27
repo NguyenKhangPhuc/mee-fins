@@ -97,7 +97,6 @@ export class AuthController {
     @Ip() ip: string,
     @Res({ passthrough: true }) res: Response,
   ) {
-    console.log("Login again, revoked already")
     return await this.login(user, req, ip, res);
   }
 
