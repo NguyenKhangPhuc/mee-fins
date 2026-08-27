@@ -5,10 +5,14 @@ import { INTERNAL_SERVER_ERROR } from 'src/constants/error-code';
 import { UserLanguagesDeleteDto } from './dto/user_languages-delete.dto';
 import { UserLanguagesUserIdDto } from './dto/user_languages-user_id.dto';
 import { PROFICIENCY } from 'src/generated/prisma/enums';
+import { ProfileService } from 'src/profile/profile.service';
 
 @Injectable()
 export class UserLanguagesService {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly profileService: ProfileService,
+    ) { }
 
     async getAllUserLanguagesByUserId(body: UserLanguagesUserIdDto) {
         try {
@@ -26,9 +30,18 @@ export class UserLanguagesService {
 
     async createUserLanguage(body: UserLanguagesCreationDto) {
         try {
+            const { timezone, ...userLanguageData } = body;
             const userLanguage = await this.prisma.userLanguage.create({
-                data: body
-            })
+                data: userLanguageData
+            });
+
+            if (timezone) {
+                await this.profileService.updateProfileTimeZone({
+                    id: body.userId,
+                    timezone,
+                });
+            }
+
             return userLanguage;
         } catch (error) {
             throw new InternalServerErrorException({

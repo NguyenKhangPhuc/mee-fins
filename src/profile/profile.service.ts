@@ -6,6 +6,7 @@ import {
 import { Prisma, SlotStatus } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileUpdationDto } from './dto/profile-updation.dto';
+import { TimeZoneUpdationDto } from './dto/timezone-updation.dto';
 import {
   INTERNAL_SERVER_ERROR,
   NOT_EXISTED_USER_ERROR,
@@ -52,6 +53,29 @@ export class ProfileService {
       }
       throw new InternalServerErrorException({
         message: 'Fail to update user information',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+  async updateProfileTimeZone(dto: TimeZoneUpdationDto) {
+    try {
+      const result = await this.prismaService.profile.update({
+        data: { timezone: dto.timezone },
+        where: { id: dto.id },
+      });
+      return result;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new NotFoundException({
+            message: 'User not found',
+            code: NOT_EXISTED_USER_ERROR,
+          });
+        }
+      }
+      throw new InternalServerErrorException({
+        message: 'Fail to update user timezone',
         code: INTERNAL_SERVER_ERROR,
       });
     }
