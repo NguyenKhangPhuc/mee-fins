@@ -360,7 +360,7 @@ export class SlotsService {
             const slot = await this.prisma.slot.delete({
                 where: { id: slotId },
             });
-            await this.timeoutQueue.remove(`timeout-${slotId}`).catch(() => {});
+            await this.timeoutQueue.remove(`timeout-${slotId}`).catch(() => { });
             return slot;
         } catch (error) {
             if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {

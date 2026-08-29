@@ -6,6 +6,7 @@ import { SLOT_ALREADY_ENDED, SLOT_NOT_PARTICIPATED_ERROR, SLOT_NOT_STARTED } fro
 import { TokenCreationDto } from './dto/token-creation.dto';
 import { ConfigService } from '@nestjs/config';
 import { SlotStatus } from 'src/generated/prisma/enums';
+import { ProfileService } from 'src/profile/profile.service';
 @Injectable()
 export class LivekitService {
     private roomService: RoomServiceClient;
@@ -13,6 +14,7 @@ export class LivekitService {
     private readonly apiSecret = livekitApiSecret;
     private readonly url = livekitUrl;
     constructor(private readonly slotService: SlotsService,
+        private readonly profileService: ProfileService
     ) {
         this.roomService = new RoomServiceClient(
             this.url,
@@ -30,6 +32,7 @@ export class LivekitService {
                 code: SLOT_NOT_PARTICIPATED_ERROR,
             });
         }
+        const user = await this.profileService.getUserProfile(userId)
         const now = new Date();
         const startTime = new Date(slot.startTime);
         const endTime = new Date(slot.endTime);
@@ -43,7 +46,7 @@ export class LivekitService {
             throw new BadRequestException({ message: 'The meeting has ended', code: SLOT_ALREADY_ENDED });
         }
         const at = new AccessToken(this.apiKey, this.apiSecret, {
-            identity: userId,
+            identity: user?.fullName ?? "Username",
             ttl: 7200,
         });
         at.addGrant({
