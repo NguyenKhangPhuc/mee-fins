@@ -13,6 +13,8 @@ import {
 } from 'src/constants/error-code';
 import { User, Prisma, USER_ROLE } from 'src/generated/prisma/client';
 import { generateCode } from 'src/helpers/email/generate-code';
+import { paginate } from 'src/helpers/pagination/parseing-pagination-result';
+import { getPaginationParams } from 'src/helpers/pagination/parsing-pagination-query';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProfileService } from 'src/profile/profile.service';
 import { SafeUser } from 'src/types/safe-user';
@@ -147,6 +149,64 @@ export class UsersService {
         }
       }
       throw new InternalServerErrorException({ message: "Failed to update user password", code: INTERNAL_SERVER_ERROR })
+    }
+  }
+
+  async getAllUsers(query: any) {
+
+    const { page, limit, skip } = getPaginationParams(query);
+
+    try {
+      const [users, total] = await this.prisma.$transaction([
+        this.prisma.user.findMany({
+          include: {
+            profile: true,
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          skip,
+          take: limit,
+        }),
+        this.prisma.user.count(),
+      ]);
+
+      const safeUsers = users.map((u) => {
+        const { passwordHash: _passwordHash, ...safeUser } = u;
+        return safeUser;
+      });
+
+      return paginate(safeUsers, total, page, limit);
+    } catch (error) {
+      throw new InternalServerErrorException({
+        message: 'Failed to fetch users',
+        code: INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+  async updateRoleByUserId(dto: { userId: string; role: USER_ROLE }) {
+    try {
+      const updatedUser = await this.prisma.user.update({
+        where: { id: dto.userId },
+        data: { role: dto.role },
+        include: {
+          profile: true,
+        },
+      });
+      const { passwordHash: _passwordHash, ...safeUser } = updatedUser;
+      return safeUser;
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+        throw new NotFoundException({
+          message: 'User not found',
+          code: NOT_EXISTED_USER_ERROR,
+        });
+      }
+      throw new InternalServerErrorException({
+        message: 'Failed to update user role',
+        code: INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }

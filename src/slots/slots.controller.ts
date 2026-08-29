@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Query, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { SlotsService } from './slots.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAdminAuthGuard } from 'src/auth/guards/jwt-admin-auth.guard';
 import { SlotUserIdDto } from './dto/slot-user_id.dto';
 import { SlotCreationDto } from './dto/slot-creation.dto';
 import { SlotDeletionDto } from './dto/slot-deletion.dto';
@@ -89,5 +90,17 @@ export class SlotsController {
             );
         }
         return slot;
+    }
+
+    @Get('admin/user/:userId')
+    @UseGuards(JwtAdminAuthGuard)
+    async getCurrentSlotsByUserIdAdmin(@Param() params: SlotUserIdDto) {
+        return this.slotsService.getCurrentSlotsByUserIdAdmin(params.userId);
+    }
+
+    @Post('admin/delete')
+    @UseGuards(JwtAdminAuthGuard)
+    async deleteSlotBySlotIdAdmin(@Body() body: SlotDeletionDto) {
+        return this.slotsService.deleteSlotBySlotIdAdmin(body.id);
     }
 }

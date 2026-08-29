@@ -220,7 +220,6 @@ export class ProfileService {
           }
         },
       });
-      console.log(result)
       return result;
     } catch (error) {
       throw new InternalServerErrorException({

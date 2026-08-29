@@ -309,4 +309,70 @@ export class SlotsService {
         }
 
     }
+
+    async getCurrentSlotsByUserIdAdmin(userId: string) {
+        try {
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const distanceToMonday = (dayOfWeek + 6) % 7;
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(now.getDate() - distanceToMonday);
+            startOfWeek.setHours(0, 0, 0, 0);
+
+            const slots = await this.prisma.slot.findMany({
+                where: {
+                    OR: [
+                        { ownerId: userId },
+                        { exchangeUserId: userId },
+                    ],
+                    startTime: {
+                        gte: startOfWeek,
+                    },
+                },
+                include: {
+                    provideLanguage: true,
+                    exchangeLanguage: true,
+                    owner: true,
+                    exchangeUser: true,
+                    slotRatings: {
+                        include: {
+                            rater: true,
+                            ratedUser: true,
+                        },
+                    },
+                },
+                orderBy: {
+                    startTime: 'asc',
+                },
+            });
+
+            return slots;
+        } catch (error) {
+            throw new InternalServerErrorException({
+                message: 'Failed to fetch current user slots for admin',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
+
+    async deleteSlotBySlotIdAdmin(slotId: string) {
+        try {
+            const slot = await this.prisma.slot.delete({
+                where: { id: slotId },
+            });
+            await this.timeoutQueue.remove(`timeout-${slotId}`).catch(() => {});
+            return slot;
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+                throw new NotFoundException({
+                    message: 'Slot not found',
+                    code: NOT_EXISTED_SLOT_ERROR,
+                });
+            }
+            throw new InternalServerErrorException({
+                message: 'Failed to delete slot by admin',
+                code: INTERNAL_SERVER_ERROR,
+            });
+        }
+    }
 }

@@ -73,4 +73,18 @@ export class SlotRatingService {
             throw new InternalServerErrorException({ message: "Fail to update the rating", code: INTERNAL_SERVER_ERROR })
         }
     }
+
+    async deleteRatingByIdAdmin(ratingId: string) {
+        try {
+            const result = await this.prismaService.slotRating.delete({ where: { id: ratingId } });
+            return result;
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                if (error.code == 'P2025') {
+                    throw new NotFoundException({ message: "Rating not found", code: NOT_EXISTED_RATING_ERROR });
+                }
+            }
+            throw new InternalServerErrorException({ message: "Fail to delete rating by admin", code: INTERNAL_SERVER_ERROR });
+        }
+    }
 }

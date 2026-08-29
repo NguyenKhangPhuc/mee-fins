@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Post, UnauthorizedException, UseGuards }
 import { SlotRatingService } from './slot_rating.service';
 import { SlotsService } from 'src/slots/slots.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { JwtAdminAuthGuard } from 'src/auth/guards/jwt-admin-auth.guard';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import type { SafeUser } from 'src/types/safe-user';
 import { RatingCreationDto } from './dto/rating-creation.dto';
@@ -61,5 +62,11 @@ export class SlotRatingController {
 
         const result = await this.ratingService.deleteSlotRating(body.id, user.id)
         return result
+    }
+
+    @Post('admin/delete')
+    @UseGuards(JwtAdminAuthGuard)
+    async deleteRatingByIdAdmin(@Body() body: RatingDeletionDto) {
+        return this.ratingService.deleteRatingByIdAdmin(body.id);
     }
 }

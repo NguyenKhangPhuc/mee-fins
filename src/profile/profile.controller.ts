@@ -6,6 +6,7 @@ import { ProfileUpdationDto } from './dto/profile-updation.dto';
 import { ProfileService } from './profile.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { PaginationDto } from 'src/helpers/pagination/dto/pagination.dto';
+import { JwtAdminAuthGuard } from 'src/auth/guards/jwt-admin-auth.guard';
 
 @Controller('profile')
 export class ProfileController {
