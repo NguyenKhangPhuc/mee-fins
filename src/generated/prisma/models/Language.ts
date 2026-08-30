@@ -29,6 +29,7 @@ export type LanguageMinAggregateOutputType = {
   name: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  logoUrl: string | null
 }
 
 export type LanguageMaxAggregateOutputType = {
@@ -36,6 +37,7 @@ export type LanguageMaxAggregateOutputType = {
   name: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  logoUrl: string | null
 }
 
 export type LanguageCountAggregateOutputType = {
@@ -43,6 +45,7 @@ export type LanguageCountAggregateOutputType = {
   name: number
   createdAt: number
   updatedAt: number
+  logoUrl: number
   _all: number
 }
 
@@ -52,6 +55,7 @@ export type LanguageMinAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
+  logoUrl?: true
 }
 
 export type LanguageMaxAggregateInputType = {
@@ -59,6 +63,7 @@ export type LanguageMaxAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
+  logoUrl?: true
 }
 
 export type LanguageCountAggregateInputType = {
@@ -66,6 +71,7 @@ export type LanguageCountAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
+  logoUrl?: true
   _all?: true
 }
 
@@ -146,6 +152,7 @@ export type LanguageGroupByOutputType = {
   name: string
   createdAt: Date
   updatedAt: Date
+  logoUrl: string | null
   _count: LanguageCountAggregateOutputType | null
   _min: LanguageMinAggregateOutputType | null
   _max: LanguageMaxAggregateOutputType | null
@@ -174,6 +181,7 @@ export type LanguageWhereInput = {
   name?: Prisma.StringFilter<"Language"> | string
   createdAt?: Prisma.DateTimeFilter<"Language"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Language"> | Date | string
+  logoUrl?: Prisma.StringNullableFilter<"Language"> | string | null
   userLanguages?: Prisma.UserLanguageListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
@@ -185,6 +193,7 @@ export type LanguageOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   userLanguages?: Prisma.UserLanguageOrderByRelationAggregateInput
   exchangeSlots?: Prisma.SlotOrderByRelationAggregateInput
   provideSlots?: Prisma.SlotOrderByRelationAggregateInput
@@ -199,6 +208,7 @@ export type LanguageWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.LanguageWhereInput | Prisma.LanguageWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Language"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Language"> | Date | string
+  logoUrl?: Prisma.StringNullableFilter<"Language"> | string | null
   userLanguages?: Prisma.UserLanguageListRelationFilter
   exchangeSlots?: Prisma.SlotListRelationFilter
   provideSlots?: Prisma.SlotListRelationFilter
@@ -210,6 +220,7 @@ export type LanguageOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LanguageCountOrderByAggregateInput
   _max?: Prisma.LanguageMaxOrderByAggregateInput
   _min?: Prisma.LanguageMinOrderByAggregateInput
@@ -223,6 +234,7 @@ export type LanguageScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Language"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Language"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Language"> | Date | string
+  logoUrl?: Prisma.StringNullableWithAggregatesFilter<"Language"> | string | null
 }
 
 export type LanguageCreateInput = {
@@ -230,6 +242,7 @@ export type LanguageCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
@@ -241,6 +254,7 @@ export type LanguageUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
@@ -252,6 +266,7 @@ export type LanguageUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
@@ -263,6 +278,7 @@ export type LanguageUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
@@ -274,6 +290,7 @@ export type LanguageCreateManyInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
 }
 
 export type LanguageUpdateManyMutationInput = {
@@ -281,6 +298,7 @@ export type LanguageUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LanguageUncheckedUpdateManyInput = {
@@ -288,6 +306,7 @@ export type LanguageUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LanguageCountOrderByAggregateInput = {
@@ -295,6 +314,7 @@ export type LanguageCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
 }
 
 export type LanguageMaxOrderByAggregateInput = {
@@ -302,6 +322,7 @@ export type LanguageMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
 }
 
 export type LanguageMinOrderByAggregateInput = {
@@ -309,6 +330,7 @@ export type LanguageMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  logoUrl?: Prisma.SortOrder
 }
 
 export type LanguageScalarRelationFilter = {
@@ -322,6 +344,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type LanguageCreateNestedOneWithoutProvideSlotsInput = {
@@ -385,6 +411,7 @@ export type LanguageCreateWithoutProvideSlotsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
@@ -395,6 +422,7 @@ export type LanguageUncheckedCreateWithoutProvideSlotsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
@@ -410,6 +438,7 @@ export type LanguageCreateWithoutExchangeSlotsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
@@ -420,6 +449,7 @@ export type LanguageUncheckedCreateWithoutExchangeSlotsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
@@ -446,6 +476,7 @@ export type LanguageUpdateWithoutProvideSlotsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
@@ -456,6 +487,7 @@ export type LanguageUncheckedUpdateWithoutProvideSlotsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
@@ -477,6 +509,7 @@ export type LanguageUpdateWithoutExchangeSlotsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
@@ -487,6 +520,7 @@ export type LanguageUncheckedUpdateWithoutExchangeSlotsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
@@ -497,6 +531,7 @@ export type LanguageCreateWithoutUserLanguagesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionCreateNestedManyWithoutLanguageInput
@@ -507,6 +542,7 @@ export type LanguageUncheckedCreateWithoutUserLanguagesInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedCreateNestedManyWithoutLanguageInput
@@ -533,6 +569,7 @@ export type LanguageUpdateWithoutUserLanguagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUpdateManyWithoutLanguageNestedInput
@@ -543,6 +580,7 @@ export type LanguageUncheckedUpdateWithoutUserLanguagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
   vocabularyCollections?: Prisma.VocabularyCollectionUncheckedUpdateManyWithoutLanguageNestedInput
@@ -553,6 +591,7 @@ export type LanguageCreateWithoutVocabularyCollectionsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotCreateNestedManyWithoutProvideLanguageInput
@@ -563,6 +602,7 @@ export type LanguageUncheckedCreateWithoutVocabularyCollectionsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  logoUrl?: string | null
   userLanguages?: Prisma.UserLanguageUncheckedCreateNestedManyWithoutLanguageInput
   exchangeSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutExchangeLanguageInput
   provideSlots?: Prisma.SlotUncheckedCreateNestedManyWithoutProvideLanguageInput
@@ -589,6 +629,7 @@ export type LanguageUpdateWithoutVocabularyCollectionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUpdateManyWithoutProvideLanguageNestedInput
@@ -599,6 +640,7 @@ export type LanguageUncheckedUpdateWithoutVocabularyCollectionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   userLanguages?: Prisma.UserLanguageUncheckedUpdateManyWithoutLanguageNestedInput
   exchangeSlots?: Prisma.SlotUncheckedUpdateManyWithoutExchangeLanguageNestedInput
   provideSlots?: Prisma.SlotUncheckedUpdateManyWithoutProvideLanguageNestedInput
@@ -667,6 +709,7 @@ export type LanguageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  logoUrl?: boolean
   userLanguages?: boolean | Prisma.Language$userLanguagesArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Language$exchangeSlotsArgs<ExtArgs>
   provideSlots?: boolean | Prisma.Language$provideSlotsArgs<ExtArgs>
@@ -679,6 +722,7 @@ export type LanguageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  logoUrl?: boolean
 }, ExtArgs["result"]["language"]>
 
 export type LanguageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -686,6 +730,7 @@ export type LanguageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  logoUrl?: boolean
 }, ExtArgs["result"]["language"]>
 
 export type LanguageSelectScalar = {
@@ -693,9 +738,10 @@ export type LanguageSelectScalar = {
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  logoUrl?: boolean
 }
 
-export type LanguageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["language"]>
+export type LanguageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "logoUrl", ExtArgs["result"]["language"]>
 export type LanguageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userLanguages?: boolean | Prisma.Language$userLanguagesArgs<ExtArgs>
   exchangeSlots?: boolean | Prisma.Language$exchangeSlotsArgs<ExtArgs>
@@ -719,6 +765,7 @@ export type $LanguagePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     createdAt: Date
     updatedAt: Date
+    logoUrl: string | null
   }, ExtArgs["result"]["language"]>
   composites: {}
 }
@@ -1150,6 +1197,7 @@ export interface LanguageFieldRefs {
   readonly name: Prisma.FieldRef<"Language", 'String'>
   readonly createdAt: Prisma.FieldRef<"Language", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Language", 'DateTime'>
+  readonly logoUrl: Prisma.FieldRef<"Language", 'String'>
 }
     
 

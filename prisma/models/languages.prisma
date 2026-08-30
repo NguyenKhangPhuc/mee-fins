@@ -3,6 +3,7 @@ model Language {
     name                  String                 @unique
     createdAt             DateTime               @default(now()) @map("created_at")
     updatedAt             DateTime               @updatedAt @map("updated_at")
+    logoUrl               String?                @map("logo_url")
     userLanguages         UserLanguage[]
     exchangeSlots         Slot[]                 @relation("ExchangeLanguage")
     provideSlots          Slot[]                 @relation("ProvideLanguage")

@@ -3,6 +3,7 @@ import z from "zod";
 
 export const LanguageCreationSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
+    logoUrl: z.string().optional()
 });
 
 export class LanguageCreationDto extends createZodDto(LanguageCreationSchema) { }

@@ -51,12 +51,12 @@ export class UserLanguagesService {
         }
     }
 
-    async deleteUserLanguage(body: UserLanguagesDeleteDto) {
+    async deleteUserLanguage(userId: string, body: UserLanguagesDeleteDto) {
         try {
             const userLanguage = await this.prisma.userLanguage.delete({
                 where: {
                     userId_languageId: {
-                        userId: body.userId,
+                        userId: userId,
                         languageId: body.languageId,
                     },
                 },
