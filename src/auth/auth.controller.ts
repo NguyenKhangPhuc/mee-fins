@@ -21,6 +21,7 @@ import { JwtRefreshAuthGuard } from './guards/jwt-refresh-tokens-auth.guard';
 import { GithubAuthGuard } from './guards/github-auth.guard';
 import { cookieDomain, frontendUrl } from 'src/utils/config';
 import { PasswordUpdationDto } from './dtos/password-updation.dto';
+import { GoogleAuthGuard } from './guards/google-auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -98,6 +99,22 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     return await this.login(user, req, ip, res);
+  }
+
+  @Get('google')
+  @UseGuards(GoogleAuthGuard)
+  googleLogin() { }
+
+  @Get('google/callback')
+  @UseGuards(GoogleAuthGuard)
+  async googleCallback(
+    @CurrentUser() user: SafeUser,
+    @Ip() ip: string,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    await this.login(user, req, ip, res);
+    return res.redirect(frontendUrl as string);
   }
 
   @Get('github')

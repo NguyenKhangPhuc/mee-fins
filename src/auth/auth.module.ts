@@ -13,6 +13,7 @@ import { JwtRefreshStrategy } from './strategy/refresh-tokens.strategy';
 import { GithubStrategy } from './strategy/github.strategy';
 import { EmailModule } from 'src/email/email.module';
 import { VerificationCodeModule } from 'src/verification_code/verification_code.module';
+import { GoogleStrategy } from './strategy/google.strategy';
 
 @Module({
   controllers: [AuthController],
@@ -23,6 +24,7 @@ import { VerificationCodeModule } from 'src/verification_code/verification_code.
     JwtStrategyAdmin,
     JwtRefreshStrategy,
     GithubStrategy,
+    GoogleStrategy
   ],
   imports: [
     UsersModule,

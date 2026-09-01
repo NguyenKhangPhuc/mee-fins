@@ -7,6 +7,11 @@ export const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
 export const githubClient = process.env.GITHUB_CLIENT_ID;
 export const githubSecret = process.env.GITHUB_CLIENT_SECRET;
 export const githubCallBackUrl = process.env.GITHUB_CALLBACK_URL;
+
+export const googleClient = process.env.GOOGLE_CLIENT_ID;
+export const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
+export const googleCallBackUrl = process.env.GOOGLE_CALLBACK_URL;
+
 export const frontendUrl = process.env.FRONTEND_URL;
 export const cookieDomain = process.env.COOKIE_DOMAIN;
 
